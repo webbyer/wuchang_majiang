@@ -57,6 +57,11 @@ cc.Class({
                 this.stopRecordingWithGvoiceSDk();
             }
         },this);
+        if(cc.sys.localStorage.getItem(cc.dd.userEvName.USER_YUYIN_SWTICH_STATE) == cc.dd.userEvName.USER_YUYIN_ON) {
+            this.RecordBTN.active = true;
+        }else {
+            this.RecordBTN.active = false;
+        }
     },
     // 返回
     onReturnClick() {

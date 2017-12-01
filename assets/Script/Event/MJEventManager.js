@@ -173,6 +173,9 @@ const MJEventManager = cc.Class({
                 this.writtenUserInfoIntoCellPhone(msgData);
                 cc.dd.user.updateCardStateInfo(msgData.cards);
                 cc.dd.user.updataUserInfo(msgData.user);
+                if (cc.sys.localStorage.getItem(cc.dd.userEvName.USER_YUYIN_SWTICH_STATE) !== cc.dd.userEvName.USER_YUYIN_OFF) {
+                    cc.sys.localStorage.setItem(cc.dd.userEvName.USER_YUYIN_SWTICH_STATE,cc.dd.userEvName.USER_YUYIN_ON);
+                }
                 break;
             }
             case cc.dd.gameCfg.EVENT.EVENT_LOGIN_REQ: {  // 检查登录的回复，1002登录成功返回5002

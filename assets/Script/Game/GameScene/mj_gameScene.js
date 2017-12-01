@@ -649,6 +649,7 @@ cc.Class({
     // 玩家摸牌
     playerMoCard(data, userid) {
         cc.dd.roomEvent.setIsCache(false);
+        cc.log(`玩家摸牌:${userid}`);
         const localSeat = this.getLocalSeatByUserId(userid);
         if (localSeat) {
             const moNode = this.playerArr[localSeat - 1].getChildByName("ParentContainer").getChildByName("HandCardLayer").getChildByName("MoCardLayer");
