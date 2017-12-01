@@ -64,14 +64,27 @@ cc.Class({
         this.node.destroy();
     },
     // 语音聊天开关
-    onClickYuYinConvoSwitch(event) {
-        if(event.isChecked) {
-            cc.log("语音开关打开");
-            cc.sys.localStorage.setItem(cc.dd.userEvName.USER_YUYIN_SWTICH_STATE,cc.dd.userEvName.USER_YUYIN_ON);
-        }else {
-            cc.sys.localStorage.setItem(cc.dd.userEvName.USER_YUYIN_SWTICH_STATE,cc.dd.userEvName.USER_YUYIN_OFF);
-            cc.log("语音开关关闭");
+    onClickYuYinConvoSwitch(event,customData) {
+        if(!cc.dd.user.previousSwitchState){
+            cc.log("给previousSwitchState赋值："+ cc.sys.localStorage.getItem(cc.dd.userEvName.USER_YUYIN_SWTICH_STATE));
+            cc.dd.user.previousSwitchState = cc.sys.localStorage.getItem(cc.dd.userEvName.USER_YUYIN_SWTICH_STATE);
         }
+        if(cc.dd.user.previousSwitchState != cc.sys.localStorage.getItem(cc.dd.userEvName.USER_YUYIN_SWTICH_STATE)) {
+            if(event.isChecked) {
+                cc.log("语音开关打开"+customData);
+                cc.sys.localStorage.setItem(cc.dd.userEvName.USER_YUYIN_SWTICH_STATE,cc.dd.userEvName.USER_YUYIN_ON);
+            }else {
+                cc.sys.localStorage.setItem(cc.dd.userEvName.USER_YUYIN_SWTICH_STATE,cc.dd.userEvName.USER_YUYIN_OFF);
+                cc.log("语音开关关闭"+customData);
+            }
+            cc.dd.user.previousSwitchState = cc.sys.localStorage.getItem(cc.dd.userEvName.USER_YUYIN_SWTICH_STATE);
+            if (cc.director.getScene().sceneId == cc.dd.sceneID.GAME_SCENE) {
+                // 开关状态的通知
+            }
+        }
+        // else {
+        //
+        // }
     },
     // 退出登录按钮的响应方法
     onLogoutClick() {
