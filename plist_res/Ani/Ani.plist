@@ -6,353 +6,529 @@
         <dict>
             <key>chi1.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{284,447},{139,139}}</string>
-                <key>offset</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
                 <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{139,139}}</string>
-                <key>sourceSize</key>
+                <key>spriteSize</key>
                 <string>{139,139}</string>
+                <key>spriteSourceSize</key>
+                <string>{139,139}</string>
+                <key>textureRect</key>
+                <string>{{139,130},{139,139}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>chi2.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{2,469},{139,139}}</string>
-                <key>offset</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
                 <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{139,139}}</string>
-                <key>sourceSize</key>
+                <key>spriteSize</key>
                 <string>{139,139}</string>
+                <key>spriteSourceSize</key>
+                <string>{139,139}</string>
+                <key>textureRect</key>
+                <string>{{0,408},{139,139}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>chi3.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{2,165},{161,161}}</string>
-                <key>offset</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
                 <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{161,161}}</string>
-                <key>sourceSize</key>
+                <key>spriteSize</key>
                 <string>{161,161}</string>
+                <key>spriteSourceSize</key>
+                <string>{161,161}</string>
+                <key>textureRect</key>
+                <string>{{161,686},{161,161}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>gang1.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{143,447},{139,139}}</string>
-                <key>offset</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
                 <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{139,139}}</string>
-                <key>sourceSize</key>
+                <key>spriteSize</key>
                 <string>{139,139}</string>
+                <key>spriteSourceSize</key>
+                <string>{139,139}</string>
+                <key>textureRect</key>
+                <string>{{139,408},{139,139}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>gang2.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{2,328},{139,139}}</string>
-                <key>offset</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
                 <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{139,139}}</string>
-                <key>sourceSize</key>
+                <key>spriteSize</key>
                 <string>{139,139}</string>
+                <key>spriteSourceSize</key>
+                <string>{139,139}</string>
+                <key>textureRect</key>
+                <string>{{278,269},{139,139}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>gang3.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{328,2},{161,161}}</string>
-                <key>offset</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
                 <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{161,161}}</string>
-                <key>sourceSize</key>
+                <key>spriteSize</key>
                 <string>{161,161}</string>
+                <key>spriteSourceSize</key>
+                <string>{161,161}</string>
+                <key>textureRect</key>
+                <string>{{0,847},{161,161}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>gbl1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{373,155}</string>
+                <key>spriteSourceSize</key>
+                <string>{373,155}</string>
+                <key>textureRect</key>
+                <string>{{0,1127},{373,155}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>gbl2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{274,119}</string>
+                <key>spriteSourceSize</key>
+                <string>{274,119}</string>
+                <key>textureRect</key>
+                <string>{{0,1008},{274,119}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>gxcc.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{139,139}</string>
+                <key>spriteSourceSize</key>
+                <string>{139,139}</string>
+                <key>textureRect</key>
+                <string>{{278,408},{139,139}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>gxcc2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{139,139}</string>
+                <key>spriteSourceSize</key>
+                <string>{139,139}</string>
+                <key>textureRect</key>
+                <string>{{139,269},{139,139}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>gxcc3.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{161,161}</string>
+                <key>spriteSourceSize</key>
+                <string>{161,161}</string>
+                <key>textureRect</key>
+                <string>{{322,847},{161,161}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>gxct.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{141,139}</string>
+                <key>spriteSourceSize</key>
+                <string>{141,139}</string>
+                <key>textureRect</key>
+                <string>{{139,547},{141,139}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>gxct2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{141,139}</string>
+                <key>spriteSourceSize</key>
+                <string>{141,139}</string>
+                <key>textureRect</key>
+                <string>{{280,547},{141,139}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>gxct3.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{161,161}</string>
+                <key>spriteSourceSize</key>
+                <string>{161,161}</string>
+                <key>textureRect</key>
+                <string>{{161,847},{161,161}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>peng.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{165,2},{161,161}}</string>
-                <key>offset</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
                 <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{161,161}}</string>
-                <key>sourceSize</key>
+                <key>spriteSize</key>
                 <string>{161,161}</string>
+                <key>spriteSourceSize</key>
+                <string>{161,161}</string>
+                <key>textureRect</key>
+                <string>{{0,686},{161,161}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>peng1.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{306,306},{139,139}}</string>
-                <key>offset</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
                 <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{139,139}}</string>
-                <key>sourceSize</key>
+                <key>spriteSize</key>
                 <string>{139,139}</string>
+                <key>spriteSourceSize</key>
+                <string>{139,139}</string>
+                <key>textureRect</key>
+                <string>{{0,547},{139,139}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>peng2.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{165,306},{139,139}}</string>
-                <key>offset</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
                 <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{139,139}}</string>
-                <key>sourceSize</key>
+                <key>spriteSize</key>
                 <string>{139,139}</string>
+                <key>spriteSourceSize</key>
+                <string>{139,139}</string>
+                <key>textureRect</key>
+                <string>{{0,269},{139,139}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>ting1.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{306,165},{139,139}}</string>
-                <key>offset</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
                 <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{139,139}}</string>
-                <key>sourceSize</key>
+                <key>spriteSize</key>
                 <string>{139,139}</string>
+                <key>spriteSourceSize</key>
+                <string>{139,139}</string>
+                <key>textureRect</key>
+                <string>{{278,130},{139,139}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>ting2.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{165,165},{139,139}}</string>
-                <key>offset</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
                 <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{139,139}}</string>
-                <key>sourceSize</key>
+                <key>spriteSize</key>
                 <string>{139,139}</string>
+                <key>spriteSourceSize</key>
+                <string>{139,139}</string>
+                <key>textureRect</key>
+                <string>{{0,130},{139,139}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>ting3.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{2,2},{161,161}}</string>
-                <key>offset</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
                 <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{161,161}}</string>
-                <key>sourceSize</key>
+                <key>spriteSize</key>
                 <string>{161,161}</string>
+                <key>spriteSourceSize</key>
+                <string>{161,161}</string>
+                <key>textureRect</key>
+                <string>{{322,686},{161,161}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>ylg_fzgame_sezi1.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{196,588},{51,51}}</string>
-                <key>offset</key>
-                <string>{0,2}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{7,5},{51,51}}</string>
-                <key>sourceSize</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
                 <string>{65,65}</string>
+                <key>spriteSourceSize</key>
+                <string>{65,65}</string>
+                <key>textureRect</key>
+                <string>{{260,0},{65,65}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>ylg_fzgame_sezi2.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{55,610},{51,51}}</string>
-                <key>offset</key>
-                <string>{0,2}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{7,5},{51,51}}</string>
-                <key>sourceSize</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
                 <string>{65,65}</string>
+                <key>spriteSourceSize</key>
+                <string>{65,65}</string>
+                <key>textureRect</key>
+                <string>{{195,0},{65,65}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>ylg_fzgame_sezi3.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{2,610},{51,51}}</string>
-                <key>offset</key>
-                <string>{0,2}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{7,5},{51,51}}</string>
-                <key>sourceSize</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
                 <string>{65,65}</string>
+                <key>spriteSourceSize</key>
+                <string>{65,65}</string>
+                <key>textureRect</key>
+                <string>{{325,0},{65,65}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>ylg_fzgame_sezi4.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{143,588},{51,51}}</string>
-                <key>offset</key>
-                <string>{0,2}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{7,5},{51,51}}</string>
-                <key>sourceSize</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
                 <string>{65,65}</string>
+                <key>spriteSourceSize</key>
+                <string>{65,65}</string>
+                <key>textureRect</key>
+                <string>{{130,0},{65,65}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>ylg_fzgame_sezi5.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{196,588},{51,51}}</string>
-                <key>offset</key>
-                <string>{0,2}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{7,5},{51,51}}</string>
-                <key>sourceSize</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
                 <string>{65,65}</string>
+                <key>spriteSourceSize</key>
+                <string>{65,65}</string>
+                <key>textureRect</key>
+                <string>{{0,0},{65,65}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>ylg_fzgame_sezi6.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{425,536},{51,51}}</string>
-                <key>offset</key>
-                <string>{0,2}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{7,5},{51,51}}</string>
-                <key>sourceSize</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
                 <string>{65,65}</string>
+                <key>spriteSourceSize</key>
+                <string>{65,65}</string>
+                <key>textureRect</key>
+                <string>{{390,0},{65,65}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>ylg_fzgame_sezi7.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{425,483},{51,51}}</string>
-                <key>offset</key>
-                <string>{0,2}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{7,5},{51,51}}</string>
-                <key>sourceSize</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
                 <string>{65,65}</string>
+                <key>spriteSourceSize</key>
+                <string>{65,65}</string>
+                <key>textureRect</key>
+                <string>{{65,0},{65,65}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>ylg_fzgame_sezi8.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{196,588},{51,51}}</string>
-                <key>offset</key>
-                <string>{0,2}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{7,5},{51,51}}</string>
-                <key>sourceSize</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
                 <string>{65,65}</string>
+                <key>spriteSourceSize</key>
+                <string>{65,65}</string>
+                <key>textureRect</key>
+                <string>{{130,65},{65,65}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>ylg_fzgame_sezi_result_1.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{447,430},{51,51}}</string>
-                <key>offset</key>
-                <string>{0,2}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{7,5},{51,51}}</string>
-                <key>sourceSize</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
                 <string>{65,65}</string>
+                <key>spriteSourceSize</key>
+                <string>{65,65}</string>
+                <key>textureRect</key>
+                <string>{{325,65},{65,65}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>ylg_fzgame_sezi_result_2.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{447,377},{51,51}}</string>
-                <key>offset</key>
-                <string>{0,2}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{7,5},{51,51}}</string>
-                <key>sourceSize</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
                 <string>{65,65}</string>
+                <key>spriteSourceSize</key>
+                <string>{65,65}</string>
+                <key>textureRect</key>
+                <string>{{390,65},{65,65}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>ylg_fzgame_sezi_result_3.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{447,324},{51,51}}</string>
-                <key>offset</key>
-                <string>{0,2}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{7,5},{51,51}}</string>
-                <key>sourceSize</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
                 <string>{65,65}</string>
+                <key>spriteSourceSize</key>
+                <string>{65,65}</string>
+                <key>textureRect</key>
+                <string>{{260,65},{65,65}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>ylg_fzgame_sezi_result_4.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{447,271},{51,51}}</string>
-                <key>offset</key>
-                <string>{0,2}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{7,5},{51,51}}</string>
-                <key>sourceSize</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
                 <string>{65,65}</string>
+                <key>spriteSourceSize</key>
+                <string>{65,65}</string>
+                <key>textureRect</key>
+                <string>{{195,65},{65,65}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>ylg_fzgame_sezi_result_5.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{447,218},{51,51}}</string>
-                <key>offset</key>
-                <string>{0,2}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{7,5},{51,51}}</string>
-                <key>sourceSize</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
                 <string>{65,65}</string>
+                <key>spriteSourceSize</key>
+                <string>{65,65}</string>
+                <key>textureRect</key>
+                <string>{{65,65},{65,65}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
             <key>ylg_fzgame_sezi_result_6.png</key>
             <dict>
-                <key>frame</key>
-                <string>{{447,165},{51,51}}</string>
-                <key>offset</key>
-                <string>{0,2}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{7,5},{51,51}}</string>
-                <key>sourceSize</key>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
                 <string>{65,65}</string>
+                <key>spriteSourceSize</key>
+                <string>{65,65}</string>
+                <key>textureRect</key>
+                <string>{{0,65},{65,65}}</string>
+                <key>textureRotated</key>
+                <false/>
             </dict>
         </dict>
         <key>metadata</key>
         <dict>
             <key>format</key>
-            <integer>2</integer>
+            <integer>3</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
             <key>realTextureFileName</key>
             <string>Ani.png</string>
             <key>size</key>
-            <string>{512,1024}</string>
+            <string>{483,1282}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:3968f005e607810f6043baa76131071e$</string>
+            <string>$TexturePacker:SmartUpdate:9b00d6aea0d778f32091488080bb6c92:6e65eb85f5cc9842d536e85034ae75da:d4cc330d69aeb67ddc695a37b989462a$</string>
             <key>textureFileName</key>
             <string>Ani.png</string>
         </dict>
