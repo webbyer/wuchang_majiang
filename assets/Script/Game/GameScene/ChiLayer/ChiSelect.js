@@ -14,11 +14,12 @@ cc.Class({
 
     },
     // 初始化麻将
-    initCard(data) {
+    initCard(data,isChiting) {
         cc.dd.Reload.loadPrefab("Game/Prefab/ChiSelectItem", (prefab) => {
             data.forEach((chiData) => {
                 const chi = cc.instantiate(prefab);
-                chi.data = chiData;
+                chi.data.straight = chiData;
+                chi.data.chiting = isChiting;
                 chi.children.forEach((card, index) => {
                     card.getComponent("CardSpr").initCard(chiData[index]);
                 });

@@ -35,10 +35,16 @@ cc.Class({
             this.operateBtnNode.getChildByName("BtnGang").active = true;
             guoBtn = true;
         }
-        if (data.chi) {
-            this.operateBtnNode.getChildByName("BtnChi").active = true;
-            guoBtn = true;
-            cc.dd.cardMgr.setChiList(data.chilist);
+        if (data.chi || data.chiting) {
+            if (data.chiting) {
+                this.operateBtnNode.getChildByName("BtnChiTing").active = true;
+                guoBtn = true;
+                cc.dd.cardMgr.setChiList(data.chitinglist);
+            }else {
+                this.operateBtnNode.getChildByName("BtnChi").active = true;
+                guoBtn = true;
+                cc.dd.cardMgr.setChiList(data.chilist);
+            }
         }
         if (guoBtn) {
             if (data.customData) {

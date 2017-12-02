@@ -91,7 +91,13 @@ const MJEventManager = cc.Class({
                 break;
             }
             case cc.dd.gameCfg.EVENT.EVENT_CHICARD_REP: {  // 玩家吃牌的请求
-                body.straight = data;
+                if(data.chiting) {
+                    body.straight = data.straight;
+                    body.chiting = data.chiting;
+                }else {
+                    body.straight = data.straight;
+                    body.chiting = false;
+                }
                 this.sendMessage(body);
                 break;
             }
