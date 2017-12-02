@@ -41,7 +41,7 @@ cc.Class({
                 break;
             }
             case cc.dd.gameCfg.CARD_SUIT.OHTER: {
-                str = str + "zipai_" + this.num;
+                str = str + "zipai_" + 5;
                 break;
             }
             default: {

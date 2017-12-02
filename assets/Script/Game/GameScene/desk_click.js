@@ -57,6 +57,7 @@ cc.Class({
                 this.stopRecordingWithGvoiceSDk();
             }
         },this);
+        cc.log(cc.sys.localStorage.getItem(cc.dd.userEvName.USER_YUYIN_SWTICH_STATE));
         if(cc.sys.localStorage.getItem(cc.dd.userEvName.USER_YUYIN_SWTICH_STATE) == cc.dd.userEvName.USER_YUYIN_ON) {
             this.RecordBTN.active = true;
         }else {
@@ -241,11 +242,14 @@ cc.Class({
         if (chiList) {
             if (chiList.length == 1) {
                 this.node.getComponent("mj_gameScene").playerArr[0].getComponent("PlayerSelf").hideOperateBtn();
-                cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_CHICARD_REP, chiList[0]);
+                let par = {};
+                par.straight = chiList[0];
+                par.chiting = false;
+                cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_CHICARD_REP,par);
             } else {
                 cc.dd.Reload.loadPrefab("Game/Prefab/ChiSelect", (prefab) => {
                     const chiLayer = cc.instantiate(prefab);
-                    chiLayer.getComponent("ChiSelect").initCard(chiList);
+                    chiLayer.getComponent("ChiSelect").initCard(chiList,par.chiting);
                     this.node.addChild(chiLayer);
                 });
             }
@@ -295,5 +299,29 @@ cc.Class({
             cc.dd.cardMgr.setIsCanOutCard(true);
         }
 
+    },
+    // 吃听
+    onChitingClick() {
+        cc.log("吃听");
+        const chiList = cc.dd.cardMgr.getChiList();
+        if (chiList) {
+            if (chiList.length == 1) {
+                this.node.getComponent("mj_gameScene").playerArr[0].getComponent("PlayerSelf").hideOperateBtn();
+                let par = {};
+                par.straight = chiList[0];
+                par.chiting = true;
+                cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_CHICARD_REP,par);
+            } else {
+                cc.dd.Reload.loadPrefab("Game/Prefab/ChiSelect", (prefab) => {
+                    const chiLayer = cc.instantiate(prefab);
+                    chiLayer.getComponent("ChiSelect").initCard(chiList,par.chiting);
+                    this.node.addChild(chiLayer);
+            });
+            }
+        }
+    },
+    // 碰听
+    onPengtingClick() {
+        cc.log("碰听");
     },
 });

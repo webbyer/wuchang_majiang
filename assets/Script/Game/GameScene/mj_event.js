@@ -184,6 +184,18 @@ cc.Class({
                 this.node.getComponent("mj_gameScene").showZongZhanJi(data);
                 break;
             }
+            case cc.dd.userEvName.USER_YUYIN_SWTICH_STATE_CHANGE: {
+                if(cc.sys.localStorage.getItem(cc.dd.userEvName.USER_YUYIN_SWTICH_STATE) == cc.dd.userEvName.USER_YUYIN_ON) {
+                    this.node.getComponent("desk_click").RecordBTN.active = true;
+                }else {
+                    this.node.getComponent("desk_click").RecordBTN.active = false;
+                }
+                break;
+            }
+            case  cc.dd.gameCfg.EVENT.EVENT_DUIBAOHU_REQ: {
+                this.node.getComponent("mj_gameScene").onRecieveDuibaohuBoardcast(data);
+                break;
+            }
             default: {
                 cc.log(`unkown event: ${event}`);
             }

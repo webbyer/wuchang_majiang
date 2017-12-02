@@ -44,6 +44,12 @@ cc.Class({
         this.suit = parseInt(this.id / 9) + 1;
         this.num = this.id % 9 + 1;
         let str = "";
+        // if (this.id == -2) {
+        //     str = "ab";
+        // }else {
+        //     this.suit = parseInt(data / 9) + 1;
+        //     this.num = data % 9 + 1;
+        // }
         switch (this.suit) {
             case cc.dd.gameCfg.CARD_SUIT.WAN: {
                 str = str + "wanzi_" + this.num;
@@ -58,7 +64,7 @@ cc.Class({
                 break;
             }
             case cc.dd.gameCfg.CARD_SUIT.OHTER: {
-                str = str + "zipai_" + this.num;
+                str = str + "zipai_" + 5; // 统一是红中
                 break;
             }
             default: {
