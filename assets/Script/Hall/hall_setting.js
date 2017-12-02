@@ -69,18 +69,18 @@ cc.Class({
             cc.log("给previousSwitchState赋值："+ cc.sys.localStorage.getItem(cc.dd.userEvName.USER_YUYIN_SWTICH_STATE));
             cc.dd.user.previousSwitchState = cc.sys.localStorage.getItem(cc.dd.userEvName.USER_YUYIN_SWTICH_STATE);
         }
+        if(event.isChecked) {
+            cc.log("语音开关打开");
+            cc.sys.localStorage.setItem(cc.dd.userEvName.USER_YUYIN_SWTICH_STATE,cc.dd.userEvName.USER_YUYIN_ON);
+        }else {
+            cc.sys.localStorage.setItem(cc.dd.userEvName.USER_YUYIN_SWTICH_STATE,cc.dd.userEvName.USER_YUYIN_OFF);
+            cc.log("语音开关关闭");
+        }
         if(cc.dd.user.previousSwitchState != cc.sys.localStorage.getItem(cc.dd.userEvName.USER_YUYIN_SWTICH_STATE)) {
-            if(event.isChecked) {
-                cc.log("语音开关打开"+customData);
-                cc.sys.localStorage.setItem(cc.dd.userEvName.USER_YUYIN_SWTICH_STATE,cc.dd.userEvName.USER_YUYIN_ON);
-            }else {
-                cc.sys.localStorage.setItem(cc.dd.userEvName.USER_YUYIN_SWTICH_STATE,cc.dd.userEvName.USER_YUYIN_OFF);
-                cc.log("语音开关关闭"+customData);
+            if (cc.director.getScene().sceneId == cc.dd.sceneID.GAME_SCENE) {
+                cc.dd.userEvent.notifyEvent(cc.dd.userEvName.USER_YUYIN_SWTICH_STATE_CHANGE);
             }
             cc.dd.user.previousSwitchState = cc.sys.localStorage.getItem(cc.dd.userEvName.USER_YUYIN_SWTICH_STATE);
-            if (cc.director.getScene().sceneId == cc.dd.sceneID.GAME_SCENE) {
-                // 开关状态的通知
-            }
         }
         // else {
         //

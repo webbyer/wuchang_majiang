@@ -4,15 +4,16 @@
 const EventManager = require("../../Event/EventManager.js");
 
 const UserEventName = {
-    USER_LOGIN_SCU: "user_login_suc", // 用户登录成功
-    USER_LOGIN_FAIL: "user_login_fail",
-    QUERY_RECEIVER_SCU: "query_receiver_scu", //查询接收者信息成功
+    USER_LOGIN_SCU: "user_login_suc", // 用户登录成功，事件
+    USER_LOGIN_FAIL: "user_login_fail", // 用户直接登录失败，需要微信登录，事件
+    QUERY_RECEIVER_SCU: "query_receiver_scu", //查询接收者信息成功，事件
     USER_INFO_KEY: "userInfoKey",  // 本地化读写 _userinfo 的key
-    USER_CARD_INFO_KEY: "userCardInfoKey",  // 本地化读写用户用卡状态
-    USER_ANGENT_INFO: "userAgentInfoKey",  // 本地化读写用户卡库存 的key
-    USER_YUYIN_SWTICH_STATE: "useryuyinswtichstate", // 本地化用户语音聊天的开关状态
+    USER_CARD_INFO_KEY: "userCardInfoKey",  // 本地化读写用户用卡状态的key
+    USER_ANGENT_INFO: "userAgentInfoKey",  // 本地化读写用户卡库存的key
+    USER_YUYIN_SWTICH_STATE: "useryuyinswtichstate", // 本地化用户语音聊天的开关状态的key
     USER_YUYIN_OFF: "useryuyinoff", // 语音打开
     USER_YUYIN_ON: "useryuyinon",  // 语音关闭
+    USER_YUYIN_SWTICH_STATE_CHANGE: "useryuyinswtichstatechange", // 用户语音聊天的开关状态变化，事件
 };
 cc.dd.userEvName = UserEventName;
 const UserEvent = cc.Class({

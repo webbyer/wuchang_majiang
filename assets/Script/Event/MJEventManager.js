@@ -160,6 +160,7 @@ const MJEventManager = cc.Class({
      */
     onMsg(msgId, msgData) {
         cc.log(`收到的协议id为：${msgId}`);
+        // cc.log(JSON.stringify(msgData));
         cc.log(msgData);
         switch (msgId) {
             case cc.dd.gameCfg.EVENT.EVENT_GET_VERSION_REQ: {  // 检测最新版本的返回，5000
@@ -309,6 +310,11 @@ const MJEventManager = cc.Class({
                 }else {
                     cc.dd.room.saveMsg(msgId,msgData);
                 }
+                break;
+            }
+            case  cc.dd.gameCfg.EVENT.EVENT_DUIBAOHU_REQ: {
+                cc.log("收到对宝胡协议");
+                cc.dd.room.saveMsg(msgId,msgData);
                 break;
             }
             default: {

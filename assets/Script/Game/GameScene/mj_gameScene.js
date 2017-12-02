@@ -1039,10 +1039,17 @@ cc.Class({
         }
         if (localSeat) {
             if(data) {
-                this.playerArr[localSeat-1].mesArr.push(data.voiceid); // 给他的语音数组赋值
-                this.playerArr[localSeat-1].getChildByName("InfoBk").getChildByName("message_receiver").active = true;
+                if(cc.sys.localStorage.getItem(cc.dd.userEvName.USER_YUYIN_SWTICH_STATE) == cc.dd.userEvName.USER_YUYIN_ON) {
+                    this.playerArr[localSeat-1].mesArr.push(data.voiceid); // 给他的语音数组赋值
+                    this.playerArr[localSeat-1].getChildByName("InfoBk").getChildByName("message_receiver").active = true;
+                }else {
+                    this.playerArr[localSeat-1].getChildByName("InfoBk").getChildByName("receiver_sclient").active = true;
+                    this.scheduleOnce(() => {
+                        this.playerArr[localSeat-1].getChildByName("InfoBk").getChildByName("receiver_sclient").active = false;
+                    },4);
+                }
             }
-            if(!cc.dd.room._hasMessageOnPlay) {
+            if(!cc.dd.room._hasMessageOnPlay && cc.sys.localStorage.getItem(cc.dd.userEvName.USER_YUYIN_SWTICH_STATE) == cc.dd.userEvName.USER_YUYIN_ON) {
                 cc.dd.room._hasMessageOnPlay = true;
                 cc.dd.room._currentMessageSeatID = localSeat;
                 cc.dd.soundMgr.pauseAllSounds();
@@ -1104,5 +1111,9 @@ cc.Class({
             zzj.getComponent("ZongZhanJi").initContentPic(data.totalscoreurl,cc.dd.room.roomserialnumber);
             this.node.addChild(zzj);
         });
+    },
+    // 收到对宝胡协议
+    onRecieveDuibaohuBoardcast(data) {
+        cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_HUCARD_REP);
     },
 });

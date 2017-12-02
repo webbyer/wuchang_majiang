@@ -84,8 +84,6 @@ module.exports = {
         EVENT_PLAYER_TING_CARD: 4022, // 玩家听牌
         EVENT_BAO_CARD_CHANGE: 4021,  // 宝牌更换
         EVENT_HAI_DI_LAO: 4020, // 海底捞
-
-        // 消息枚举，你在下面添加，我在上面添加
         EVENT_DELEGATE_ROOM_REOCRD_REP: 1015, // 代理用户查询自己代开房间的记录
         EVENT_DELEGATE_ROOM_REOCRD_REQ: 5015, // 代理用户查询自己代开房间的记录的返回
         EVENT_JIESUAN_START_NEXTROUND: 1014, // 结算界面点击开始下一局按钮需要发请求到1014，不需要监听返回
@@ -95,7 +93,8 @@ module.exports = {
         EVENT_YUYIN_COMING: 4019,   // 广播有用户发言了
         EVENT_USER_OFFLINE: 4005,   // 广播用户断线
         EVENT_USER_BACKONLINE: 4006,  // 广播断线用户上线了
-
+        EVENT_DUIBAOHU_REQ: 4026,  // 收到对宝胡协议的广播
+        // 你在下边添加
     },
     // 电池电量状态
     BATTERTY: {
