@@ -123,8 +123,8 @@ cc.dd.invokeWXFriendShareCustumLink = () => {
         if (cc.sys.os == cc.sys.OS_ANDROID){
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppActivity" ,"SendLinkUrl", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",
                 cc.dd.pubConst.ANDROID_DOWNLOAD_LINK ,
-                "正宗朝阳北票建平凌源手机麻将",
-                "好友随时约局，手机实时对战。搂宝带会儿、点炮赔三家。");
+                "【胡徕】五常麻将 想胡你就来！",
+                "好友随时约局，手机实时对战。明暗蛋七小队，呲宝红中满天飞。");
         }else {
             jsb.reflection.callStaticMethod("WXShareTool", "jsInitiateWXFriendsShare");
         }
@@ -136,8 +136,8 @@ cc.dd.invokeWXMomentShareCustumLink = () => {
         if (cc.sys.os == cc.sys.OS_ANDROID){
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppActivity" ,"ShareLinkTimeline", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",
                 cc.dd.pubConst.ANDROID_DOWNLOAD_LINK,
-                "正宗朝阳北票建平凌源手机麻将",
-                "好友随时约局，手机实时对战。搂宝带会儿、点炮赔三家。");
+                "【胡徕】五常麻将 想胡你就来",
+                "好友随时约局，手机实时对战。明暗蛋七小队，呲宝红中满天飞。");
         }else {
             jsb.reflection.callStaticMethod("WXShareTool", "jsInitiateWXMomentssShare");
         }
