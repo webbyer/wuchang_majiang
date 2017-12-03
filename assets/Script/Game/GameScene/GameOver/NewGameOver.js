@@ -198,7 +198,7 @@ cc.Class({
      *  初始化赢家牌面
      * @param data
      */
-    presentCards(data) {
+    presentCards(data) { // little_card_32
         let parantNode = this.winnerCards;
         cc.dd.Reload.loadAtlas("Game/Atlas/gameOver", (atlas) => {
             const handcardNode = parantNode.getChildByName("HandCard");
@@ -207,8 +207,13 @@ cc.Class({
             cc.dd.Reload.loadPrefab("Game/Prefab/GO_HandPoker", (prefab) => {
                 data.winnerhandcards.forEach((item) => {
                 const card = cc.instantiate(prefab);
-                const str = "little_card_" + (item +1);
-                card.getChildByName("Spr").getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame(str);
+                if(item == 27){
+                    const str = "little_card_" + 32;
+                    card.getChildByName("Spr").getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame(str);
+                }else {
+                    const str = "little_card_" + (item +1);
+                    card.getChildByName("Spr").getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame(str);
+                }
                 // 加鬼牌遮罩 Giupai
                 if(cc.dd.room._guipai == item){
                     card.getChildByName("Giupai").active = true;
@@ -220,8 +225,15 @@ cc.Class({
         if(data.hucard || data.hucard == 0) {
             cc.dd.Reload.loadPrefab("Game/Prefab/GO_HandPoker", (prefab) => {
                 const card = cc.instantiate(prefab);
-                const str = "little_card_" + (data.hucard+1);
-                card.getChildByName("Spr").getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame(str);
+                // const str = "little_card_" + (data.hucard+1);
+                // card.getChildByName("Spr").getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame(str);
+                if(data.hucard == 27){
+                    const str = "little_card_" + 32;
+                    card.getChildByName("Spr").getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame(str);
+                }else {
+                    const str = "little_card_" + (data.hucard +1);
+                    card.getChildByName("Spr").getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame(str);
+                }
                 if(cc.dd.room._guipai == data.hucard){
                     card.getChildByName("Giupai").active = true;
                 }
@@ -234,10 +246,21 @@ cc.Class({
             if (data.winnerpengcards) {
                 data.winnerpengcards.forEach((item) => {
                 const penggang = cc.instantiate(prefab);
-                const str = "little_card_" + (item  + 1);
-                penggang.children.forEach((card) => {
-                card.getChildByName("Spr").getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame(str);
-            });
+                if(data.hucard == 27){
+                    const str = "little_card_" + 32;
+                    penggang.children.forEach((card) => {
+                        card.getChildByName("Spr").getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame(str);
+                    });
+                }else {
+                    const str = "little_card_" + (item  + 1);
+                    penggang.children.forEach((card) => {
+                        card.getChildByName("Spr").getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame(str);
+                    });
+                }
+            //     const str = "little_card_" + (item  + 1);
+            //     penggang.children.forEach((card) => {
+            //     card.getChildByName("Spr").getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame(str);
+            // });
             pengGangNode.addChild(penggang);
         });
         }
@@ -245,12 +268,25 @@ cc.Class({
         if (data.winnergangcards) {
             data.winnergangcards.forEach((item) => {
                 const penggang = cc.instantiate(prefab);
-            const str = "little_card_" + (item  + 1);
-            penggang.children.forEach((card) => {
-                card.getChildByName("Spr").getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame(str);
-            card.active = true;
-        });
-            pengGangNode.addChild(penggang);
+                if(data.hucard == 27){
+                    const str = "little_card_" + 32;
+                    penggang.children.forEach((card) => {
+                        card.getChildByName("Spr").getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame(str);
+                        card.active = true;
+                    });
+                }else {
+                    const str = "little_card_" + (item  + 1);
+                    penggang.children.forEach((card) => {
+                        card.getChildByName("Spr").getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame(str);
+                        card.active = true;
+                    });
+                }
+                // const str = "little_card_" + (item  + 1);
+                // penggang.children.forEach((card) => {
+                //     card.getChildByName("Spr").getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame(str);
+                //     card.active = true;
+                // });
+                pengGangNode.addChild(penggang);
         });
         }
         // 吃的牌
@@ -261,7 +297,11 @@ cc.Class({
             penggang.children.forEach((card) => {
                 const str = "little_card_" + (item[index]  + 1);
             if (card.name !== "Gang") {
-                card.getChildByName("Spr").getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame(str);
+                if(item[index] == 27) {
+                    card.getChildByName("Spr").getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame("little_card_32");
+                }else {
+                    card.getChildByName("Spr").getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame(str);
+                }
                 index ++;
             }
         });

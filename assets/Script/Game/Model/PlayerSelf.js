@@ -38,6 +38,7 @@ cc.Class({
         if (data.chi || data.chiting) {
             if (data.chiting) {
                 this.operateBtnNode.getChildByName("BtnChiTing").active = true;
+                this.operateBtnNode.getChildByName("BtnChi").active = true;
                 guoBtn = true;
                 cc.dd.cardMgr.setChiList(data.chitinglist);
             }else {

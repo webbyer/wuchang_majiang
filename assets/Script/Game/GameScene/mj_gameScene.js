@@ -474,7 +474,7 @@ cc.Class({
             }, 0.5);
         }
     },
-    // 玩家吃牌
+    // 玩家吃牌  吃听牌
     playerChiCard(data) {
         const localSeat = this.getLocalSeatByUserId(data.chipaiuid);
         if(localSeat === 1) {
@@ -499,7 +499,7 @@ cc.Class({
                 /* ---------------------------  */
                 cc.dd.cardMgr.setIsCanOutCard(true);//吃牌成功以后可以出牌
                 /* ---------------------------  */
-                if (data.lostcards4ting) {
+                if (data.lostcards4ting) { // && !data.forceting
                     cc.dd.cardMgr.setTingList(data.lostcards4ting);
                     // let operateData = {};
                     // if (data.lostcards4ting.length > 0) {
@@ -512,10 +512,16 @@ cc.Class({
         } else {
             cc.error(`本地座位号未找到！！！`);
         }
-        this.scheduleOnce(() => {
-            cc.dd.roomEvent.setIsCache(true);
-            cc.dd.roomEvent.notifyCacheList();
-        }, 0.5);
+        if(data.forceting) { //lostcards4ting
+            // 标记 data.lostcards4ting 可听的
+            cc.dd.cardMgr.setIsCanOutCard(false);
+            this.showTingSign();
+        }else {
+            this.scheduleOnce(() => {
+                cc.dd.roomEvent.setIsCache(true);
+                cc.dd.roomEvent.notifyCacheList();
+            }, 0.5);
+        }
     },
     // 玩家碰牌
     playerPengCard(data) {
@@ -706,7 +712,11 @@ cc.Class({
                                     }
                                     const suit = parseInt(data.mopai / 9) + 1;
                                     const num = data.mopai % 9 + 1;
-                                    cc.dd.playEffect(1, num, suit);
+                                    if (data.mopai == 27){
+                                        cc.dd.playEffect(1, 5, suit);
+                                    }else {
+                                        cc.dd.playEffect(1, num, suit);
+                                    }
                                     const outCardNode = this.playerArr[0].getChildByName("OutCardLayer");
                                     cc.dd.cardMgr.outCard(outCardNode, 1, data.mopai);
                                     cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_OUTCARD_REP, {id: data.mopai, tingpai: false});

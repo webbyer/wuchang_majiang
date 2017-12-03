@@ -258,7 +258,7 @@ cc.Class({
     // 听
     onTingClick() {
         cc.log(`玩家听牌`);
-        if(cc.dd.room._isFourZeroOneTwo) {
+        if(cc.dd.room._isFourZeroOneTwo) { // 4012 过不需要发送2002
             cc.dd.room._isFourZeroOneTwo = false;
         }
         this.node.getComponent("mj_gameScene").showTingSign();
