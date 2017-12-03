@@ -80,7 +80,7 @@ cc.Class({
         const item = cc.dd.hall_config.CYMJ_WF[custom];
         if (event.isChecked) {
             this.WanFa.push(item);
-            if (item == 15) {
+            if (item == 7) {
                 if (this.WanFa.indexOf(1) != -1) {
                     this.MingToggle.uncheck();
                 }
@@ -100,7 +100,7 @@ cc.Class({
                     this.HaohuaToggle.uncheck();
                 }
             } else {
-                if (this.WanFa.indexOf(15) != -1) {
+                if (this.WanFa.indexOf(7) != -1) {
                     this.DefaultToggle.uncheck();
                 }
             }
@@ -124,7 +124,7 @@ cc.Class({
                 if (items == 6) {
                     this.HaohuaToggle.interactable = true;
                 }
-                if (items == 15) {
+                if (items == 7) {
                     this.DefaultToggle.interactable = true;
                 }
                 if (item == items) {

@@ -29,23 +29,23 @@ const HU_TYPE_NAME = [
 ];
 const PLAY_OPERA_NAME = [
     null,
-    "可断门",
-    "闭门胡",
-    "会牌",
-    "搂宝",
-    "夹胡",
-    "点炮包三家",
+    "明杠",
+    "暗杠",
+    "吡宝",
     "清一色",
+    "七小队",
+    "豪华七小队",
+    "传统玩法",
 ];
 const PLAY_OPERA_NAME_ORAL = [
     null,
-    "可断门",
-    "可闭门",
-    "带会儿",
-    "搂宝",
-    "夹胡",
-    "点炮赔三家",
+    "明杠",
+    "暗杠",
+    "吡宝",
     "清一色",
+    "七小队",
+    "豪华七小队",
+    "传统玩法",
 ];
 
 cc.Class({
@@ -372,13 +372,13 @@ cc.Class({
             }
         }
         let str = "";
-        let hasLouBao = false;
+        let hasLouBao = true;
         if (data) {
             cc.dd.room._roomRules = data.room.rules;
             data.room.rules.forEach((item) => {
-                if(item == cc.dd.gameCfg.PLAY_OPERA.LOU_BAO) {
-                    hasLouBao = true;
-                }
+                // if(item == cc.dd.gameCfg.PLAY_OPERA.LOU_BAO) {
+                //     hasLouBao = true;
+                // }
                 if(!str){
                     str = PLAY_OPERA_NAME[item];
                 }else {

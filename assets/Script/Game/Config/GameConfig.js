@@ -34,12 +34,13 @@ module.exports = {
     },
     // 房间玩法
     PLAY_OPERA: {
-        KE_DUAN_MEN: 1,  // 可断门
-        BI_MEN_HU: 2, // 闭门胡
-        HUI_PAI: 3, // 会牌
-        LOU_BAO: 4, // 楼宝
-        JIA_HU: 5, // 夹胡
-        DIAN_PAO_BAO_SAN_JIA: 5, // 点炮包三家
+        MING_GANG: 1,  // 明杠
+        AN_GANG: 2, // 暗杠
+        PIBAO: 3, // 吡宝
+        QING_YI_SE: 4, // 清一色
+        QI_XIAODUI: 5, // 七小队
+        HAOHUA_QI_XIAODUI: 6, // 豪华七小队
+        DEFAULT: 7,       //传统玩法
     },
     // 消息枚举
     EVENT: {

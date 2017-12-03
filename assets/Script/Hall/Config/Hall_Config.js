@@ -8,7 +8,7 @@ module.exports = {
         QING_YI_SE: 4, // 清一色
         QI_XIAODUI: 5, // 七小队
         HAOHUA_QI_XIAODUI: 6,// 豪华七小队
-        DEFAULT: 15, // 传统玩法
+        DEFAULT: 7, // 传统玩法
     },
     EXC_CARD_TYPE: {
         EXC_CHIKA: "roomcard",
