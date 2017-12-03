@@ -478,7 +478,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "朝阳麻将",
+    "_N$string": "五常麻将",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -916,8 +916,8 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
+      "r": 105,
+      "g": 44,
       "b": 0,
       "a": 255
     },
@@ -1253,8 +1253,8 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
+      "r": 105,
+      "g": 44,
       "b": 0,
       "a": 255
     },
@@ -1704,8 +1704,8 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
+      "r": 105,
+      "g": 44,
       "b": 0,
       "a": 255
     },
@@ -2041,8 +2041,8 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
+      "r": 105,
+      "g": 44,
       "b": 0,
       "a": 255
     },
@@ -2054,7 +2054,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 60,
+      "width": 40,
       "height": 40
     },
     "_rotationX": 0,
@@ -2089,7 +2089,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "可断门",
+    "_N$string": "明杠",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -2173,7 +2173,7 @@
     },
     "component": "hall_creRoom",
     "handler": "onWanFaClick",
-    "customEventData": "CAN_DUANMEN"
+    "customEventData": "MING_GANG"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -2458,8 +2458,8 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
+      "r": 105,
+      "g": 44,
       "b": 0,
       "a": 255
     },
@@ -2471,7 +2471,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 60,
+      "width": 40,
       "height": 40
     },
     "_rotationX": 0,
@@ -2506,7 +2506,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "闭门胡",
+    "_N$string": "暗杠",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -2590,7 +2590,7 @@
     },
     "component": "hall_creRoom",
     "handler": "onWanFaClick",
-    "customEventData": "BIMEN_HU"
+    "customEventData": "AN_GANG"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -2875,8 +2875,8 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
+      "r": 105,
+      "g": 44,
       "b": 0,
       "a": 255
     },
@@ -2888,7 +2888,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 20,
+      "width": 40,
       "height": 40
     },
     "_rotationX": 0,
@@ -2923,7 +2923,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "会",
+    "_N$string": "吡宝",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -3007,7 +3007,7 @@
     },
     "component": "hall_creRoom",
     "handler": "onWanFaClick",
-    "customEventData": "HUI"
+    "customEventData": "PIBAO"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -3292,8 +3292,8 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
+      "r": 105,
+      "g": 44,
       "b": 0,
       "a": 255
     },
@@ -3305,7 +3305,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
+      "width": 60,
       "height": 40
     },
     "_rotationX": 0,
@@ -3340,7 +3340,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "搂宝",
+    "_N$string": "清一色",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -3424,7 +3424,7 @@
     },
     "component": "hall_creRoom",
     "handler": "onWanFaClick",
-    "customEventData": "LOU_BAO"
+    "customEventData": "QING_YI_SE"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -3709,8 +3709,8 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
+      "r": 105,
+      "g": 44,
       "b": 0,
       "a": 255
     },
@@ -3722,7 +3722,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
+      "width": 60,
       "height": 40
     },
     "_rotationX": 0,
@@ -3757,7 +3757,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "夹胡",
+    "_N$string": "七小队",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -3841,7 +3841,7 @@
     },
     "component": "hall_creRoom",
     "handler": "onWanFaClick",
-    "customEventData": "JIA_HU"
+    "customEventData": "QI_XIAODUI"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -4126,8 +4126,8 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
+      "r": 105,
+      "g": 44,
       "b": 0,
       "a": 255
     },
@@ -4174,7 +4174,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "点炮包三家",
+    "_N$string": "豪华七小队",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -4258,7 +4258,7 @@
     },
     "component": "hall_creRoom",
     "handler": "onWanFaClick",
-    "customEventData": "DIANPAO_BAOSANJIA"
+    "customEventData": "HAOHUA_QI_XIAODUI"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -4543,8 +4543,8 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
+      "r": 105,
+      "g": 44,
       "b": 0,
       "a": 255
     },
@@ -4556,7 +4556,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 60,
+      "width": 80,
       "height": 40
     },
     "_rotationX": 0,
@@ -4591,7 +4591,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "清一色",
+    "_N$string": "传统玩法",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -4675,7 +4675,7 @@
     },
     "component": "hall_creRoom",
     "handler": "onWanFaClick",
-    "customEventData": "QING_YI_SE"
+    "customEventData": "DEFAULT"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -4884,8 +4884,8 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
+      "r": 105,
+      "g": 44,
       "b": 0,
       "a": 255
     },
@@ -5221,8 +5221,8 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
+      "r": 105,
+      "g": 44,
       "b": 0,
       "a": 255
     },
@@ -5650,8 +5650,8 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
+      "r": 105,
+      "g": 44,
       "b": 0,
       "a": 255
     },
@@ -6069,8 +6069,8 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
+      "r": 105,
+      "g": 44,
       "b": 0,
       "a": 255
     },
@@ -6488,8 +6488,8 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
+      "r": 105,
+      "g": 44,
       "b": 0,
       "a": 255
     },
@@ -6761,9 +6761,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
-      "b": 0,
+      "r": 121,
+      "g": 120,
+      "b": 120,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -7972,11 +7972,26 @@
       "__id__": 1
     },
     "_enabled": true,
-    "HuiToggle": {
+    "MingToggle": {
+      "__id__": 62
+    },
+    "AnToggle": {
+      "__id__": 75
+    },
+    "PIBAOToggle": {
       "__id__": 88
     },
-    "JiahuToggle": {
+    "QingYiSeToggle": {
+      "__id__": 101
+    },
+    "QiXiaoDuiToggle": {
       "__id__": 114
+    },
+    "HaohuaToggle": {
+      "__id__": 127
+    },
+    "DefaultToggle": {
+      "__id__": 140
     },
     "CreateRoom": {
       "__id__": 220

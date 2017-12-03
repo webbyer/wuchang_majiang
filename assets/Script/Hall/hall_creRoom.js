@@ -2,15 +2,40 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        HuiToggle: {
+        MingToggle: {
             default: null,
             type: cc.Toggle,
-            tooltip: "玩法：会",
+            tooltip: "玩法：明杠",
         },
-        JiahuToggle: {
+        AnToggle: {
             default: null,
             type: cc.Toggle,
-            tooltip: "玩法：夹胡",
+            tooltip: "玩法：暗杠",
+        },
+        PIBAOToggle: {
+            default: null,
+            type: cc.Toggle,
+            tooltip: "玩法：吡宝",
+        },
+        QingYiSeToggle: {
+            default: null,
+            type: cc.Toggle,
+            tooltip: "玩法：清一色",
+        },
+        QiXiaoDuiToggle: {
+            default: null,
+            type: cc.Toggle,
+            tooltip: "玩法：七小队",
+        },
+        HaohuaToggle: {
+            default: null,
+            type: cc.Toggle,
+            tooltip: "玩法：豪华七小队",
+        },
+        DefaultToggle: {
+            default: null,
+            type: cc.Toggle,
+            tooltip: "玩法：传统玩法",
         },
         CreateRoom: {
             default: null,
@@ -54,29 +79,53 @@ cc.Class({
     onWanFaClick(event, custom) {
         const item = cc.dd.hall_config.CYMJ_WF[custom];
         if (event.isChecked) {
-            if (item == 3 || item == 5){
-                this.WanFa.push(item);
-                if (item == 3){
-                    if(this.WanFa.indexOf(5) != -1) {
-                        //取消勾选🈚️
-                        this.JiahuToggle.uncheck();
-                    }
+            this.WanFa.push(item);
+            if (item == 15) {
+                if (this.WanFa.indexOf(1) != -1) {
+                    this.MingToggle.uncheck();
                 }
-                if (item == 5){
-                    if(this.WanFa.indexOf(3) != -1) {
-                        this.HuiToggle.uncheck();
-                    }
+                if (this.WanFa.indexOf(2) != -1) {
+                    this.AnToggle.uncheck();
                 }
-            }else {
-                this.WanFa.push(item);
+                if (this.WanFa.indexOf(3) != -1) {
+                    this.PIBAOToggle.uncheck();
+                }
+                if (this.WanFa.indexOf(4) != -1) {
+                    this.QingYiSeToggle.uncheck();
+                }
+                if (this.WanFa.indexOf(5) != -1) {
+                    this.QiXiaoDuiToggle.uncheck();
+                }
+                if (this.WanFa.indexOf(6) != -1) {
+                    this.HaohuaToggle.uncheck();
+                }
+            } else {
+                if (this.WanFa.indexOf(15) != -1) {
+                    this.DefaultToggle.uncheck();
+                }
             }
         } else {
             this.WanFa.forEach((items, index) => {
-                if (items == 3){
-                    this.JiahuToggle.interactable = true;
+                if (items == 1) {
+                    this.MingToggle.interactable = true;
                 }
-                if (items == 5){
-                    this.HuiToggle.interactable = true;
+                if (items == 2) {
+                    this.AnToggle.interactable = true;
+                }
+                if (items == 3) {
+                    this.PIBAOToggle.interactable = true;
+                }
+                if (items == 4) {
+                    this.QingYiSeToggle.interactable = true;
+                }
+                if (items == 5) {
+                    this.QiXiaoDuiToggle.interactable = true;
+                }
+                if (items == 6) {
+                    this.HaohuaToggle.interactable = true;
+                }
+                if (items == 15) {
+                    this.DefaultToggle.interactable = true;
                 }
                 if (item == items) {
                     this.WanFa.splice(index, 1);
@@ -103,7 +152,7 @@ cc.Class({
         roomConfig.playrule = this.WanFa;
         roomConfig.createtype = "selfuse";// agent  selfuse
         roomConfig.roomtype = "cymj";
-        cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_CREATE_ROOM_REP,roomConfig);
+        cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_CREATE_ROOM_REP, roomConfig);
     },
     // 代理人代开房间给其他用户玩的功能
     onAgentRoomDelegateClick() {
@@ -113,7 +162,7 @@ cc.Class({
         roomConfig.playrule = this.WanFa;
         roomConfig.createtype = "agent";// agent  selfuse
         roomConfig.roomtype = "cymj";
-        cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_CREATE_ROOM_REP,roomConfig);
+        cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_CREATE_ROOM_REP, roomConfig);
         this.node.destroy();
     },
     // 我的代开房间

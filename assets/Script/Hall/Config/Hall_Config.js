@@ -2,13 +2,13 @@
 module.exports = {
     // 朝阳麻将玩法配置
     CYMJ_WF: {
-        CAN_DUANMEN: 1,  // 可断门
-        BIMEN_HU: 2,  // 闭门胡
-        HUI: 3, // 会
-        LOU_BAO: 4, // 喽宝
-        JIA_HU: 5, // 夹胡
-        DIANPAO_BAOSANJIA: 6,// 点炮包三家
-        QING_YI_SE: 7, // 清一色
+        MING_GANG: 1,  // 明杠
+        AN_GANG: 2,  // 暗杠
+        PIBAO: 3, // 吡宝
+        QING_YI_SE: 4, // 清一色
+        QI_XIAODUI: 5, // 七小队
+        HAOHUA_QI_XIAODUI: 6,// 豪华七小队
+        DEFAULT: 15, // 传统玩法
     },
     EXC_CARD_TYPE: {
         EXC_CHIKA: "roomcard",
