@@ -445,9 +445,15 @@ cc.Class({
             } else {
                 if (localSeat !== 1) {
                     if (!data.notDes) {
-                        const suit = parseInt(data.chupai / 9) + 1;
-                        const num = data.chupai % 9 + 1;
-                        cc.dd.playEffect(1, num, suit);
+                        if (data.chupai == 27){
+                            const suit = parseInt(data.chupai / 9) + 1;
+                            const num = 5;
+                            cc.dd.playEffect(1, num, suit);
+                        }else {
+                            const suit = parseInt(data.chupai / 9) + 1;
+                            const num = data.chupai % 9 + 1;
+                            cc.dd.playEffect(1, num, suit);
+                        }
                     }
                     cc.dd.cardMgr.outCard(outNode, localSeat, data.chupai);
                 }

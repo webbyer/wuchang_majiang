@@ -146,9 +146,15 @@ cc.Class({
                     cc.dd.cardMgr.updateCard(handNode);
 
 
-                    const suit = parseInt(this.id / 9) + 1;
-                    const num = this.id % 9 + 1;
-                    cc.dd.playEffect(1, num, suit);
+                    if (this.id == 27){
+                        const suit = parseInt(this.id / 9) + 1;
+                        const num = 5;
+                        cc.dd.playEffect(1, num, suit);
+                    }else {
+                        const suit = parseInt(this.id / 9) + 1;
+                        const num = this.id % 9 + 1;
+                        cc.dd.playEffect(1, num, suit);
+                    }
                     const outCardNode = cc.find("UI_ROOT").getComponent("mj_gameScene").playerArr[0].getChildByName("OutCardLayer");
                     cc.dd.cardMgr.outCard(outCardNode, 1, this.id);
 

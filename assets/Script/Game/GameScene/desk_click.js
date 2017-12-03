@@ -240,11 +240,11 @@ cc.Class({
         cc.log(`发送吃牌的请求`);
         const chiList = cc.dd.cardMgr.getChiList();
         if (chiList) {
+            let par = {};
+            par.chiting = false;
             if (chiList.length == 1) {
                 this.node.getComponent("mj_gameScene").playerArr[0].getComponent("PlayerSelf").hideOperateBtn();
-                let par = {};
                 par.straight = chiList[0];
-                par.chiting = false;
                 cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_CHICARD_REP,par);
             } else {
                 cc.dd.Reload.loadPrefab("Game/Prefab/ChiSelect", (prefab) => {
