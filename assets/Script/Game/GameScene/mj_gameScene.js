@@ -176,7 +176,9 @@ cc.Class({
     // 初始化玩家
     initPlayerSeat(data) {
         this.cleanDesk();
-
+        if(data.chitinglostcards && data.chitinglostcards.length > 0){
+            cc.dd.cardMgr._didchiting = true;
+        }
         const userList = this.sortUserList(data.myuid);
         cc.dd.roomEvent.setIsCache(false);
         cc.dd.cardMgr.setHuiPai(data.room.guicard);
@@ -499,7 +501,10 @@ cc.Class({
                 /* ---------------------------  */
                 cc.dd.cardMgr.setIsCanOutCard(true);//吃牌成功以后可以出牌
                 /* ---------------------------  */
-                if (data.lostcards4ting) { // && !data.forceting
+                if (data.lostcards4ting) {
+                    if(data.forceting) {
+                        cc.dd.cardMgr._didchiting = true;
+                    }
                     cc.dd.cardMgr.setTingList(data.lostcards4ting);
                     // let operateData = {};
                     // if (data.lostcards4ting.length > 0) {
@@ -512,16 +517,10 @@ cc.Class({
         } else {
             cc.error(`本地座位号未找到！！！`);
         }
-        if(data.forceting) { //lostcards4ting
-            // 标记 data.lostcards4ting 可听的
-            cc.dd.cardMgr.setIsCanOutCard(false);
-            this.showTingSign();
-        }else {
-            this.scheduleOnce(() => {
+        this.scheduleOnce(() => {
                 cc.dd.roomEvent.setIsCache(true);
                 cc.dd.roomEvent.notifyCacheList();
-            }, 0.5);
-        }
+        }, 0.5);
     },
     // 玩家碰牌
     playerPengCard(data) {
@@ -678,6 +677,9 @@ cc.Class({
                     cc.dd.cardMgr.setTingList(data.ting);
                     if (data.ting.length > 0) {
                         operateData.ting = true;
+                    }
+                    if(cc.dd.cardMgr._didchiting){
+                        operateData.chiting = true;
                     }
                     cc.dd.room._isFourZeroOneTwo = true;
                 }
@@ -846,7 +848,12 @@ cc.Class({
                     let operateData = {};
                     if (cc.dd.cardMgr.getTingList()) {
                         if (cc.dd.cardMgr.getTingList().length > 0) {
+                            cc.log("指针转动发现可以听牌，听牌列表有值");
                             operateData.ting = true;
+                            if(cc.dd.cardMgr._didchiting) {
+                                operateData.chiting = true;
+                                this.node.getComponent("desk_click").onTingClick();
+                            }
                         }
                         this.playerArr[0].getComponent("PlayerSelf").showOperateBtn(operateData);
                     }
@@ -977,6 +984,7 @@ cc.Class({
         cc.dd.cardMgr.setCurOutCard(null);
         cc.dd.cardMgr.setCurZiMoGangCard(null);
         cc.dd.room._curentChuPaiSeat = null;
+        cc.dd.cardMgr._didchiting = null;
     },
     /**
      *  根据玩家id返回本地座位号

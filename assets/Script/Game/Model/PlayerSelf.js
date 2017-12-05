@@ -20,8 +20,12 @@ cc.Class({
         this.operateBtnNode.getChildByName("BtnGuo").isOnlyTing = false;
         if (data.ting) {
             this.operateBtnNode.getChildByName("BtnGuo").isOnlyTing = true;
-            this.operateBtnNode.getChildByName("BtnTing").active = true;
-            guoBtn = true;
+            if (data.chiting){
+                guoBtn = false;
+            }else {
+                this.operateBtnNode.getChildByName("BtnTing").active = true;
+                guoBtn = true;
+            }
         }
         if (data.hu) {
             this.operateBtnNode.getChildByName("BtnHu").active = true;
@@ -35,16 +39,19 @@ cc.Class({
             this.operateBtnNode.getChildByName("BtnGang").active = true;
             guoBtn = true;
         }
-        if (data.chi || data.chiting) {
-            if (data.chiting) {
-                this.operateBtnNode.getChildByName("BtnChiTing").active = true;
-                this.operateBtnNode.getChildByName("BtnChi").active = true;
-                guoBtn = true;
-                cc.dd.cardMgr.setChiList(data.chitinglist);
-            }else {
-                this.operateBtnNode.getChildByName("BtnChi").active = true;
-                guoBtn = true;
-                cc.dd.cardMgr.setChiList(data.chilist);
+        if(!cc.dd.cardMgr._didchiting) {
+            if (data.chi || data.chiting) {
+                if (data.chiting) {
+                    cc.log("显示次听次选择");
+                    this.operateBtnNode.getChildByName("BtnChiTing").active = true;
+                    this.operateBtnNode.getChildByName("BtnChi").active = true;
+                    guoBtn = true;
+                    cc.dd.cardMgr.setChiList(data.chitinglist);
+                }else {
+                    this.operateBtnNode.getChildByName("BtnChi").active = true;
+                    guoBtn = true;
+                    cc.dd.cardMgr.setChiList(data.chilist);
+                }
             }
         }
         if (guoBtn) {
@@ -58,7 +65,7 @@ cc.Class({
     },
     // 得到听牌的状态
     getTingBtnState() {
-        return this.operateBtnNode.getChildByName("BtnTing").active
+        return this.operateBtnNode.getChildByName("BtnTing").active;
     },
     // 隐藏操作按钮
     hideOperateBtn() {

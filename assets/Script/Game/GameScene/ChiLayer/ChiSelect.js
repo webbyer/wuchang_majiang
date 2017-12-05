@@ -18,6 +18,7 @@ cc.Class({
         cc.dd.Reload.loadPrefab("Game/Prefab/ChiSelectItem", (prefab) => {
             data.forEach((chiData) => {
                 const chi = cc.instantiate(prefab);
+                chi.data = {};
                 chi.data.straight = chiData;
                 chi.data.chiting = isChiting;
                 chi.children.forEach((card, index) => {

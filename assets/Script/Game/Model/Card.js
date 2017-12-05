@@ -24,6 +24,7 @@ cc.Class({
         cardState: CARD_STATE.NORMAL, // 牌的状态
         isHuiPi: false,
         id: -1,  // 牌的id
+        chitingcanout: false,
     },
     onLoad: function () {
         this.node.on("touchstart", this._touchStart.bind(this));
@@ -95,6 +96,12 @@ cc.Class({
         cc.log(`结束触摸`);
         if (this.CardZheZhao) {
             this.CardZheZhao.active = false;
+        }
+        if(cc.dd.cardMgr._didchiting) {
+            if(!this.node.getChildByName("TingSign").active){
+                cc.log("只能打出吃听牌数组内的");
+                return;
+            }
         }
         switch (this.cardState) {
             case CARD_STATE.NORMAL: {

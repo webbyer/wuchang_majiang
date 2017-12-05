@@ -66,6 +66,7 @@ const CardMgr = cc.Class({
     _CurZiMoGangCard: null, // 当前自摸杠的牌
     _SelfPlayerNode: null, // 自己玩家的节点
     _lightupNodeArr: null, // 飙蓝的牌
+    _didchiting: null, // 吃听的标记
     statics: {
         getInstance() {
             if (!this.cardMgr) {
