@@ -63,7 +63,7 @@ cc.Class({
     onLoad: function () {
         this.JuShu = 16;
         this.FanShu = 1;
-        this.WanFa = [1];
+        this.WanFa = [1,2,3,4,5,6];
         if (cc.dd.user.getUserInfo().isagent == 1) {
             this.DelegateRoomRecord.active = true;
         }
