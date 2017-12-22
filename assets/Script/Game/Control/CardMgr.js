@@ -17,7 +17,7 @@ const CONFIG = {
         HAND_CARD_INIT_Y: -50,
         PENG_GANG_X: -30, // 30
         PENG_GANG_Y: 110, // 85
-        PENG_GANE_INIT_Y: 40,
+        PENG_GANE_INIT_Y: 40, // 40
         OUT_CARD_X: -5.5, // 使用右边独立牌-5.5 左边反转5.5
         OUT_CARD_Y: 30,
         OUT_CARD_INIT_Y: 33.5,  // 出牌的第一张位置x为：-(length - 1) * 5.5
