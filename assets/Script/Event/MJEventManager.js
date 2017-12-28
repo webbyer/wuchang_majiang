@@ -148,8 +148,14 @@ const MJEventManager = cc.Class({
                 this.sendMessage(body);
                 break;
             }
-            case cc.dd.gameCfg.EVENT.EVENT_JIESUAN_ZONGZHANJI_REP: {
+            case cc.dd.gameCfg.EVENT.EVENT_JIESUAN_ZONGZHANJI_REP: { // 请求总战绩
                 body.roomserialnumber = data;
+                this.sendMessage(body);
+                break;
+            }
+            case cc.dd.gameCfg.EVENT.EVENT_USER_SENT_EMOJI_REP: { // 请求发送短语或表情包
+                body.type = data.type;
+                body.msgid = data.msgid;
                 this.sendMessage(body);
                 break;
             }
@@ -200,6 +206,10 @@ const MJEventManager = cc.Class({
                 break;
             }
             case cc.dd.gameCfg.EVENT.EVENT_ENTER_ROOM_REP: {  // 房间状态，不存在房间 1004
+                this.notifyEvent(msgId, msgData);
+                break;
+            }
+            case cc.dd.gameCfg.EVENT.EVENT_CREATE_ROOM_REP: {  // 新建房间失败的返回，1003
                 this.notifyEvent(msgId, msgData);
                 break;
             }
@@ -320,6 +330,10 @@ const MJEventManager = cc.Class({
             }
             case  cc.dd.gameCfg.EVENT.EVENT_DUIBAOHU_REQ: {
                 cc.log("收到对宝胡协议");
+                cc.dd.room.saveMsg(msgId,msgData);
+                break;
+            }
+            case cc.dd.gameCfg.EVENT.EVENT_USER_SENT_EMOJI_REQ: { // 收到用户发送的表情包广播
                 cc.dd.room.saveMsg(msgId,msgData);
                 break;
             }

@@ -110,7 +110,15 @@ cc.Class({
                 cc.log("输入的房间不存在");
                 cc.dd.Reload.loadPrefab("Hall/Prefab/AlertView", (prefab) => {
                     const roomNotExitMes = cc.instantiate(prefab);
-                this.node.addChild(roomNotExitMes);
+                    this.node.addChild(roomNotExitMes);
+                });
+                break;
+            }
+            case cc.dd.gameCfg.EVENT.EVENT_CREATE_ROOM_REP: {  // 新建房间失败的返回，1003
+                cc.dd.Reload.loadPrefab("Hall/Prefab/AlertView", (prefab) => {
+                    const roomNotExitMes = cc.instantiate(prefab);
+                    roomNotExitMes.getComponent("AlterViewScript").initInfoMes(data.errmsg);
+                    this.node.addChild(roomNotExitMes);
                 });
                 break;
             }

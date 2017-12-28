@@ -246,7 +246,7 @@ cc.Class({
             if (data.winnerpengcards) {
                 data.winnerpengcards.forEach((item) => {
                 const penggang = cc.instantiate(prefab);
-                if(data.hucard == 27){
+                if(item == 27){
                     const str = "little_card_" + 32;
                     penggang.children.forEach((card) => {
                         card.getChildByName("Spr").getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame(str);
@@ -268,7 +268,7 @@ cc.Class({
         if (data.winnergangcards) {
             data.winnergangcards.forEach((item) => {
                 const penggang = cc.instantiate(prefab);
-                if(data.hucard == 27){
+                if(item == 27){
                     const str = "little_card_" + 32;
                     penggang.children.forEach((card) => {
                         card.getChildByName("Spr").getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame(str);

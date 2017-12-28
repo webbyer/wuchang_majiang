@@ -33,7 +33,7 @@ const PLAY_OPERA_NAME = [
     "暗杠",
     "吡宝",
     "清一色",
-    "七小队",
+    "七小对",
     "豪华七小队",
     "传统玩法",
 ];
@@ -43,11 +43,11 @@ const PLAY_OPERA_NAME_ORAL = [
     "暗杠",
     "吡宝",
     "清一色",
-    "七小队",
+    "七小对",
     "豪华七小队",
     "传统玩法",
 ];
-
+const MOVE_TIME = 4;
 cc.Class({
     extends: cc.Component,
 
@@ -215,7 +215,11 @@ cc.Class({
         userList.forEach((item, index) => {
             this.playerArr[index].active = true;
             let player_class = null;
-
+// haiDiLao测试
+//         const card = this.playerArr[index].getChildByName("HuInfo").getChildByName("HaidlCard");
+//         const haidilao = this.playerArr[index].getChildByName("HuInfo").getChildByName("HaiDiLao");
+//         card.active = true;
+//         haidilao.active = true;
             // 手牌节点
             const handNode = this.playerArr[index].getChildByName("ParentContainer").getChildByName("HandCardLayer").getChildByName("HandCardLay");
 
@@ -368,9 +372,9 @@ cc.Class({
         }
         if (this.JushuLabel) {
             if(data.room.nowround == -1) {
-                this.JushuLabel.string = "0/" + data.room.rounds + " 局";
+                this.JushuLabel.string = "第0局 / 共" + data.room.rounds + "圈";
             }else{
-                this.JushuLabel.string = data.room.nowround + "/" + data.room.rounds + " 局";
+                this.JushuLabel.string = "第" + data.room.nowround + "局 / 共" + data.room.rounds + "圈";
             }
         }
         let str = "";
@@ -384,7 +388,7 @@ cc.Class({
                 if(!str){
                     str = PLAY_OPERA_NAME[item];
                 }else {
-                    str = str + " " + PLAY_OPERA_NAME[item];
+                    str = str + "\n" + PLAY_OPERA_NAME[item];
                 }
             });
             str = str + "\n底番" + data.room.basicraise + "倍";
@@ -808,7 +812,7 @@ cc.Class({
                 cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_HUCARD_REP);
             }
         }
-        const card = this.playerArr[localSeat - 1].getChildByName("HuInfo").getChildByName("HuCard");
+        const card = this.playerArr[localSeat - 1].getChildByName("HuInfo").getChildByName("HaidlCard");
         const haidilao = this.playerArr[localSeat - 1].getChildByName("HuInfo").getChildByName("HaiDiLao");
         card.getComponent("CardSpr").initCard(data.mopai);
         card.active = true;
@@ -1139,5 +1143,33 @@ cc.Class({
     // 收到对宝胡协议
     onRecieveDuibaohuBoardcast(data) {
         cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_HUCARD_REP);
+    },
+    // 展示用户发送的表情包和短语
+    showUserEmojiOrPhrase(data) {
+        let localSeat = null;
+        if(data) {
+            localSeat = this.getLocalSeatByUserId(data.senduid);
+        }
+        this.node.getChildByName("Table").getChildByName("Right").getChildByName("emodisablelayer").active = true;
+        this.node.getChildByName("Table").getChildByName("Right").getChildByName("BtnEmoji").active = false;
+        const emojinode = this.playerArr[localSeat-1].getChildByName("InfoBk").getChildByName("emoji");
+        if(data.type === 1) {  // 短语
+            cc.dd.Reload.loadAtlas("Game/Atlas/emojiAndPhrase", (atlas) => {
+                emojinode.getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame(data.msgid);
+            emojinode.active = true;
+            cc.dd.playPhraseEffect(data.msgid);
+        });
+        }else {  // 表情包
+            cc.dd.Reload.loadAtlas("Game/Atlas/emojiAndPhrase", (atlas) => {
+                emojinode.getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame(data.msgid);
+            emojinode.active = true;
+            emojinode.getComponent(cc.Animation).play();
+        });
+        }
+        this.scheduleOnce(() => {
+            emojinode.active = false;
+        this.node.getChildByName("Table").getChildByName("Right").getChildByName("BtnEmoji").active = true;
+        this.node.getChildByName("Table").getChildByName("Right").getChildByName("emodisablelayer").active = false;
+    }, MOVE_TIME);
     },
 });

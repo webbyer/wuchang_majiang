@@ -95,6 +95,8 @@ module.exports = {
         EVENT_USER_OFFLINE: 4005,   // 广播用户断线
         EVENT_USER_BACKONLINE: 4006,  // 广播断线用户上线了
         EVENT_DUIBAOHU_REQ: 4026,  // 收到对宝胡协议的广播
+        EVENT_USER_SENT_EMOJI_REP: 2016, // 用户发送短语或表情请求
+        EVENT_USER_SENT_EMOJI_REQ: 5016, // 用户发送短语或表情广播
         // 你在下边添加
     },
     // 电池电量状态

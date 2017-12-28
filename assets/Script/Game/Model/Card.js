@@ -3,6 +3,7 @@ const CARD_STATE = {
     NORMAL: 1, // 正常状态
     SELECT: 2, // 选中状态
     HAS_OUT: 3, // 已经打出去了
+    MOVE_CANCLE:4, // 滑动状态下的选中
 };
 const MOVE_Y = 20;
 cc.Class({
@@ -174,6 +175,12 @@ cc.Class({
                 cc.dd.cardMgr.setIsCanOutCard(false);
                 break;
             }
+            case CARD_STATE.MOVE_CANCLE: {
+                cc.log(`滑动出牌取消`);
+                cc.dd.cardMgr.setIsCanOutCard(true);
+                this.cancelSelect();
+                break;
+            }
         }
     },
     /**
@@ -185,20 +192,43 @@ cc.Class({
         if (this.CardZheZhao) {
             this.CardZheZhao.active = false;
         }
-        this.cancelSelect();
+        // this.cancelSelect();
+        if(this.moving) {
+            this.moving = false;
+            this._touchEnd();
+        }
     },
     /**
      *  麻将滑动触摸
      * @private
      */
     _touchMoved(event) {
-        // cc.log(`触摸${event.getDelta()}`);
+        if (cc.dd.cardMgr.getHuiPai() === this.id) {
+            return;
+        }
+        if (this.CardZheZhao) {
+            this.CardZheZhao.active = true;
+        }
+        // cc.log(`触摸${event.getDeltaY()}`);
         // cc.log(`触摸${event.getLocationY()}`);
-            let a = event.getDeltaX();
-            let b = event.getDeltaY();
-            this.node.x += a;
-            this.node.y += b;
-            cc.log(this.node.y);
+        this.moving = true;
+        let a = event.getDeltaX();
+        let b = event.getDeltaY();
+        this.node.x += a;
+        this.node.y += b;
+        cc.log(this.node.x);
+        if(this.node.y > 19) {
+            cc.dd.cardMgr.setReadyOutCard(this.node);
+            cc.dd.cardMgr.singleOutSeletedHandCardSimilarOutCard(this.id);
+            this.cardState = CARD_STATE.SELECT;
+        }else if(this.node.y < 0){
+            this.cardState = CARD_STATE.MOVE_CANCLE;
+        }else {
+            this.cardState = CARD_STATE.NORMAL;
+        }
+        if(this.node.x < -920) {
+            this.cardState = CARD_STATE.MOVE_CANCLE;
+        }
     },
     /**
      *  麻将被选择
@@ -207,7 +237,7 @@ cc.Class({
         if (cc.dd.cardMgr.getHuiPai() === this.id) {
             return;
         }
-        this.node.runAction(cc.moveTo(0.1, cc.p(this._pos_x, this._pos_y + MOVE_Y)));
+        this.node.runAction(cc.moveTo(0.05, cc.p(this._pos_x, this._pos_y + MOVE_Y)));
         this.cardState = CARD_STATE.SELECT;
         cc.dd.cardMgr.singleOutSeletedHandCardSimilarOutCard(this.id);
     },
@@ -215,7 +245,7 @@ cc.Class({
      *  麻将取消选择
      */
     cancelSelect() {
-        this.node.runAction(cc.moveTo(0.1, cc.p(this._pos_x, this._pos_y)));
+        this.node.runAction(cc.moveTo(0.05, cc.p(this._pos_x, this._pos_y)));
         this.cardState = CARD_STATE.NORMAL;
         cc.dd.cardMgr.cancelSingleOutMask();
     },

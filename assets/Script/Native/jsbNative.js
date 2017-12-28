@@ -124,7 +124,7 @@ cc.dd.invokeWXFriendShareCustumLink = () => {
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppActivity" ,"SendLinkUrl", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",
                 cc.dd.pubConst.ANDROID_DOWNLOAD_LINK ,
                 "【胡徕】五常麻将 想胡你就来！",
-                "好友随时约局，手机实时对战。明暗蛋七小队，呲宝红中满天飞。");
+                "好友随时约局，手机实时对战。明暗蛋七小对，呲宝红中满天飞。");
         }else {
             jsb.reflection.callStaticMethod("WXShareTool", "jsInitiateWXFriendsShare");
         }
@@ -137,7 +137,7 @@ cc.dd.invokeWXMomentShareCustumLink = () => {
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppActivity" ,"ShareLinkTimeline", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",
                 cc.dd.pubConst.ANDROID_DOWNLOAD_LINK,
                 "【胡徕】五常麻将 想胡你就来",
-                "好友随时约局，手机实时对战。明暗蛋七小队，呲宝红中满天飞。");
+                "好友随时约局，手机实时对战。明暗蛋七小对，呲宝红中满天飞。");
         }else {
             jsb.reflection.callStaticMethod("WXShareTool", "jsInitiateWXMomentssShare");
         }
