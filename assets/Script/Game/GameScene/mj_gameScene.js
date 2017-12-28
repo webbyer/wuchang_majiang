@@ -187,7 +187,7 @@ cc.Class({
         if(userList.length > 1){
             let count = 0;
             let newarr = [];
-            for (let i = 0; i < userList.length-1; i++) { //
+            for (let i = 0; i < userList.length-1; i++) {
                 if (userList[i].ipaddress != userList[i + 1].ipaddress) {
                     newarr.push(userList.slice(count, i + 1));
                     count = i + 1;
@@ -204,12 +204,14 @@ cc.Class({
                             item.needHideIp = true;
                         }
                     }
+                    if (userList[index].ipaddress =="127.0.0.1") {
+                        item.needHideIp = true;
+                    }
                 });
             }
         }else {
             userList[0].needHideIp = true;
         }
-
 
 
         userList.forEach((item, index) => {
