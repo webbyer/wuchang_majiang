@@ -37,6 +37,7 @@ const User = cc.Class({
         _countNum: null, // 给解散房间的同意进度条倒数
         _creatRoomDelegate: null, // 是否是代理人新建代理房间
         _did: null,
+        _noticeboard: null,
     },
     // 设置用户信息
     setUserInfo(user) {

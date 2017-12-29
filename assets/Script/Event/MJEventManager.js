@@ -176,6 +176,9 @@ const MJEventManager = cc.Class({
         cc.log(msgData);
         switch (msgId) {
             case cc.dd.gameCfg.EVENT.EVENT_GET_VERSION_REQ: {  // 检测最新版本的返回，5000
+                if (msgData.noticeboard) {
+                    cc.dd.user._noticeboard = msgData.noticeboard;
+                }
                 cc.dd.checkForNewVersion(msgData.iosversion,msgData.androidversion,msgData);
                 break;
             }
@@ -210,11 +213,19 @@ const MJEventManager = cc.Class({
                 break;
             }
             case cc.dd.gameCfg.EVENT.EVENT_CREATE_ROOM_REP: {  // 新建房间失败的返回，1003
-                this.notifyEvent(msgId, msgData);
+                if (cc.dd.user._matching){
+                    cc.dd.room.saveMsg(msgId, msgData);
+                }else {
+                    this.notifyEvent(msgId, msgData);
+                }
                 break;
             }
             case cc.dd.gameCfg.EVENT.EVENT_ROOM_DATA: {  // 房间数据,4001
-                cc.dd.room.updataRoomData(msgData);
+                // if (cc.dd.user._matching){
+                //     cc.dd.room.saveMsg(msgId, msgData);
+                // }else {
+                    cc.dd.room.updataRoomData(msgData);
+                // }
                 break;
             }
             case cc.dd.gameCfg.EVENT.EVENT_GAME_STATE: {  // 房间状态，存在房间 4002

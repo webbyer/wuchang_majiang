@@ -376,7 +376,12 @@ cc.Class({
             if(data.room.nowround == -1) {
                 this.JushuLabel.string = "第0局 / 共" + data.room.rounds + "圈";
             }else{
-                this.JushuLabel.string = "第" + data.room.nowround + "局 / 共" + data.room.rounds + "圈";
+                if (data.room.rounds === 0) {
+                    this.JushuLabel.string = "第" + data.room.nowround + "局";
+                }else {
+                    this.JushuLabel.string = "第" + data.room.nowround + "局 / 共" + data.room.rounds + "圈";
+                }
+
             }
         }
         let str = "";

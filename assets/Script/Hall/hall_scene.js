@@ -34,6 +34,10 @@ cc.Class({
             default:null,
             type: cc.Node,
         },
+        roomMatchingBtn: {
+            default:null,
+            type: cc.Node,
+        },
         toUpdateCardum: null,
     },
 
@@ -115,17 +119,37 @@ cc.Class({
                 break;
             }
             case cc.dd.gameCfg.EVENT.EVENT_CREATE_ROOM_REP: {  // 新建房间失败的返回，1003
-                cc.dd.Reload.loadPrefab("Hall/Prefab/AlertView", (prefab) => {
-                    const roomNotExitMes = cc.instantiate(prefab);
-                    roomNotExitMes.getComponent("AlterViewScript").initInfoMes(data.errmsg);
-                    this.node.addChild(roomNotExitMes);
-                });
+                if(cc.dd.user._matching) {
+                    cc.dd.user._matching = false;
+                    this.node.getChildByName("Tip").getChildByName("NoteBk").getChildByName("contentTitle").getComponent(cc.Label).string = data.errmsg;
+                    this.node.getChildByName("Tip").getChildByName("NoteBk").getChildByName("aniNode").active = false;
+                    this.scheduleOnce(() => {
+                        this.node.getChildByName("Tip").destroy();
+                    },2);
+                }else {
+                    cc.dd.Reload.loadPrefab("Hall/Prefab/AlertView", (prefab) => {
+                        const roomNotExitMes = cc.instantiate(prefab);
+                        roomNotExitMes.getComponent("AlterViewScript").initInfoMes(data.errmsg);
+                        this.node.addChild(roomNotExitMes);
+                    });
+                }
                 break;
             }
             case cc.dd.gameCfg.EVENT.EVENT_GAME_STATE: {
-                cc.dd.Reload.loadDir("DirRes", () => {
-                    cc.dd.sceneMgr.runScene(cc.dd.sceneID.GAME_SCENE);
-                });
+                if (cc.dd.user._matching){
+                    cc.dd.user._matching = false;
+                    this.scheduleOnce(() => {
+                        // this.node.getChildByName("Tip").destroy();
+                        cc.dd.Reload.loadDir("DirRes", () => {
+                            cc.dd.sceneMgr.runScene(cc.dd.sceneID.GAME_SCENE);
+                        });
+                    },3);
+                    // this.node.getChildByName("Tip").destroy();
+                }else {
+                    cc.dd.Reload.loadDir("DirRes", () => {
+                        cc.dd.sceneMgr.runScene(cc.dd.sceneID.GAME_SCENE);
+                    });
+                }
                 break;
             }
             case cc.dd.gameCfg.EVENT.EVENT_ENTER_CARDCHANGE_REQ: { //5007
