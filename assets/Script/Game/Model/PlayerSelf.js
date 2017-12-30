@@ -42,11 +42,14 @@ cc.Class({
         if(!cc.dd.cardMgr._didchiting) {
             if (data.chi || data.chiting) {
                 if (data.chiting) {
-                    cc.log("显示次听次选择");
                     this.operateBtnNode.getChildByName("BtnChiTing").active = true;
-                    this.operateBtnNode.getChildByName("BtnChi").active = true;
+                    if(data.chi) {
+                        cc.log("显示吃/听、吃选择");
+                        cc.dd.cardMgr.setChiList(data.chilist);
+                        this.operateBtnNode.getChildByName("BtnChi").active = true;
+                    }
                     guoBtn = true;
-                    cc.dd.cardMgr.setChiList(data.chitinglist);
+                    cc.dd.cardMgr.setChiTingList(data.chitinglist);
                 }else {
                     this.operateBtnNode.getChildByName("BtnChi").active = true;
                     guoBtn = true;

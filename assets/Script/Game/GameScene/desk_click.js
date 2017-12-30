@@ -282,10 +282,14 @@ cc.Class({
     onChiClick() {
         cc.log(`发送吃牌的请求`);
         const chiList = cc.dd.cardMgr.getChiList();
+        // const chiTingList = cc.dd.cardMgr.getChiTingList();
+        // if (chiTingList) {
+        //     par.chiting = true;
+        // }
         if (chiList) {
             let par = {};
             par.chiting = false;
-            if (chiList.length == 1) {
+            if (chiList.length === 1) {
                 this.node.getComponent("mj_gameScene").playerArr[0].getComponent("PlayerSelf").hideOperateBtn();
                 par.straight = chiList[0];
                 cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_CHICARD_REP,par);
@@ -346,18 +350,18 @@ cc.Class({
     // 吃听
     onChitingClick() {
         cc.log("吃听");
-        const chiList = cc.dd.cardMgr.getChiList();
-        if (chiList) {
-            if (chiList.length == 1) {
+        const chiTingList = cc.dd.cardMgr.getChiTingList();
+        if (chiTingList) {
+            let par = {};
+            par.chiting = true;
+            if (chiTingList.length === 1) {
                 this.node.getComponent("mj_gameScene").playerArr[0].getComponent("PlayerSelf").hideOperateBtn();
-                let par = {};
-                par.straight = chiList[0];
-                par.chiting = true;
+                par.straight = chiTingList[0];
                 cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_CHICARD_REP,par);
             } else {
                 cc.dd.Reload.loadPrefab("Game/Prefab/ChiSelect", (prefab) => {
                     const chiLayer = cc.instantiate(prefab);
-                    chiLayer.getComponent("ChiSelect").initCard(chiList,par.chiting);
+                    chiLayer.getComponent("ChiSelect").initCard(chiTingList,par.chiting);
                     this.node.addChild(chiLayer);
             });
             }

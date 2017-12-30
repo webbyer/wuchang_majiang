@@ -988,6 +988,7 @@ cc.Class({
         this.playerArr[0].getComponent("PlayerSelf").hideOperateBtn();
         cc.dd.cardMgr.setHuiPai(null);
         cc.dd.cardMgr.setChiList(null);
+        cc.dd.cardMgr.setChiTingList(null);
         cc.dd.cardMgr.setTingList(null);
         cc.dd.cardMgr.setIsTing(false);
         cc.dd.cardMgr.setMoCard(null);

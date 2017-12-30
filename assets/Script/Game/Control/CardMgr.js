@@ -59,6 +59,7 @@ const CardMgr = cc.Class({
     _huiPai: null, // 会牌
     _chiList: null,  // 吃牌的列表
     _tingList: null, // 听牌的列表
+    _chiTingList: null, // 吃听牌的列表
     _isTing: null, // 是否是听牌
     _moCard: null, // 摸的牌
     _ziMoGangCard: null, // 自摸杠的牌
@@ -719,6 +720,18 @@ const CardMgr = cc.Class({
      */
     getChiList() {
         return this._chiList;
+    },
+    /**
+     * 设置吃听牌列表
+     */
+    setChiTingList(list) {
+        this._chiTingList = list;
+    },
+    /**
+     *  得到吃听牌列表
+     */
+    getChiTingList() {
+        return this._chiTingList;
     },
     /**
      * 设置听牌列表
