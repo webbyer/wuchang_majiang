@@ -61,7 +61,7 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        this.JuShu = 16;
+        this.JuShu = 2;
         this.FanShu = 1;
         this.WanFa = [1,2,3,4,5,6];
         if (cc.dd.user.getUserInfo().isagent == 1) {

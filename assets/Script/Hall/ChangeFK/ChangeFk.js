@@ -37,7 +37,7 @@ cc.Class({
             type: cc.Button,
             tooltip: "查询按钮",
         },
-        _preNum: 1,
+        _preNum: 4,
     },
 
     // use this for initialization
