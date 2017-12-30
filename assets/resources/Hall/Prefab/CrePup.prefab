@@ -6628,7 +6628,7 @@
     },
     "component": "hall_creRoom",
     "handler": "onDiFanClick",
-    "customEventData": "3"
+    "customEventData": "2"
   },
   {
     "__type__": "cc.PrefabInfo",
