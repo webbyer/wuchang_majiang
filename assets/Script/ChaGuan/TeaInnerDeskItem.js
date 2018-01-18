@@ -7,26 +7,26 @@ cc.Class({
             type: cc.Label,
             tooltip: "房号",
         },
-        AvatarOne: {
+        // AvatarOne: {
+        //     default: null,
+        //     type: cc.Node,
+        //     tooltip: "底部玩家",
+        // },
+        Avatars: {
             default: null,
             type: cc.Node,
-            tooltip: "底部玩家",
+            tooltip: "玩家们",
         },
-        AvatarTwo: {
-            default: null,
-            type: cc.Node,
-            tooltip: "右边玩家",
-        },
-        AvatarThree: {
-            default: null,
-            type: cc.Node,
-            tooltip: "顶部玩家",
-        },
-        AvatarFour: {
-            default: null,
-            type: cc.Node,
-            tooltip: "左边玩家",
-        },
+        // AvatarThree: {
+        //     default: null,
+        //     type: cc.Node,
+        //     tooltip: "顶部玩家",
+        // },
+        // AvatarFour: {
+        //     default: null,
+        //     type: cc.Node,
+        //     tooltip: "左边玩家",
+        // },
         RoundLabel: {
             default: null,
             type: cc.Label,
@@ -53,11 +53,21 @@ cc.Class({
             this.DeleteBtn.active = true;
         }
         if (data.players){
+            cc.dd.Reload.loadAtlas("ChaGuan/Atlas/GameTea", (atlas) => {
+                this.Avatars.children.forEach((item) => {
+                    item.getComponent(cc.Button).interactable = true;
+                    item.getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame("ChaGuan_TouXiang");
+                });
+            });
             if(data.players.length > 0) {
                 this.DeleteBtn.active = false;
                 // 头像与disable该按钮
+                data.players.forEach((item,index) => {
+                    this.Avatars.children[index].getComponent(cc.Button).interactable = false;
+                    cc.dd.setPlayerHead(item,this.Avatars.children[index]);
+                });
             }else {
-
+                this.DeleteBtn.active = true;
             }
         }
     },
@@ -73,7 +83,6 @@ cc.Class({
         }else {
             cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_ENTER_ROOM_REP,this.itemRoomid);
         }
-
     },
     // 删除当前桌
     onDeleteClick() {
