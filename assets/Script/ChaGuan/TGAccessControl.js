@@ -26,11 +26,10 @@ cc.Class({
     },
     // 渲染中间部分
     setupCenterContent(data) {
-        this.centerContainerNode.removeAllChildren();
         cc.dd.Reload.loadPrefab("ChaGuan/Prefab/TGAccessControlItem", (prefab) => {
             data.users.forEach((item) => {
                 const controlitem = cc.instantiate(prefab);
-                this.node.addChild(controlitem);
+                this.centerContainerNode.addChild(controlitem);
                 controlitem.getComponent("TGAccessControlItem").setupInitContent(item,data.status);
             });
         });
@@ -38,6 +37,7 @@ cc.Class({
     },
     // 顶部两个tab的点击响应方法
     onClickToChoosePersonalType(event,customData) {
+        this.centerContainerNode.removeAllChildren();
         switch (customData) {
             case cc.dd.hall_config.ACCESS_TYPE.APPALYING: {
                 this.topNode.getChildByName("tab1").active = true;

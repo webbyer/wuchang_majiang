@@ -120,6 +120,11 @@ cc.Class({
             type: cc.Node,
             tooltip: "邀请好友",
         },
+        ExitBtn: {
+            default: null,
+            type: cc.Node,
+            tooltip: "返回茶馆按钮",
+        },
         callback: null,
     },
 
@@ -417,16 +422,20 @@ cc.Class({
         if (this.TopLabel) {
             this.TopLabel.string = str;
         }
+
         if (hasLouBao) {
-            if (data.room.createtype) {
-                if(this.playerArr.length != 4) {
-                    this.setBaoCard(false);
-                }
-            }else {
-                this.setBaoCard(true, data.baocard);
-            }
+            this.setBaoCard(true, data.baocard);
         } else {
             this.setBaoCard(false);
+        }
+        if (data.room.createtype == "agent") {
+            if (data.userlist.length != 4) {
+                this.setBaoCard(false);
+                this.ExitBtn.active = true;
+            }else {
+                this.setBaoCard(true, data.baocard);
+                this.ExitBtn.active = false;
+            }
         }
     },
     // 初始化墙头牌

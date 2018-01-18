@@ -703,7 +703,7 @@
         "__id__": 22
       },
       {
-        "__id__": 254
+        "__id__": 251
       },
       {
         "__id__": 266
@@ -789,16 +789,13 @@
       },
       {
         "__id__": 247
-      },
-      {
-        "__id__": 250
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 253
+      "__id__": 250
     },
     "_id": "",
     "_opacity": 255,
@@ -8097,93 +8094,6 @@
     "sync": false
   },
   {
-    "__type__": "cc.Node",
-    "_name": "RepeatSign",
-    "_objFlags": 0,
-    "_parent": {
-      "__id__": 22
-    },
-    "_children": [],
-    "_tag": -1,
-    "_active": true,
-    "_components": [
-      {
-        "__id__": 251
-      }
-    ],
-    "_prefab": {
-      "__id__": 252
-    },
-    "_id": "",
-    "_opacity": 255,
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 121,
-      "g": 120,
-      "b": 120,
-      "a": 255
-    },
-    "_cascadeOpacityEnabled": true,
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
-    },
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 520,
-      "height": 50
-    },
-    "_rotationX": 0,
-    "_rotationY": 0,
-    "_scaleX": 1,
-    "_scaleY": 1,
-    "_position": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": -200
-    },
-    "_skewX": 0,
-    "_skewY": 0,
-    "_localZOrder": 0,
-    "_globalZOrder": 0,
-    "_opacityModifyRGB": false,
-    "groupIndex": 0
-  },
-  {
-    "__type__": "cc.Label",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 250
-    },
-    "_enabled": true,
-    "_useOriginalSize": false,
-    "_actualFontSize": 20,
-    "_fontSize": 20,
-    "_lineHeight": 25,
-    "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
-    "_spacingX": 0,
-    "_N$string": "注：玩家正常打完以后会重新开一个同样玩法的房间，中途解散的房间不会重开，如果馆主的房卡数量不足也不会重开",
-    "_N$horizontalAlign": 0,
-    "_N$verticalAlign": 1,
-    "_N$fontFamily": "Arial",
-    "_N$overflow": 3
-  },
-  {
-    "__type__": "cc.PrefabInfo",
-    "root": {
-      "__id__": 1
-    },
-    "asset": {
-      "__uuid__": "cc6616f2-3fb6-422d-8825-4ea685e48c58"
-    },
-    "fileId": "f2dFQ0Jw5Hy7UsvzHz1/98",
-    "sync": false
-  },
-  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
@@ -8203,6 +8113,9 @@
     },
     "_children": [
       {
+        "__id__": 252
+      },
+      {
         "__id__": 255
       },
       {
@@ -8213,7 +8126,7 @@
       }
     ],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 264
@@ -8263,18 +8176,18 @@
     "_name": "Background",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 254
+      "__id__": 251
     },
     "_children": [],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 256
+        "__id__": 253
       }
     ],
     "_prefab": {
-      "__id__": 257
+      "__id__": 254
     },
     "_id": "",
     "_opacity": 255,
@@ -8317,7 +8230,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 255
+      "__id__": 252
     },
     "_enabled": true,
     "_spriteFrame": {
@@ -8356,18 +8269,18 @@
     "_name": "checkmark",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 254
+      "__id__": 251
     },
     "_children": [],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 259
+        "__id__": 256
       }
     ],
     "_prefab": {
-      "__id__": 260
+      "__id__": 257
     },
     "_id": "",
     "_opacity": 255,
@@ -8410,7 +8323,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 258
+      "__id__": 255
     },
     "_enabled": true,
     "_spriteFrame": {
@@ -8449,18 +8362,18 @@
     "_name": "note",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 254
+      "__id__": 251
     },
     "_children": [],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 262
+        "__id__": 259
       }
     ],
     "_prefab": {
-      "__id__": 263
+      "__id__": 260
     },
     "_id": "",
     "_opacity": 255,
@@ -8503,7 +8416,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 261
+      "__id__": 258
     },
     "_enabled": true,
     "_useOriginalSize": false,
@@ -8532,11 +8445,98 @@
     "sync": false
   },
   {
+    "__type__": "cc.Node",
+    "_name": "RepeatSign",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 251
+    },
+    "_children": [],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 262
+      }
+    ],
+    "_prefab": {
+      "__id__": 263
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 121,
+      "g": 120,
+      "b": 120,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 520,
+      "height": 40
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 180,
+      "y": -42
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Label",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 261
+    },
+    "_enabled": true,
+    "_useOriginalSize": false,
+    "_actualFontSize": 16,
+    "_fontSize": 16,
+    "_lineHeight": 20,
+    "_enableWrapText": true,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
+    "_spacingX": 0,
+    "_N$string": "注：玩家正常打完以后会重新开一个同样玩法的房间，牌局已开始但中途解散的房间不会重开，如果馆主的房卡数量不足也不会重开",
+    "_N$horizontalAlign": 0,
+    "_N$verticalAlign": 1,
+    "_N$fontFamily": "Arial",
+    "_N$overflow": 3
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "cc6616f2-3fb6-422d-8825-4ea685e48c58"
+    },
+    "fileId": "f2dFQ0Jw5Hy7UsvzHz1/98",
+    "sync": false
+  },
+  {
     "__type__": "cc.Toggle",
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 254
+      "__id__": 251
     },
     "_enabled": true,
     "transition": 3,
@@ -8578,11 +8578,11 @@
     "_N$normalSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
-      "__id__": 255
+      "__id__": 252
     },
     "toggleGroup": null,
     "checkMark": {
-      "__id__": 259
+      "__id__": 256
     },
     "checkEvents": [],
     "_N$isChecked": true
@@ -8906,7 +8906,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 275,
-      "y": -265
+      "y": -245
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -9156,7 +9156,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 240,
-      "y": -265
+      "y": -245
     },
     "_skewX": 0,
     "_skewY": 0,

@@ -80,9 +80,6 @@ cc.Class({
     },
     // 渲染界面
     setupContent() {
-        // if (!cc.dd.user.getChaGuan()) {
-        //     return;
-        // }
         if (cc.dd.user.getChaGuan().activerooms || cc.dd.user.getChaGuan().activerooms === 0) {
             this.TopLeftLabel.string = "桌数：" + cc.dd.user.getChaGuan().activerooms + "/" + cc.dd.user.getChaGuan().allrooms;
         }
@@ -126,8 +123,13 @@ cc.Class({
         }
         if (cc.dd.user.getChaGuan().allrooms || cc.dd.user.getChaGuan().allrooms === 0) {
             if (cc.dd.user.getChaGuan().allrooms === 0) { // 茶馆无牌桌
-                this.CenterContainerNode.active = false;
-                this.CenterTipLabel.active = true;
+                if (this.isOnwer) {
+                    this.CenterContainerNode.active = true;
+                    this.CenterTipLabel.active = false;
+                }else {
+                    this.CenterContainerNode.active = false;
+                    this.CenterTipLabel.active = true;
+                }
             }else {  // 茶馆有且需要渲染牌桌
                 this.CenterContainerNode.active = true;
                 this.CenterTipLabel.active = false;
@@ -201,6 +203,7 @@ cc.Class({
             this.node.addChild(crePup);
             crePup.getComponent("hall_creRoom").CreateDelegateRoom.active = true;
             crePup.getComponent("hall_creRoom").CreateRoom.active = false;
+            crePup.getComponent("hall_creRoom").ReopenAllowedToggle.node.active = true;
         });
 
     },
@@ -219,7 +222,7 @@ cc.Class({
         cc.dd.Reload.loadPrefab("ChaGuan/Prefab/TGAccessControl", (prefab) => {
             const Control = cc.instantiate(prefab);
             this.node.addChild(Control);
-    });
+        });
     },
     // 申请进入茶馆
     onAppalyClick() {
@@ -278,6 +281,12 @@ cc.Class({
                     const UIDNotExitMes = cc.instantiate(prefab);
                     UIDNotExitMes.getComponent("AlterViewScript").initInfoMes(data.errmsg);
                     this.node.addChild(UIDNotExitMes);
+                });
+                break;
+            }
+            case cc.dd.gameCfg.EVENT.EVENT_GAME_STATE: {
+                cc.dd.Reload.loadDir("DirRes", () => {
+                    cc.dd.sceneMgr.runScene(cc.dd.sceneID.GAME_SCENE);
                 });
                 break;
             }

@@ -35,8 +35,8 @@ const MJEventManager = cc.Class({
                 body.did = deviceid;
             }
         }else{
-            body.did = "92fde739-9aa7-412d-9b9d-ea592590fb23";// 网页 47194279-dfb8-4e35-9ba2-d13dd70028dc
-        }//3226606a-190b-4928-90e3-bda04817bd69 //92fde739-9aa7-412d-9b9d-ea592590fb23
+            body.did = "3226606a-190b-4928-90e3-bda04817bd69";// 网页 47194279-dfb8-4e35-9ba2-d13dd70028dc
+        }//3226606a-190b-4928-90e3-bda04817bd69 //60eb20b0-8fd2-4b5c-805f-fecb298662db
 
         switch (event) {
             case cc.dd.gameCfg.EVENT.EVENT_GET_VERSION_REP: {   // 检测最新版本，1000
@@ -190,7 +190,10 @@ const MJEventManager = cc.Class({
                 this.sendMessage(body);
                 break;
             }
-
+            case cc.dd.gameCfg.EVENT.EVENT_CHAGUAN_LEAVE_MAJIONG_DESK_REP: { // 1022,牌桌离开到茶馆
+                this.sendMessage(body);
+                break;
+            }
             default: {
                 cc.log(`unkown event: ${event}`);
             }
@@ -391,6 +394,14 @@ const MJEventManager = cc.Class({
             case cc.dd.gameCfg.EVENT.EVENT_ENTER_CHAGUAN_REQ: { // 查询代开房间记录的返回，5015
                 cc.dd.user.setChaGuan(msgData);
                 this.notifyEvent(msgId, msgData);
+                break;
+            }
+            case cc.dd.gameCfg.EVENT.EVENT_CHAGUAN_LEAVE_MAJIONG_DESK_REQ: { // 5022,牌桌离开到茶馆
+                if (msgData.rtncode && msgData.rtncode == -1){
+                    cc.log("不能离开牌桌");
+                }else {
+                    this.startEvent(cc.dd.gameCfg.EVENT.EVENT_ENTER_CHAGUAN_REP,msgData.clubtoken);
+                }
                 break;
             }
             default: {

@@ -69,8 +69,11 @@ cc.Class({
                 const UIDNotExitMes = cc.instantiate(prefab);
                 UIDNotExitMes.getComponent("AlterViewScript").initInfoMes("请先申请进入茶馆\n馆主同意后才可进入游戏");
                 this.node.parent.parent.parent.parent.addChild(UIDNotExitMes);
-        });
+            });
+        }else {
+            cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_ENTER_ROOM_REP,this.itemRoomid);
         }
+
     },
     // 删除当前桌
     onDeleteClick() {

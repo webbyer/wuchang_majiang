@@ -17894,7 +17894,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 449
@@ -18208,6 +18208,9 @@
     },
     "InviteFriendBtn": {
       "__id__": 56
+    },
+    "ExitBtn": {
+      "__id__": 448
     },
     "callback": null
   },
