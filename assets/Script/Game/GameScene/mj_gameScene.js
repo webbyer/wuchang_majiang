@@ -36,6 +36,7 @@ const PLAY_OPERA_NAME = [
     "七小对",
     "豪华七小队",
     "传统玩法",
+    "四张见面不上听",
 ];
 const PLAY_OPERA_NAME_ORAL = [
     null,
@@ -46,6 +47,7 @@ const PLAY_OPERA_NAME_ORAL = [
     "七小对",
     "豪华七小队",
     "传统玩法",
+    "四张见面不上听",
 ];
 const MOVE_TIME = 4;
 cc.Class({
@@ -129,9 +131,21 @@ cc.Class({
         cc.dd.soundMgr.playMusic("resources/Game/Sound/common/bg.mp3", true);
 
         this.initPlayerArr();
-        // 测试手牌
-       // this.PlayerNode.getChildByName("Bottom").getComponent("PlayerSelf").createHandCard(cardArr);
+        if (cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE) == cc.dd.roomDeskType.Desk_2D){
+            // 换桌面背景图
+            const background2d = cc.url.raw("resources/Game/Textures/table2.png");
+            const texturebg2d = new cc.SpriteFrame(background2d);
+            this.node.getChildByName("Table").getComponent(cc.Sprite).spriteFrame = texturebg2d;
+            let arrtemp =["Right","Left"];
+            arrtemp.forEach((item) => {
+                this.PlayerNode.getChildByName(item).getChildByName("ParentContainer").active = false;
+                this.PlayerNode.getChildByName(item).getChildByName("ParentContainer2D").active = true;
+                this.PlayerNode.getChildByName(item).getChildByName("OutCardLayer").active = false;
+                this.PlayerNode.getChildByName(item).getChildByName("OutCardLayer2D").active = true;
+            });
 
+
+        }
         cc.dd.roomEvent.notifyMsg();
         cc.dd.net.setCallBack(this);
     },
@@ -404,7 +418,13 @@ cc.Class({
             this.TopLabel.string = str;
         }
         if (hasLouBao) {
-            this.setBaoCard(true, data.baocard)
+            if (data.room.createtype) {
+                if(this.playerArr.length != 4) {
+                    this.setBaoCard(false);
+                }
+            }else {
+                this.setBaoCard(true, data.baocard);
+            }
         } else {
             this.setBaoCard(false);
         }

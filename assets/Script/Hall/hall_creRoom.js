@@ -56,7 +56,12 @@ cc.Class({
             default: null,
             type: cc.Node,
             tooltip: "包时卡用户不消耗房卡",
-        }
+        },
+        ReopenAllowedToggle: {
+            default: null,
+            type: cc.Toggle,
+            tooltip: "结束后自动重开房间",
+        },
     },
 
     // use this for initialization
@@ -64,9 +69,9 @@ cc.Class({
         this.JuShu = 2;
         this.FanShu = 1;
         this.WanFa = [1,2,3,4,5,6];
-        if (cc.dd.user.getUserInfo().isagent == 1) {
-            this.DelegateRoomRecord.active = true;
-        }
+        // if (cc.dd.user.getUserInfo().isagent === 1) {
+        //     this.DelegateRoomRecord.active = true;
+        // }
         this.BaoshikaTip.active = cc.dd.user.getCardState().unlimited;
 
     },
@@ -132,7 +137,7 @@ cc.Class({
                 }
             });
         }
-        // cc.log(this.WanFa);
+        // cc.log(this.ReopenAllowedToggle.isChecked);
     },
     // 底番
     onDiFanClick(event, custom) {
@@ -152,6 +157,11 @@ cc.Class({
         roomConfig.playrule = this.WanFa;
         roomConfig.createtype = "selfuse";// agent  selfuse
         roomConfig.roomtype = "cymj";
+        if (this.ReopenAllowedToggle.isChecked) {
+            roomConfig.autocreate = 1;
+        }else {
+            roomConfig.autocreate = 0;
+        }
         cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_CREATE_ROOM_REP, roomConfig);
     },
     // 代理人代开房间给其他用户玩的功能
@@ -162,6 +172,11 @@ cc.Class({
         roomConfig.playrule = this.WanFa;
         roomConfig.createtype = "agent";// agent  selfuse
         roomConfig.roomtype = "cymj";
+        if (this.ReopenAllowedToggle.isChecked) {
+            roomConfig.autocreate = 1;
+        }else {
+            roomConfig.autocreate = 0;
+        }
         cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_CREATE_ROOM_REP, roomConfig);
         this.node.destroy();
     },

@@ -40,6 +40,12 @@ const CONFIG = {
         OUT_CARD_Y: -30, // -27
         OUT_CARD_INIT_Y: -33.5,
     },
+    TYPE2D: {
+        OUT_CARD_X: 0,
+        OUT_CARD_Y: 0,
+        OUT_CARD_INIT_Y: 0,  // 出牌的第一张位置x为：-(length - 1) * 5.5
+        PENG_GANG_X: 0,
+    },
     // 出牌的每层里牌的张数
     OUT_CARD_NUM: {
         LAYER_ONE: 6,
@@ -102,9 +108,15 @@ const CardMgr = cc.Class({
                 let initPos = 0;
                 const str = "HandCard_Left";
                 for (let i = 0; i < data; i ++) {
-                    const card = cc.instantiate(cc.dd.dirRes[str.toUpperCase()]);
-                    h_node.addChild(card);
-                    card.setPosition(cc.p(i * CONFIG.RIGHT.HAND_CARD_X, CONFIG.RIGHT.HAND_CARD_INIT_Y + i * CONFIG.RIGHT.HAND_CARD_Y));
+                    if(cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE)== cc.dd.roomDeskType.Desk_2D){
+                        const card2d = cc.instantiate(cc.dd.dirRes["HandCard_Left2D".toUpperCase()]);
+                        const nodefor2d = h_node.parent.parent.parent.getChildByName("ParentContainer2D").getChildByName("HandCardLayer").getChildByName("HandCardLay");
+                        nodefor2d.addChild(card2d);
+                    }else {
+                        const card = cc.instantiate(cc.dd.dirRes[str.toUpperCase()]);
+                        h_node.addChild(card);
+                        card.setPosition(cc.p(i * CONFIG.RIGHT.HAND_CARD_X, CONFIG.RIGHT.HAND_CARD_INIT_Y + i * CONFIG.RIGHT.HAND_CARD_Y));
+                    }
                 }
                 break;
             }
@@ -120,11 +132,17 @@ const CardMgr = cc.Class({
                 let initPos = 0;
                 const str = "HandCard_Left";
                 for (let i = 0; i < data; i ++) {
-                    const card = cc.instantiate(cc.dd.dirRes[str.toUpperCase()]);
-                    h_node.addChild(card, data - i);
-                    const pos_x = CONFIG.LEFT.HAND_CARD_INIT_X + (i * CONFIG.LEFT.HAND_CARD_X);
-                    const pos_y = CONFIG.LEFT.HAND_CARD_INIT_Y + (i * CONFIG.LEFT.HAND_CARD_Y);
-                    card.setPosition(cc.p(pos_x, pos_y));
+                    if(cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE)== cc.dd.roomDeskType.Desk_2D){
+                        const card2d = cc.instantiate(cc.dd.dirRes["HandCard_Left2D".toUpperCase()]);
+                        const nodefor2d = h_node.parent.parent.parent.getChildByName("ParentContainer2D").getChildByName("HandCardLayer").getChildByName("HandCardLay");
+                        nodefor2d.addChild(card2d);
+                    }else {
+                        const card = cc.instantiate(cc.dd.dirRes[str.toUpperCase()]);
+                        h_node.addChild(card, data - i);
+                        const pos_x = CONFIG.LEFT.HAND_CARD_INIT_X + (i * CONFIG.LEFT.HAND_CARD_X);
+                        const pos_y = CONFIG.LEFT.HAND_CARD_INIT_Y + (i * CONFIG.LEFT.HAND_CARD_Y);
+                        card.setPosition(cc.p(pos_x, pos_y));
+                    }
                 }
                 break;
             }
@@ -166,9 +184,21 @@ const CardMgr = cc.Class({
         let preStr = "";
         cc.log(`杠牌的信息：`, JSON.stringify(data));
         // 摸牌的节点
-        const moNode = p_node.parent.getChildByName("HandCardLayer").getChildByName("MoCardLayer");
+        let moNode = null;
         // 手牌节点
-        const handNode = p_node.parent.getChildByName("HandCardLayer").getChildByName("HandCardLay");
+        let handNode = null;
+        if(cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE)== cc.dd.roomDeskType.Desk_2D) {
+            if (localSeat === cc.dd.gameCfg.PLAYER_SEAT_LOCAL.RIGHT || localSeat === cc.dd.gameCfg.PLAYER_SEAT_LOCAL.LEFT) {
+                moNode = p_node.parent.parent.getChildByName("ParentContainer2D").getChildByName("HandCardLayer").getChildByName("MoCardLayer");
+                handNode = p_node.parent.parent.getChildByName("ParentContainer2D").getChildByName("HandCardLayer").getChildByName("HandCardLay");
+            }else {
+                moNode = p_node.parent.getChildByName("HandCardLayer").getChildByName("MoCardLayer");
+                handNode = p_node.parent.getChildByName("HandCardLayer").getChildByName("HandCardLay");
+            }
+        }else {
+            moNode = p_node.parent.getChildByName("HandCardLayer").getChildByName("MoCardLayer");
+            handNode = p_node.parent.getChildByName("HandCardLayer").getChildByName("HandCardLay");
+        }
 
         let needCre = true; // 明刚不需要重新生成牌堆
 
@@ -214,7 +244,16 @@ const CardMgr = cc.Class({
                 return;
             }
         }
-        const p_childNode = p_node.children;
+        let p_childNode = null;
+        if(cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE)== cc.dd.roomDeskType.Desk_2D) {
+            if (localSeat === cc.dd.gameCfg.PLAYER_SEAT_LOCAL.RIGHT || localSeat === cc.dd.gameCfg.PLAYER_SEAT_LOCAL.LEFT) {
+                p_childNode = p_node.parent.parent.getChildByName("ParentContainer2D").getChildByName("PengGangLayer").children;
+            }else {
+                p_childNode = p_node.children;
+            }
+        }else {
+            p_childNode = p_node.children;
+        }
         if (pengOrGangId == null) {
             pengOrGangId = -1;
         }
@@ -224,17 +263,6 @@ const CardMgr = cc.Class({
                     needCre = false;
                     destoryNum = 1;
                     item.getChildByName("GangCard").active = true;
-                    // if (localSeat === cc.dd.gameCfg.PLAYER_SEAT_LOCAL.RIGHT) {// 翻转补丁
-                    //         if(pengOrGangId == 4||pengOrGangId == 6 || pengOrGangId == 8 || pengOrGangId == 15){
-                    //             item.children.forEach((citem,cindex) => {
-                    //                 if(cindex < 4) {
-                    //                 citem.getChildByName("Spr").setScaleX(-0.4);
-                    //                 citem.getChildByName("Spr").setScaleY(0.3);
-                    //                 citem.getChildByName("Spr").rotation = 90;
-                    //                 }
-                    //             });
-                    //         }
-                    // }
                 }
             });
         }
@@ -260,7 +288,7 @@ const CardMgr = cc.Class({
         const otherFunc = (handNode) => {
             if (!data.notDes) {
                 if (!destoryNum) {
-                    cc.log(`不需要删除!!`);
+                    cc.log(`不需要删除!`);
                     return;
                 }
                 for (let i = 0; i < destoryNum; i ++) {
@@ -322,13 +350,25 @@ const CardMgr = cc.Class({
                 break;
             }
             case cc.dd.gameCfg.PLAYER_SEAT_LOCAL.RIGHT: {
-                preStr = "pengGang_Right";
+                // if(cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE)== cc.dd.roomDeskType.Desk_2D) {
+                //     preStr = "PengGang_Top";
+                // }else {
+                    preStr = "pengGang_Right";
+                // }
+
                 otherFunc(handNode);
                 if (needCre) {
-                    pengGang = cc.instantiate(cc.dd.dirRes[preStr.toUpperCase()]);
-                    const pos_x = p_node.childrenCount * CONFIG.RIGHT.PENG_GANG_X;
-                    const pos_y = CONFIG.RIGHT.PENG_GANE_INIT_Y + (p_node.childrenCount * CONFIG.RIGHT.PENG_GANG_Y);
-                    pengGang.setPosition(cc.p(pos_x, pos_y));
+                    if(cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE)== cc.dd.roomDeskType.Desk_2D) {
+                        preStr = "PengGang_Top";
+                        pengGang = cc.instantiate(cc.dd.dirRes[preStr.toUpperCase()]);
+                        pengGang.rotation = 90;
+                    }else {
+                        pengGang = cc.instantiate(cc.dd.dirRes[preStr.toUpperCase()]);
+                        const pos_x = p_node.childrenCount * CONFIG.RIGHT.PENG_GANG_X;
+                        const pos_y = CONFIG.RIGHT.PENG_GANE_INIT_Y + (p_node.childrenCount * CONFIG.RIGHT.PENG_GANG_Y);
+                        pengGang.setPosition(cc.p(pos_x, pos_y));
+                    }
+
                     // if(pengOrGangId == 4||pengOrGangId == 6 || pengOrGangId == 8 || pengOrGangId == 15){
                     //     pengGang.children.forEach((citem,cindex) => {
                     //         if(cindex < 4) {
@@ -350,13 +390,24 @@ const CardMgr = cc.Class({
                 break;
             }
             case cc.dd.gameCfg.PLAYER_SEAT_LOCAL.LEFT: {
-                preStr = "PengGang_Left";
+                // if(cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE)== cc.dd.roomDeskType.Desk_2D) {
+                    // preStr = "PengGang_Top";
+                // }else {
+                    preStr = "PengGang_Left";
+                // }
                 otherFunc(handNode);
                 if (needCre) {
-                    pengGang = cc.instantiate(cc.dd.dirRes[preStr.toUpperCase()]);
-                    const pos_x = p_node.childrenCount * CONFIG.LEFT.PENG_GANG_X;
-                    const pos_y = CONFIG.LEFT.PENG_GANE_INIT_Y + (p_node.childrenCount * CONFIG.LEFT.PENG_GANG_Y);
-                    pengGang.setPosition(cc.p(pos_x, pos_y));
+                    if(cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE)== cc.dd.roomDeskType.Desk_2D) {
+                        preStr = "PengGang_Top";
+                        pengGang = cc.instantiate(cc.dd.dirRes[preStr.toUpperCase()]);
+                        pengGang.rotation = -90;
+                    }else {
+                        pengGang = cc.instantiate(cc.dd.dirRes[preStr.toUpperCase()]);
+                        const pos_x = p_node.childrenCount * CONFIG.LEFT.PENG_GANG_X;
+                        const pos_y = CONFIG.LEFT.PENG_GANE_INIT_Y + (p_node.childrenCount * CONFIG.LEFT.PENG_GANG_Y);
+                        pengGang.setPosition(cc.p(pos_x, pos_y));
+                    }
+
                 }
                 break;
             }
@@ -365,7 +416,15 @@ const CardMgr = cc.Class({
             }
         }
         if (pengGang) {
-            p_node.addChild(pengGang);
+            if(cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE)== cc.dd.roomDeskType.Desk_2D) {
+                if (localSeat === cc.dd.gameCfg.PLAYER_SEAT_LOCAL.RIGHT || localSeat === cc.dd.gameCfg.PLAYER_SEAT_LOCAL.LEFT) {
+                    p_node.parent.parent.getChildByName("ParentContainer2D").getChildByName("PengGangLayer").addChild(pengGang);
+                }else {
+                    p_node.addChild(pengGang);
+                }
+            }else {
+                p_node.addChild(pengGang);
+            }
         }
         // } else {
         //     cc.log(`明刚，不需要生成牌堆`);
@@ -473,11 +532,33 @@ const CardMgr = cc.Class({
         if (this.getCurOutCard()) {
             this.getCurOutCard().getChildByName("Sign").active = false;
         }
-        const node1 = o_node.getChildByName("OutCardLayer1");
-        const node2 = o_node.getChildByName("OutCardLayer2");
-        const node3 = o_node.getChildByName("OutCardLayer3");
-        const moNode = o_node.parent.getChildByName("ParentContainer").getChildByName("HandCardLayer").getChildByName("MoCardLayer");
-        const handNode = o_node.parent.getChildByName("ParentContainer").getChildByName("HandCardLayer").getChildByName("HandCardLay");
+        let node1 = null;
+        let node2 = null;
+        let node3 = null;
+        let moNode = null;
+        let handNode = null;
+
+        if(cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE)== cc.dd.roomDeskType.Desk_2D) {
+            if (localSeat === cc.dd.gameCfg.PLAYER_SEAT_LOCAL.RIGHT || localSeat === cc.dd.gameCfg.PLAYER_SEAT_LOCAL.LEFT) {
+                node1 = o_node.parent.getChildByName("OutCardLayer2D").getChildByName("OutCardLayer1");
+                node2 = o_node.parent.getChildByName("OutCardLayer2D").getChildByName("OutCardLayer2");
+                node3 = o_node.parent.getChildByName("OutCardLayer2D").getChildByName("OutCardLayer3");
+                moNode = o_node.parent.getChildByName("ParentContainer2D").getChildByName("HandCardLayer").getChildByName("MoCardLayer");
+                handNode = o_node.parent.getChildByName("ParentContainer2D").getChildByName("HandCardLayer").getChildByName("HandCardLay");
+            }else {
+                node1 = o_node.getChildByName("OutCardLayer1");
+                node2 = o_node.getChildByName("OutCardLayer2");
+                node3 = o_node.getChildByName("OutCardLayer3");
+                moNode = o_node.parent.getChildByName("ParentContainer").getChildByName("HandCardLayer").getChildByName("MoCardLayer");
+                handNode = o_node.parent.getChildByName("ParentContainer").getChildByName("HandCardLayer").getChildByName("HandCardLay");
+            }
+        }else {
+            node1 = o_node.getChildByName("OutCardLayer1");
+            node2 = o_node.getChildByName("OutCardLayer2");
+            node3 = o_node.getChildByName("OutCardLayer3");
+            moNode = o_node.parent.getChildByName("ParentContainer").getChildByName("HandCardLayer").getChildByName("MoCardLayer");
+            handNode = o_node.parent.getChildByName("ParentContainer").getChildByName("HandCardLayer").getChildByName("HandCardLay");
+        }
         let hasMo = false;  // 标记是否是摸牌后出牌的
         if (moNode) { // 将摸牌的节点里的牌清掉
             moNode.children.forEach((item) => {
@@ -523,8 +604,13 @@ const CardMgr = cc.Class({
                 break;
             }
             case cc.dd.gameCfg.PLAYER_SEAT_LOCAL.RIGHT: {
-                str = "OutCard_Right";//  OutCard_Left
-                preConfif = CONFIG.RIGHT;
+                if(cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE)== cc.dd.roomDeskType.Desk_2D) {
+                    str = "OutCard_Right2D";
+                    preConfif = CONFIG.TYPE2D;
+                }else {
+                    str = "OutCard_Right";//  OutCard_Left
+                    preConfif = CONFIG.RIGHT;
+                }
                 otherDes(handNode);
                 break;
             }
@@ -535,8 +621,13 @@ const CardMgr = cc.Class({
                 break;
             }
             case cc.dd.gameCfg.PLAYER_SEAT_LOCAL.LEFT: {
-                str = "OutCard_Left";
-                preConfif = CONFIG.LEFT;
+                if(cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE)== cc.dd.roomDeskType.Desk_2D) {
+                    str = "OutCard_Left2D";
+                    preConfif = CONFIG.TYPE2D;
+                }else {
+                    str = "OutCard_Left";
+                    preConfif = CONFIG.LEFT;
+                }
                 otherDes(handNode);
                 break;
             }
@@ -555,7 +646,7 @@ const CardMgr = cc.Class({
             let index_z = null;
             if (node1.childrenCount < CONFIG.OUT_CARD_NUM.LAYER_ONE) {
                 addNode = node1;
-                if (localSeat === cc.dd.gameCfg.PLAYER_SEAT_LOCAL.RIGHT) {
+                if ((localSeat === cc.dd.gameCfg.PLAYER_SEAT_LOCAL.RIGHT)) {
                     pos_init_x = -(CONFIG.OUT_CARD_NUM.LAYER_ONE - 1) * preConfif.OUT_CARD_X;
                     index_z = CONFIG.OUT_CARD_NUM.LAYER_ONE - addNode.childrenCount;
                 }
@@ -646,7 +737,11 @@ const CardMgr = cc.Class({
                 break;
             }
             case cc.dd.gameCfg.PLAYER_SEAT_LOCAL.RIGHT: {
-                preStr = "HandCard_Left";
+                if(cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE)== cc.dd.roomDeskType.Desk_2D) {
+                    preStr = "HandCard_Left2D";
+                }else {
+                    preStr = "HandCard_Left";
+                }
                 this.setMoCard(null);
                 break;
             }
@@ -656,7 +751,11 @@ const CardMgr = cc.Class({
                 break;
             }
             case cc.dd.gameCfg.PLAYER_SEAT_LOCAL.LEFT: {
-                preStr = "HandCard_Left";
+                if(cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE)== cc.dd.roomDeskType.Desk_2D) {
+                    preStr = "HandCard_Left2D";
+                }else {
+                    preStr = "HandCard_Left";
+                }
                 this.setMoCard(null);
                 break;
             }
@@ -666,7 +765,16 @@ const CardMgr = cc.Class({
         }
         if (preStr) {
             const mocard = cc.instantiate(cc.dd.dirRes[preStr.toUpperCase()]);
-            m_node.addChild(mocard);
+            if(cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE)== cc.dd.roomDeskType.Desk_2D) {
+                if (localSeat === cc.dd.gameCfg.PLAYER_SEAT_LOCAL.RIGHT || localSeat === cc.dd.gameCfg.PLAYER_SEAT_LOCAL.LEFT) {
+                    m_node.parent.parent.parent.getChildByName("ParentContainer2D").getChildByName("HandCardLayer").getChildByName("HandCardLay").addChild(mocard);
+                }else {
+                    m_node.addChild(mocard);
+                }
+            }else {
+                m_node.addChild(mocard);
+            }
+
         }
     },
     /**
@@ -856,7 +964,7 @@ const CardMgr = cc.Class({
         let haspeng = false;
         // 遍历碰杠
         cc.dd.room._playerNodeArr.forEach((pitem,pindex,parr) => {
-            const pengchinode = pitem.getChildByName("ParentContainer").getChildByName("PengGangLayer");
+            let pengchinode = pitem.getChildByName("ParentContainer").getChildByName("PengGangLayer");
             if(pengchinode.children.length > 0) {
                 pitem.outPengArr.forEach((mitem,mindex) => {
                     if(Array.isArray(mitem)){

@@ -72,4 +72,17 @@ cc.Class({
             this.node.addChild(Tip);
         });
     },
+    // 茶馆
+    onChaGuanClick() {
+        if (cc.dd.user.getUserInfo().isagent === 1) {
+            cc.dd.Reload.loadDir("DirRes", () => {
+                cc.dd.sceneMgr.runScene(cc.dd.sceneID.CHAGUAN_SENCE);
+            });
+        }else {
+            cc.dd.Reload.loadPrefab("ChaGuan/Prefab/EnterChaguan", (prefab) => {
+                const EnterChaguan = cc.instantiate(prefab);
+                this.node.addChild(EnterChaguan);
+            });
+        }
+    },
 });

@@ -371,4 +371,8 @@ cc.Class({
     onPengtingClick() {
         cc.log("碰听");
     },
+    // 茶馆进入牌桌的情况下，人数未满可以返回茶馆
+    onClickExitToChaguan() {
+
+    },
 });

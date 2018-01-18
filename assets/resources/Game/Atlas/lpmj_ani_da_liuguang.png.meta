@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "34ca55dc-7150-4819-a3ac-b5f1d2ceb5c7",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "lpmj_ani_da_liuguang": {
+      "ver": "1.0.3",
+      "uuid": "5f0e7a4d-88c4-461d-b746-3ff00d0589d0",
+      "rawTextureUuid": "34ca55dc-7150-4819-a3ac-b5f1d2ceb5c7",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -1,
+      "offsetY": 34,
+      "trimX": 2,
+      "trimY": 2,
+      "width": 506,
+      "height": 440,
+      "rawWidth": 512,
+      "rawHeight": 512,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

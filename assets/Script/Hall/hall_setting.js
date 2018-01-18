@@ -22,6 +22,11 @@ cc.Class({
             type: cc.Toggle,
             tooltip: "语音聊天的开关",
         },
+        deskLayout: {
+            default: null,
+            type: cc.Node,
+            tooltip: "桌面布局选项父节点",
+        }
     },
 
     // use this for initialization
@@ -36,6 +41,12 @@ cc.Class({
             this.yuyinSwitch.uncheck();
         }else {
             this.yuyinSwitch.check();
+        }
+        if (cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE) == cc.dd.roomDeskType.Desk_2D) {
+            this.deskLayout.getChildByName("toggle2D").getComponent(cc.Toggle).check();
+        }
+        if (cc.director.getScene().sceneId == cc.dd.sceneID.GAME_SCENE) {
+            this.deskLayout.active = false;
         }
     },
     // 控制注销登录按钮的显示
@@ -82,14 +93,55 @@ cc.Class({
             }
             cc.dd.user.previousSwitchState = cc.sys.localStorage.getItem(cc.dd.userEvName.USER_YUYIN_SWTICH_STATE);
         }
-        // else {
-        //
-        // }
     },
     // 退出登录按钮的响应方法
     onLogoutClick() {
         cc.log("退出微信登录");
         cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_LOGOUT_REP, "logout");
         this.node.destroy();
+    },
+    onChooseDeskTypeClick(event,customData) {
+        // if (!cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE)){
+            cc.sys.localStorage.setItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE,customData);
+            // this.chooseVisable(customData);
+        // }
+        // if (customData != cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE)) {
+        //     cc.sys.localStorage.setItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE,customData);
+        //     this.chooseVisable(customData);
+        // }
+        cc.log("in");
+        switch (customData) {
+            case cc.dd.roomDeskType.Desk_2D: {
+                this.deskLayout.getChildByName("toggle3D").getComponent(cc.Toggle).isChecked = false;
+                this.deskLayout.getChildByName("toggle2D").getComponent(cc.Toggle).isChecked = true;
+                break;
+            }
+            case cc.dd.roomDeskType.Desk_3D: {
+                this.deskLayout.getChildByName("toggle3D").getComponent(cc.Toggle).isChecked = true;
+                this.deskLayout.getChildByName("toggle2D").getComponent(cc.Toggle).isChecked = false;
+                break;
+            }
+            default: {
+                break;
+            }
+        }
+        cc.log(cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE));
+    },
+    chooseVisable(data) {
+        switch (data) {
+            case cc.dd.roomDeskType.Desk_2D: {
+                this.deskLayout.getChildByName("toggle3D").getComponent(cc.Toggle).uncheck();
+                this.deskLayout.getChildByName("toggle2D").getComponent(cc.Toggle).check();
+                break;
+            }
+            case cc.dd.roomDeskType.Desk_3D: {
+                this.deskLayout.getChildByName("toggle3D").getComponent(cc.Toggle).check();
+                this.deskLayout.getChildByName("toggle2D").getComponent(cc.Toggle).uncheck();
+                break;
+            }
+            default: {
+                break;
+            }
+        }
     },
 });

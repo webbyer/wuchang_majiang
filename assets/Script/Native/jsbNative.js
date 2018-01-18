@@ -303,3 +303,15 @@ cc.dd.shareZongZhanJiToWXMoment = () => {
         }
     }
 };
+
+// 分享茶馆口令到朋友
+cc.dd.shareChaguanNumToWXFriends = (str) => {
+    if (cc.sys.isMobile) {
+        cc.log("分享茶馆口令到朋友");
+        if (cc.sys.os == cc.sys.OS_ANDROID) {
+
+        }else {
+            jsb.reflection.callStaticMethod("WXShareTool","jsInitiateWXFriendsShare:",str);
+        }
+    }
+};

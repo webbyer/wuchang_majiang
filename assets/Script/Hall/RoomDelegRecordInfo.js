@@ -8,6 +8,7 @@ const PLAY_OPERA_NAME = [
     "七小对",
     "豪华七小队",
     "传统玩法",
+    "四张见面不上听",
 ];
 const PLAY_OPERA_NAME_ORAL = [
     null,
@@ -18,6 +19,7 @@ const PLAY_OPERA_NAME_ORAL = [
     "七小对",
     "豪华七小队",
     "传统玩法",
+    "四张见面不上听",
 ];
 cc.Class({
     extends: cc.Component,

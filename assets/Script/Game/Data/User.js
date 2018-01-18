@@ -14,6 +14,7 @@ const UserEventName = {
     USER_YUYIN_OFF: "useryuyinoff", // 语音打开
     USER_YUYIN_ON: "useryuyinon",  // 语音关闭
     USER_YUYIN_SWTICH_STATE_CHANGE: "useryuyinswtichstatechange", // 用户语音聊天的开关状态变化，事件
+    USER_DESK_TYPE_CHANGE: "userdesktypechange", // 用户选择不同的麻将桌面视图
 };
 cc.dd.userEvName = UserEventName;
 const UserEvent = cc.Class({
@@ -38,6 +39,7 @@ const User = cc.Class({
         _creatRoomDelegate: null, // 是否是代理人新建代理房间
         _did: null,
         _noticeboard: null,
+        _chaGuan: null,  // 茶馆信息
     },
     // 设置用户信息
     setUserInfo(user) {
@@ -119,6 +121,14 @@ const User = cc.Class({
     // 得到did
     getUserDid() {
         return this._did;
+    },
+    // 设置茶馆信息
+    setChaGuan(chaguan) {
+        this._chaGuan = chaguan;
+    },
+    // 得到茶馆信息
+    getChaGuan() {
+        return this._chaGuan;
     },
 });
 cc.dd.user = User.getInstance();
