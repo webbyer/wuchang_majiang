@@ -309,7 +309,10 @@ cc.dd.shareChaguanNumToWXFriends = (str) => {
     if (cc.sys.isMobile) {
         cc.log("分享茶馆口令到朋友");
         if (cc.sys.os == cc.sys.OS_ANDROID) {
-
+            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppActivity" ,"SendWXAppContent", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",
+            str ,
+            cc.dd.pubConst.ANDROID_DOWNLOAD_LINK,
+            str);
         }else {
             jsb.reflection.callStaticMethod("WXShareTool","jsInitiateWXFriendsShare:",str);
         }
