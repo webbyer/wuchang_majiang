@@ -40,12 +40,20 @@ cc.Class({
     },
     onMessageEvent(event, data) {
         switch (event) {
-            case cc.dd.gameCfg.EVENT.EVENT_ENTER_CHAGUAN_REQ: {
+            case cc.dd.gameCfg.EVENT.EVENT_ENTER_CHAGUAN_REQ: { // 5015
                 if (cc.dd.user.getChaGuan()) {
                     cc.dd.Reload.loadDir("DirRes", () => {
                         cc.dd.sceneMgr.runScene(cc.dd.sceneID.CHAGUAN_INNDER_SENCE);
                     });
                 }
+                break;
+            }
+            case cc.dd.gameCfg.EVENT.EVENT_ENTER_CHAGUAN_REP: { // 1015
+                cc.dd.Reload.loadPrefab("Hall/Prefab/AlertView", (prefab) => {
+                    const UIDNotExitMes = cc.instantiate(prefab);
+                    UIDNotExitMes.getComponent("AlterViewScript").initInfoMes(data.errmsg);
+                    this.node.addChild(UIDNotExitMes);
+                });
                 break;
             }
             default: {
