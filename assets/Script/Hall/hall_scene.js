@@ -185,15 +185,15 @@ cc.Class({
                 });
                 break;
             }
-            case cc.dd.gameCfg.EVENT.EVENT_DELEGATE_ROOM_REOCRD_REQ: { // 5015
-                cc.log("成功返回房间代理记录或是成功创建代理房间");
-                cc.dd.Reload.loadPrefab("Hall/Prefab/RoomDelegateRecord", (prefab) => {
-                    const delegateRecord = cc.instantiate(prefab);
-                    delegateRecord.getComponent("RoomDelegRecord").initInfo(data.rooms);
-                    cc.find("UI_ROOT").addChild(delegateRecord);
-                });
-                break;
-            }
+            // case cc.dd.gameCfg.EVENT.EVENT_DELEGATE_ROOM_REOCRD_REQ: { // 5015，之前的弃用
+            //     cc.log("成功返回房间代理记录或是成功创建代理房间");
+            //     cc.dd.Reload.loadPrefab("Hall/Prefab/RoomDelegateRecord", (prefab) => {
+            //         const delegateRecord = cc.instantiate(prefab);
+            //         delegateRecord.getComponent("RoomDelegRecord").initInfo(data.rooms);
+            //         cc.find("UI_ROOT").addChild(delegateRecord);
+            //     });
+            //     break;
+            // }
             case cc.dd.gameCfg.EVENT.EVENT_JIESUAN_ZONGZHANJI_REQ: { // 4023,查询总战绩的返回
                 cc.log("展示总战绩");
                 cc.dd.Reload.loadPrefab("Game/Prefab/ZongZhanJi", (prefab) => {
