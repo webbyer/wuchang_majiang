@@ -398,7 +398,7 @@ const MJEventManager = cc.Class({
             }
             case cc.dd.gameCfg.EVENT.EVENT_CHAGUAN_LEAVE_MAJIONG_DESK_REQ: { // 5022,牌桌离开到茶馆
                 if (msgData.rtncode && msgData.rtncode == -1){
-                    cc.log("不能离开牌桌");
+                    // cc.log("不能离开牌桌");
                 }else {
                     this.startEvent(cc.dd.gameCfg.EVENT.EVENT_ENTER_CHAGUAN_REP,msgData.clubtoken);
                 }
