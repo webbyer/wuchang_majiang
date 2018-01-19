@@ -38,7 +38,6 @@ cc.Class({
             default:null,
             type: cc.Node,
         },
-        toUpdateCardum: null,
     },
 
     // use this for initialization
@@ -62,10 +61,8 @@ cc.Class({
         this.setUserId(cc.dd.user.getUserInfo().UID);
         this.setUserNickName(cc.dd.user.getUserInfo().nickname);
         if(!cc.dd.user.getUserInfo().roomcardnum || cc.dd.user.getUserInfo().wereInGameSence) {
-            cc.log("");
-            this.toUpdateCardum = true; // 准备可以弃用了
             cc.dd.user.getUserInfo().wereInGameSence = false;
-            cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_ENTER_CARDCHANGE_REP,cc.dd.user.getUserInfo().UID);
+            cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_CHECK_LOGIN_REP);
         }else {
             this.setFangKaNum(cc.dd.user.getUserInfo().roomcardnum);
         }
@@ -86,10 +83,12 @@ cc.Class({
             return;
         }
         if(cc.dd.user.getCardState().unlimited === true) {
+            // cc.log("无限畅打");
             this.RoomCard.string = "无限畅打";
             this.CardTitle.string = cc.dd.user.getCardState().unlimitedshowdetail[0];
             this.CardContent.string = cc.dd.user.getCardState().unlimitedshowdetail[1]
         }else {
+            // cc.log("次卡");
             this.RoomCard.string = '次卡';
             this.CardTitle.string = '数量 :';
             this.CardContent.string = num + '';
@@ -111,9 +110,9 @@ cc.Class({
     onMessageEvent(event, data) {
         switch (event) {
             case cc.dd.gameCfg.EVENT.EVENT_ENTER_ROOM_REP: {
-                cc.log("输入的房间不存在");
                 cc.dd.Reload.loadPrefab("Hall/Prefab/AlertView", (prefab) => {
                     const roomNotExitMes = cc.instantiate(prefab);
+                    roomNotExitMes.getComponent("AlterViewScript").initInfoMes(data.errmsg);
                     this.node.addChild(roomNotExitMes);
                 });
                 break;
@@ -152,12 +151,8 @@ cc.Class({
                 }
                 break;
             }
-            case cc.dd.gameCfg.EVENT.EVENT_ENTER_CARDCHANGE_REQ: { //5007
-                if(this.toUpdateCardum) {
-                    this.toUpdateCardum = false;
-                    cc.dd.user.getUserInfo().roomcardnum = data.mycards;
-                    this.setFangKaNum(cc.dd.user.getUserInfo().roomcardnum);
-                }
+            case cc.dd.userEvName.USER_LOGIN_SCU: { // 1001的返回，游戏或茶馆返回大厅后调用的返回
+                this.setFangKaNum(cc.dd.user.getUserInfo().roomcardnum);
                 break;
             }
             case cc.dd.gameCfg.EVENT.EVENT_ENTER_CARDCHANGE_REP: {  // 查询房卡失败返回，1007

@@ -72,6 +72,9 @@ cc.Class({
         cc.dd.net.addObserver(this);
         cc.dd.userEvent.addObserver(this);
         this.centerArr = [];
+        if (cc.dd.user.getUserInfo()) {
+            cc.dd.user.getUserInfo().wereInGameSence = true;
+        }
     },
     onDestroy() {
         cc.dd.user.setChaGuan(null);
@@ -104,13 +107,6 @@ cc.Class({
                 stituation2.forEach((item) => {
                     this.BottomContainerNode.getChildByName(item).active = false;
                 });
-                const newTip = this.BottomContainerNode.getChildByName("AccessControl").getChildByName("ChaGuan_tip");
-                if (cc.dd.user.getChaGuan().applyers && cc.dd.user.getChaGuan().applyers != 0) {
-                    newTip.active = true;
-                    newTip.getChildByName("newNumlabel").getComponent(cc.Label).string = cc.dd.user.getChaGuan().applyers;
-                } else {
-                    newTip.active = false;
-                }
             } else { // 非馆主视图
                 this.ChangeChaguanNumNode.active = false;
                 this.CenterAddTableNode.active = false;
@@ -120,6 +116,13 @@ cc.Class({
                 //     this.BottomContainerNode.getChildByName(item).active = false;
                 // });
             }
+        }
+        const newTip = this.BottomContainerNode.getChildByName("AccessControl").getChildByName("ChaGuan_tip");
+        if (cc.dd.user.getChaGuan().applyers && cc.dd.user.getChaGuan().applyers != 0) {
+            newTip.active = true;
+            newTip.getChildByName("newNumlabel").getComponent(cc.Label).string = cc.dd.user.getChaGuan().applyers;
+        } else {
+            newTip.active = false;
         }
         if (cc.dd.user.getChaGuan().allrooms || cc.dd.user.getChaGuan().allrooms === 0) {
             if (cc.dd.user.getChaGuan().allrooms === 0) { // 茶馆无牌桌
@@ -241,6 +244,11 @@ cc.Class({
     onChangeChaguanNumClick() {
         cc.log("更换茶馆口令");
         cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_CHAGUAN_CHANGE_NUM_REP);
+        cc.dd.Reload.loadPrefab("Hall/Prefab/AlertView", (prefab) => {
+            const UIDNotExitMes = cc.instantiate(prefab);
+            UIDNotExitMes.getComponent("AlterViewScript").initInfoMes("口令更换成功");
+            this.node.addChild(UIDNotExitMes);
+        });
     },
     // 分享口令到微信朋友
     onShareClick() {
@@ -284,9 +292,17 @@ cc.Class({
                 });
                 break;
             }
-            case cc.dd.gameCfg.EVENT.EVENT_GAME_STATE: {
+            case cc.dd.gameCfg.EVENT.EVENT_GAME_STATE: { // 入座牌桌
                 cc.dd.Reload.loadDir("DirRes", () => {
                     cc.dd.sceneMgr.runScene(cc.dd.sceneID.GAME_SCENE);
+                });
+                break;
+            }
+            case cc.dd.gameCfg.EVENT.EVENT_ENTER_ROOM_REP: {
+                cc.dd.Reload.loadPrefab("Hall/Prefab/AlertView", (prefab) => {
+                    const roomNotExitMes = cc.instantiate(prefab);
+                    roomNotExitMes.getComponent("AlterViewScript").initInfoMes(data.errmsg);
+                    this.node.addChild(roomNotExitMes);
                 });
                 break;
             }

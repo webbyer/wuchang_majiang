@@ -1,3 +1,14 @@
+const PLAY_OPERA_NAME = [
+    null,
+    "明杠",
+    "暗杠",
+    "吡宝",
+    "清一色",
+    "七小对",
+    "豪华七小队",
+    "传统玩法",
+    "四张见面不上听",
+];
 cc.Class({
     extends: cc.Component,
 
@@ -32,6 +43,11 @@ cc.Class({
             type: cc.Label,
             tooltip: "圈数信息",
         },
+        WanfaLabel: {
+            default: null,
+            type: cc.Label,
+            tooltip: "玩法信息",
+        },
         DeleteBtn: {
             default: null,
             type: cc.Node,
@@ -49,6 +65,7 @@ cc.Class({
         this.itemRoomid = data.roomid;
         this.RoomID.string = "房号：" + data.roomid;
         this.RoundLabel.string = data.rounds + "圈/" + data.basicraise + "底";
+        this.setDelegRoomGameRulesString(data.rules);
         if (isOwner){
             this.DeleteBtn.active = true;
         }
@@ -71,6 +88,20 @@ cc.Class({
             }
         }
     },
+    setDelegRoomGameRulesString(data){
+        if (data) {
+            // this.wanfaSet = data;
+            let str;
+            data.forEach((item) => {
+                if(!str){
+                str = PLAY_OPERA_NAME[item];
+            }else {
+                str = str + "、" + PLAY_OPERA_NAME[item];
+            }
+        });
+            this.WanfaLabel.string = str;
+        }
+    },
     // 玩家入座
     onSitInDeskClick(event,customdata) {
         cc.log(customdata);
@@ -87,6 +118,10 @@ cc.Class({
     // 删除当前桌
     onDeleteClick() {
       cc.log("删除当前桌"+this.itemRoomid);
-      cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_CHAGUAN_DELETE_DESK_REP,this.itemRoomid);
+        cc.dd.Reload.loadPrefab("ChaGuan/Prefab/AlertViewTwoChoices", (prefab) => {
+            const UIDNotExitMes = cc.instantiate(prefab);
+            this.node.parent.parent.parent.parent.addChild(UIDNotExitMes);
+            UIDNotExitMes.getComponent("AlterViewScript").netWorkData = this.itemRoomid;
+        });
     },
 });

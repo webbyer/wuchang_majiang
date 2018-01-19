@@ -10,6 +10,9 @@ cc.Class({
         cc.dd.appUtil.setScreenFit(this.node);
         cc.dd.net.addObserver(this);
         cc.dd.userEvent.addObserver(this);
+        if (cc.dd.user.getUserInfo()) {
+            cc.dd.user.getUserInfo().wereInGameSence = true;
+        }
     },
     onDestroy() {
         cc.dd.userEvent.removeObserver(this);

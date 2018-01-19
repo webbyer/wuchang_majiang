@@ -8,6 +8,7 @@ cc.Class({
             tooltip: "显示输入的节点",
         },
         DismissRoomSuc: null,
+        netWorkData: null,
     },
     onLoad: function () {
     },
@@ -22,7 +23,7 @@ cc.Class({
             this.exchangeFKFail = true;
         }
     },
-    // 确认按钮
+    // 单个确认按钮
     onClickComfrimMessage() {
         // cc.log(`alterview-确认：关闭`);
         if(this.DismissRoomSuc) {
@@ -41,4 +42,15 @@ cc.Class({
         }
     },
 
+    // 成对，确认取消按钮，确认
+    onPairBtnComfrimClick() {
+        // 删除茶馆内桌子
+        cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_CHAGUAN_DELETE_DESK_REP,this.netWorkData);
+        this.node.destroy();
+    },
+
+    // 成对，确认取消按钮，取消
+    onPairBtnCancleClick() {
+        this.node.destroy();
+    },
 });
