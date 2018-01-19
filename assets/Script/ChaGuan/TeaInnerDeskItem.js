@@ -70,21 +70,35 @@ cc.Class({
             this.DeleteBtn.active = true;
         }
         if (data.players){
-            cc.dd.Reload.loadAtlas("ChaGuan/Atlas/GameTea", (atlas) => {
-                this.Avatars.children.forEach((item) => {
-                    item.getComponent(cc.Button).interactable = true;
-                    item.getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame("ChaGuan_TouXiang");
-                });
-            });
             if(data.players.length > 0) {
                 this.DeleteBtn.active = false;
                 // 头像与disable该按钮
                 data.players.forEach((item,index) => {
                     this.Avatars.children[index].getComponent(cc.Button).interactable = false;
-                    cc.dd.setPlayerHead(item,this.Avatars.children[index]);
+                    cc.log("设置头像");
+                    cc.dd.setPlayerHead(item,this.Avatars.children[index].getComponent(cc.Sprite));
                 });
+                if (data.players.length <= 3) {
+                    cc.dd.Reload.loadAtlas("ChaGuan/Atlas/GameTea", (atlas) => {
+                        let startnum = 3;
+                        let loopcount = 4 - data.players.length;
+                        for(let i = 0;i < loopcount;i++) {
+                            cc.log("桌子里头像进来了吗");
+                            this.Avatars.children[startnum].getComponent(cc.Button).interactable = true;
+                            this.Avatars.children[startnum].getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame("ChaGuan_TouXiang");
+                            startnum -= 1;
+                        }
+                    });
+                }
             }else {
                 this.DeleteBtn.active = true;
+                cc.dd.Reload.loadAtlas("ChaGuan/Atlas/GameTea", (atlas) => {
+                    this.Avatars.children.forEach((item) => {
+                        cc.log("全部设置为默认头像");
+                        item.getComponent(cc.Button).interactable = true;
+                        item.getComponent(cc.Sprite).spriteFrame = atlas.getSpriteFrame("ChaGuan_TouXiang");
+                    });
+                });
             }
         }
     },

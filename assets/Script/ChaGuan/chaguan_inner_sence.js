@@ -24,7 +24,7 @@ cc.Class({
         },
         OwnerAvtar: {
             default: null,
-            type: cc.Node,
+            type: cc.Sprite,
             tooltip: "馆主头像",
         },
         CenterContainerNode: {
@@ -93,7 +93,9 @@ cc.Class({
             this.TopTitleLabel.string = cc.dd.user.getChaGuan().clubtitle;
         }
         if (cc.dd.user.getChaGuan().clublogo) {
-            cc.dd.setPlayerHead(cc.dd.user.getChaGuan().clublogo,this.OwnerAvtar);
+            if (cc.dd.user.getChaGuan().clublogo,this.OwnerAvtar.indexOf("/") != -1){
+                cc.dd.setPlayerHead(cc.dd.user.getChaGuan().clublogo,this.OwnerAvtar);
+            }
         }
         if (cc.dd.user.getChaGuan().owneruid) {
             this.isOnwer = cc.dd.user.getChaGuan().owneruid == cc.dd.user.getUserInfo().UID

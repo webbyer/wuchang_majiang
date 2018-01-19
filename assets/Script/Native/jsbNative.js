@@ -45,11 +45,11 @@ cc.AndroidDeviceId = (id) => {
 cc.dd.setPlayerHead = (url, head) => {
     if (cc.sys.isMobile) {
         const headUrl = cc.dd.pubConst.IMAGE_PREFIX_HOST + url;  // 此处写你拼接的url
-        cc.log(headUrl);
         cc.loader.load(headUrl, (err, texture) => {
             if (err) {
                 cc.error(err);
             } else {
+                cc.log(headUrl);
                 head.spriteFrame = new cc.SpriteFrame(texture);
             }
         });
@@ -126,7 +126,7 @@ cc.dd.invokeWXFriendShareCustumLink = () => {
                 "【胡徕】五常麻将 想胡你就来！",
                 "好友随时约局，手机实时对战。明暗蛋七小对，呲宝红中满天飞。");
         }else {
-            jsb.reflection.callStaticMethod("WXShareTool", "jsInitiateWXFriendsShare");
+            jsb.reflection.callStaticMethod("WXShareTool", "jsInitiateWXFriendsShareDownload:",cc.dd.pubConst.IOS_DOWNLOAD_LINK);
         }
     }
 };
@@ -139,7 +139,7 @@ cc.dd.invokeWXMomentShareCustumLink = () => {
                 "【胡徕】五常麻将 想胡你就来",
                 "好友随时约局，手机实时对战。明暗蛋七小对，呲宝红中满天飞。");
         }else {
-            jsb.reflection.callStaticMethod("WXShareTool", "jsInitiateWXMomentssShare");
+            jsb.reflection.callStaticMethod("WXShareTool", "jsInitiateWXMomentssShareDownload:",cc.dd.pubConst.IOS_DOWNLOAD_LINK);
         }
     }
 };
