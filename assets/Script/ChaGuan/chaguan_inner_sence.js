@@ -188,7 +188,7 @@ cc.Class({
                     stituation4.forEach((item) => {
                         this.BottomContainerNode.getChildByName(item).active = false;
                 });
-                    // this.BottomContainerNode.getChildByName("tableBill").active = true;
+                    this.BottomContainerNode.getChildByName("tableBill").active = true;
                     break;
                 }
                 default: {
@@ -243,11 +243,10 @@ cc.Class({
     // 更换茶馆口令
     onChangeChaguanNumClick() {
         cc.log("更换茶馆口令");
-        cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_CHAGUAN_CHANGE_NUM_REP);
-        cc.dd.Reload.loadPrefab("Hall/Prefab/AlertView", (prefab) => {
+        cc.dd.Reload.loadPrefab("ChaGuan/Prefab/AlertViewTwoChoices", (prefab) => {
             const UIDNotExitMes = cc.instantiate(prefab);
-            UIDNotExitMes.getComponent("AlterViewScript").initInfoMes("口令更换成功");
             this.node.addChild(UIDNotExitMes);
+            UIDNotExitMes.getComponent("AlterViewScript").initInfoMes("您确定更换茶馆口令");
         });
     },
     // 分享口令到微信朋友

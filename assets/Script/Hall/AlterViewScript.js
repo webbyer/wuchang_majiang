@@ -21,6 +21,8 @@ cc.Class({
             this.exchangeFKSuc = true;
         }else if(data.indexOf("转让失败") != -1) {
             this.exchangeFKFail = true;
+        }else if(data.indexOf("更换茶馆口令") != -1){
+            this.changeCGNum = true;
         }
     },
     // 单个确认按钮
@@ -45,7 +47,11 @@ cc.Class({
     // 成对，确认取消按钮，确认
     onPairBtnComfrimClick() {
         // 删除茶馆内桌子
-        cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_CHAGUAN_DELETE_DESK_REP,this.netWorkData);
+        if (this.changeCGNum) {
+            cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_CHAGUAN_CHANGE_NUM_REP);
+        }else {
+            cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_CHAGUAN_DELETE_DESK_REP,this.netWorkData);
+        }
         this.node.destroy();
     },
 
