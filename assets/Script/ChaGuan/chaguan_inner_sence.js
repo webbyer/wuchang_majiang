@@ -63,6 +63,7 @@ cc.Class({
             tooltip: "分享按钮",
         },
         centerArr: null,
+        chaguanNum: null,
     },
 
     // use this for initialization
@@ -88,12 +89,13 @@ cc.Class({
         }
         if (cc.dd.user.getChaGuan().clubtoken) {
             this.TopRightLabel.string = cc.dd.user.getChaGuan().clubtoken;
+            this.chaguanNum = cc.dd.user.getChaGuan().clubtoken;
         }
         if (cc.dd.user.getChaGuan().clubtitle) {
             this.TopTitleLabel.string = cc.dd.user.getChaGuan().clubtitle;
         }
         if (cc.dd.user.getChaGuan().clublogo) {
-            if (cc.dd.user.getChaGuan().clublogo,this.OwnerAvtar.indexOf("/") != -1){
+            if (cc.dd.user.getChaGuan().clublogo.indexOf("/") != -1){
                 cc.dd.setPlayerHead(cc.dd.user.getChaGuan().clublogo,this.OwnerAvtar);
             }
         }
@@ -218,7 +220,7 @@ cc.Class({
         if (cc.dd.user.getChaGuan().owneruid == cc.dd.user.getUserInfo().UID) { // 自己茶馆
             cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_CHAGUAN_VIEW_BILL_REP,-1);
         }else {
-            cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_CHAGUAN_VIEW_BILL_REP,cc.dd.user.getChaGuan().clubtoken);
+            cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_CHAGUAN_VIEW_BILL_REP,this.chaguanNum);
         }
     },
     // 牌桌权限管理
@@ -232,7 +234,7 @@ cc.Class({
     // 申请进入茶馆
     onAppalyClick() {
         cc.log("申请进入茶馆");
-        cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_CHAGUAN_APPALY_REP,cc.dd.user.getChaGuan().clubtoken);
+        cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_CHAGUAN_APPALY_REP,this.chaguanNum);
     },
     // 更换茶馆
     onChangeChaguanClick() {
