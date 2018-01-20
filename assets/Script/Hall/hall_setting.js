@@ -42,8 +42,8 @@ cc.Class({
         }else {
             this.yuyinSwitch.check();
         }
-        if (cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE) == cc.dd.roomDeskType.Desk_2D) {
-            this.deskLayout.getChildByName("toggle2D").getComponent(cc.Toggle).check();
+        if (cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE) == cc.dd.roomDeskType.Desk_3D) {
+            this.deskLayout.getChildByName("toggle3D").getComponent(cc.Toggle).check();
         }
         if (cc.director.getScene().sceneId == cc.dd.sceneID.GAME_SCENE) {
             this.deskLayout.active = false;
@@ -100,6 +100,7 @@ cc.Class({
         cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_LOGOUT_REP, "logout");
         this.node.destroy();
     },
+    // 选择 2d/3d 桌面布局
     onChooseDeskTypeClick(event,customData) {
         // if (!cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE)){
             cc.sys.localStorage.setItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE,customData);
@@ -109,7 +110,6 @@ cc.Class({
         //     cc.sys.localStorage.setItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE,customData);
         //     this.chooseVisable(customData);
         // }
-        cc.log("in");
         switch (customData) {
             case cc.dd.roomDeskType.Desk_2D: {
                 this.deskLayout.getChildByName("toggle3D").getComponent(cc.Toggle).isChecked = false;

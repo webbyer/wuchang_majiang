@@ -33,7 +33,7 @@ cc.Class({
             cc.log(`未在游戏场景`);
             this.node.destroy();
         }else {
-            cc.dd.soundMgr.stopAllSound();
+            // cc.dd.soundMgr.stopAllSound();
             cc.dd.Reload.loadDir("DirRes", () => {
                 cc.dd.sceneMgr.runScene(cc.dd.sceneID.HALL_SCENE);
             });

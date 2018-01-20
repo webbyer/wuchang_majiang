@@ -3196,7 +3196,7 @@
       }
     ],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [],
     "_prefab": {
       "__id__": 142
@@ -3705,7 +3705,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -30,
+      "x": 60,
       "y": 0
     },
     "_skewX": 0,
@@ -3817,7 +3817,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 121
@@ -4046,7 +4046,7 @@
         "__id__": 127
       }
     ],
-    "_N$isChecked": true
+    "_N$isChecked": false
   },
   {
     "__type__": "cc.ClickEvent",
@@ -4122,7 +4122,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 60,
+      "x": -30,
       "y": 0
     },
     "_skewX": 0,
@@ -4234,7 +4234,7 @@
     },
     "_children": [],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 134
@@ -4463,7 +4463,7 @@
         "__id__": 140
       }
     ],
-    "_N$isChecked": false
+    "_N$isChecked": true
   },
   {
     "__type__": "cc.ClickEvent",

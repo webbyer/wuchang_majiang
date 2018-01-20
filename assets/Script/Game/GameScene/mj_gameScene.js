@@ -60,10 +60,15 @@ cc.Class({
             type: cc.Node,
             tooltip: "玩家的根节点",
         },
-        TimerNode: {
+        TimerFor2DNode: {
             default: null,
             type: cc.Node,
-            tooltip: "转盘",
+            tooltip: "2d转盘",
+        },
+        TimerFor3DNode: {
+            default: null,
+            type: cc.Node,
+            tooltip: "3d转盘",
         },
         BaoCard: {
             default: null,
@@ -136,20 +141,31 @@ cc.Class({
         cc.dd.soundMgr.playMusic("resources/Game/Sound/common/bg.mp3", true);
 
         this.initPlayerArr();
-        if (cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE) == cc.dd.roomDeskType.Desk_2D){
-            // 换桌面背景图
-            const background2d = cc.url.raw("resources/Game/Textures/table2.png");
+        let arrtemp =["Right","Left"];
+        if (cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE) == cc.dd.roomDeskType.Desk_3D){
+            // 换桌面背景图为3d,默认是2d桌面
+            const background2d = cc.url.raw("resources/Game/Textures/table.png");
             const texturebg2d = new cc.SpriteFrame(background2d);
             this.node.getChildByName("Table").getComponent(cc.Sprite).spriteFrame = texturebg2d;
-            let arrtemp =["Right","Left"];
+            this.TimerFor2DNode.active = false;
+            this.TimerFor3DNode.active = true;
+            this.JushuLabel.node.y = 60;
+            arrtemp.forEach((item) => {
+                this.PlayerNode.getChildByName(item).getChildByName("ParentContainer").active = true;
+                this.PlayerNode.getChildByName(item).getChildByName("ParentContainer2D").active = false;
+                this.PlayerNode.getChildByName(item).getChildByName("OutCardLayer").active = true;
+                this.PlayerNode.getChildByName(item).getChildByName("OutCardLayer2D").active = false;
+            });
+        }else {
+            this.TimerFor2DNode.active = true;
+            this.TimerFor3DNode.active = false;
+            this.JushuLabel.node.y = 20;
             arrtemp.forEach((item) => {
                 this.PlayerNode.getChildByName(item).getChildByName("ParentContainer").active = false;
                 this.PlayerNode.getChildByName(item).getChildByName("ParentContainer2D").active = true;
                 this.PlayerNode.getChildByName(item).getChildByName("OutCardLayer").active = false;
                 this.PlayerNode.getChildByName(item).getChildByName("OutCardLayer2D").active = true;
             });
-
-
         }
         cc.dd.roomEvent.notifyMsg();
         cc.dd.net.setCallBack(this);
@@ -157,6 +173,7 @@ cc.Class({
     onDestroy() {
         cc.dd.room.roomserialnumber = null;
         this.unschedule(this.callback);
+        cc.dd.soundMgr.stopAllSound();
     },
 
     // 监听重连后的回调
@@ -872,7 +889,11 @@ cc.Class({
             }
         }
         if (localSeat) {
-            this.TimerNode.getComponent("TimerControl").ratateTimer(localSeat);
+            if (cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE) == cc.dd.roomDeskType.Desk_3D){
+                this.TimerFor3DNode.getComponent("TimerControl").ratateTimer(localSeat);
+            }else {
+                this.TimerFor2DNode.getComponent("TimerControl").ratateTimer(localSeat);
+            }
         } else {
             cc.log(`未知的本地座位号: ${userid}`);
         }
@@ -951,14 +972,41 @@ cc.Class({
      */
     cleanDesk() {
         this.playerArr.forEach((item,index) => {//ParentContainer
-            const handNode = item.getChildByName("ParentContainer").getChildByName("HandCardLayer").getChildByName("HandCardLay");
-            const outNode = item.getChildByName("OutCardLayer");
-            const moNode = item.getChildByName("ParentContainer").getChildByName("HandCardLayer").getChildByName("MoCardLayer");
-            const pengGangNode = item.getChildByName("ParentContainer").getChildByName("PengGangLayer");
+            let handNode = null;
+            let outNode = null;
+            let moNode = null;
+            let pengGangNode = null;
+            if (cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE) == cc.dd.roomDeskType.Desk_2D){
+                if ((index === 1) || (index === 3)){
+                    handNode = item.getChildByName("ParentContainer2D").getChildByName("HandCardLayer").getChildByName("HandCardLay");
+                    outNode= item.getChildByName("OutCardLayer2D");
+                    moNode= item.getChildByName("ParentContainer2D").getChildByName("HandCardLayer").getChildByName("MoCardLayer");
+                    pengGangNode = item.getChildByName("ParentContainer2D").getChildByName("PengGangLayer");
+                    pengGangNode.height = 0;
+                }else {
+                    handNode = item.getChildByName("ParentContainer").getChildByName("HandCardLayer").getChildByName("HandCardLay");
+                    outNode= item.getChildByName("OutCardLayer");
+                    moNode= item.getChildByName("ParentContainer").getChildByName("HandCardLayer").getChildByName("MoCardLayer");
+                    pengGangNode = item.getChildByName("ParentContainer").getChildByName("PengGangLayer");
+                }
+            }else {
+                handNode = item.getChildByName("ParentContainer").getChildByName("HandCardLayer").getChildByName("HandCardLay");
+                outNode= item.getChildByName("OutCardLayer");
+                moNode= item.getChildByName("ParentContainer").getChildByName("HandCardLayer").getChildByName("MoCardLayer");
+                pengGangNode = item.getChildByName("ParentContainer").getChildByName("PengGangLayer");
+            }
+            // const handNode = item.getChildByName("ParentContainer").getChildByName("HandCardLayer").getChildByName("HandCardLay");
+            // const outNode = item.getChildByName("OutCardLayer");
+            // const moNode = item.getChildByName("ParentContainer").getChildByName("HandCardLayer").getChildByName("MoCardLayer");
+            // const pengGangNode = item.getChildByName("ParentContainer").getChildByName("PengGangLayer");
             handNode.removeAllChildren(true);
             moNode.removeAllChildren(true);
             pengGangNode.removeAllChildren(true);
             pengGangNode.width = 0;
+        // if (cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE) == cc.dd.roomDeskType.Desk_3D){
+        //
+        // }
+
             if(index === 0) {
                 item.getChildByName("ParentContainer").getComponent(cc.Layout).spacingX = 0; // 设置顶格
             }
@@ -1060,9 +1108,9 @@ cc.Class({
         }else {
             str = date.getHours() + ":" + date.getMinutes();
         }
-        if (this.TimeLabel) {
-            this.TimeLabel.string = str;
-        }
+        // if (this.TimeLabel) {
+        //     this.TimeLabel.string = str;
+        // }
     },
     // 是否充电状态
     updateChargingSign(data) {

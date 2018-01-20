@@ -62,8 +62,9 @@ cc.Class({
             type: cc.Node,
             tooltip: "分享按钮",
         },
-        centerArr: null,
-        chaguanNum: null,
+        centerArr: null,  // 中间牌桌房间号数组
+        chaguanNum: null,   // 茶馆口令
+        isOnwer: null,  // 是馆主本人
     },
 
     // use this for initialization
@@ -189,10 +190,12 @@ cc.Class({
                     break;
                 }
                 case cc.dd.hall_config.APPLY_STATUS.ALREADY_A_MENBER: {
-                    stituation4.forEach((item) => {
-                        this.BottomContainerNode.getChildByName(item).active = false;
-                });
-                    this.BottomContainerNode.getChildByName("tableBill").active = true;
+                    if (!this.isOnwer) {
+                        stituation4.forEach((item) => {
+                            this.BottomContainerNode.getChildByName(item).active = false;
+                        });
+                        this.BottomContainerNode.getChildByName("tableBill").active = true;
+                    }
                     break;
                 }
                 default: {
@@ -200,7 +203,13 @@ cc.Class({
                 }
             }
         }
-
+        if(cc.dd.user.getChaGuan().updatedroomid) { // 玩家入座，玩家离座
+            this.CenterContainerNode.children.forEach((item,index) => {
+                if ((index !== 0) && (cc.dd.user.getChaGuan().updatedroomid == item.getComponent("TeaInnerDeskItem").itemRoomid)){
+                    item.getComponent("TeaInnerDeskItem").updateAvtars(cc.dd.user.getChaGuan().updateplayers);
+                }
+            });
+        }
     },
     // 添加牌桌
     onAddTableClick() {
