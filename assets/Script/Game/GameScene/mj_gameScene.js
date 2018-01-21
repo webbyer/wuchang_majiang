@@ -149,7 +149,7 @@ cc.Class({
             this.node.getChildByName("Table").getComponent(cc.Sprite).spriteFrame = texturebg2d;
             this.TimerFor2DNode.active = false;
             this.TimerFor3DNode.active = true;
-            this.JushuLabel.node.y = 60;
+            // this.JushuLabel.node.y = 60;
             arrtemp.forEach((item) => {
                 this.PlayerNode.getChildByName(item).getChildByName("ParentContainer").active = true;
                 this.PlayerNode.getChildByName(item).getChildByName("ParentContainer2D").active = false;
@@ -159,7 +159,7 @@ cc.Class({
         }else {
             this.TimerFor2DNode.active = true;
             this.TimerFor3DNode.active = false;
-            this.JushuLabel.node.y = 20;
+            // this.JushuLabel.node.y = 20;
             arrtemp.forEach((item) => {
                 this.PlayerNode.getChildByName(item).getChildByName("ParentContainer").active = false;
                 this.PlayerNode.getChildByName(item).getChildByName("ParentContainer2D").active = true;

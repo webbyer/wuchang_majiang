@@ -3952,7 +3952,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "e9f2495b-680f-4d92-9d4a-df9f800b1108"
+      "__uuid__": "a21b3a51-6e27-4978-baa1-89b35814e81a"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -4026,6 +4026,8 @@
     "ShareBtnNode": {
       "__id__": 33
     },
-    "centerArr": null
+    "centerArr": null,
+    "chaguanNum": null,
+    "isOnwer": null
   }
 ]
