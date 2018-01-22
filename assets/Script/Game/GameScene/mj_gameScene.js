@@ -249,7 +249,9 @@ cc.Class({
             userList[0].needHideIp = true;
         }
 
-
+        this.playerArr.forEach((item) => {
+            item.active = false;
+        });
         userList.forEach((item, index) => {
             this.playerArr[index].active = true;
             let player_class = null;
