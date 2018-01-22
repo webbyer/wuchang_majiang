@@ -53,7 +53,9 @@ cc.Class({
             type: cc.Node,
             tooltip: "删除按钮",
         },
-        itemRoomid: null,
+        _itemRoomid: null,
+        _isOwner: null,
+        _userApplystatus: null
     },
 
     // use this for initialization
@@ -61,8 +63,11 @@ cc.Class({
 
     },
     // 初始化
-    setupInitContent(data,isOwner) {
-        this.itemRoomid = data.roomid;
+    setupInitContent(data,isOwner,userApplystatus) {
+        cc.log(`该桌子所在${isOwner}`);
+        this._isOwner = isOwner;
+        this._userApplystatus = userApplystatus;
+        this._itemRoomid = data.roomid;
         this.RoomID.string = "房号：" + data.roomid;
         this.RoundLabel.string = data.rounds + "圈/" + data.basicraise + "底";
         this.setDelegRoomGameRulesString(data.rules);
@@ -88,29 +93,32 @@ cc.Class({
     // 玩家入座
     onSitInDeskClick(event,customdata) {
         cc.log(customdata);
-        if (cc.dd.user.getChaGuan().applystatus !== 1) {
+        cc.log(this._userApplystatus);
+        if (this._userApplystatus !== 1) {
             cc.dd.Reload.loadPrefab("Hall/Prefab/AlertView", (prefab) => {
                 const UIDNotExitMes = cc.instantiate(prefab);
                 UIDNotExitMes.getComponent("AlterViewScript").initInfoMes("请先申请进入茶馆\n馆主同意后才可进入游戏");
                 this.node.parent.parent.parent.parent.addChild(UIDNotExitMes);
             });
         }else {
-            cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_ENTER_ROOM_REP,this.itemRoomid);
+            cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_ENTER_ROOM_REP,this._itemRoomid);
         }
     },
     // 删除当前桌
     onDeleteClick() {
-      cc.log("删除当前桌"+this.itemRoomid);
+      cc.log("删除当前桌"+this._itemRoomid);
         cc.dd.Reload.loadPrefab("ChaGuan/Prefab/AlertViewTwoChoices", (prefab) => {
             const UIDNotExitMes = cc.instantiate(prefab);
             this.node.parent.parent.parent.parent.addChild(UIDNotExitMes);
-            UIDNotExitMes.getComponent("AlterViewScript").netWorkData = this.itemRoomid;
+            UIDNotExitMes.getComponent("AlterViewScript").netWorkData = this._itemRoomid;
         });
     },
     // update
     updateAvtars(data){
         if(data.length > 0) {
-            this.DeleteBtn.active = false;
+            if (this._isOwner) {
+                this.DeleteBtn.active = false;
+            }
             // 头像与disable该按钮
             data.forEach((item,index) => {
                 this.Avatars.children[index].getComponent(cc.Button).interactable = false;
@@ -130,7 +138,9 @@ cc.Class({
             });
             }
         }else {
-            this.DeleteBtn.active = true;
+            if (this._isOwner) {
+                this.DeleteBtn.active = true;
+            }
             cc.dd.Reload.loadAtlas("ChaGuan/Atlas/GameTea", (atlas) => {
                 this.Avatars.children.forEach((item) => {
                     cc.log("全部设置为默认头像");

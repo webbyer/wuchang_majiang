@@ -8,15 +8,15 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         cc.dd.appUtil.setScreenFit(this.node);
-        cc.dd.net.addObserver(this);
         cc.dd.userEvent.addObserver(this);
+        cc.dd.net.addObserver(this);
         if (cc.dd.user.getUserInfo()) {
             cc.dd.user.getUserInfo().wereInGameSence = true;
         }
     },
     onDestroy() {
-        cc.dd.userEvent.removeObserver(this);
         cc.dd.net.removeObserver(this);
+        cc.dd.userEvent.removeObserver(this);
     },
     // 其他茶馆
     onClickOtherChaguan() {

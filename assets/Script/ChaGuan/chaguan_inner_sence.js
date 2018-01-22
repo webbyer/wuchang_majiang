@@ -65,6 +65,7 @@ cc.Class({
         centerArr: null,  // 中间牌桌房间号数组
         chaguanNum: null,   // 茶馆口令
         isOnwer: null,  // 是馆主本人
+        currentApplystatus: null // 记录当前玩家的权限身份
     },
 
     // use this for initialization
@@ -79,9 +80,9 @@ cc.Class({
         }
     },
     onDestroy() {
+        cc.dd.net.removeObserver(this);
         cc.dd.user.setChaGuan(null);
         cc.dd.userEvent.removeObserver(this);
-        cc.dd.net.removeObserver(this);
     },
     // 渲染界面
     setupContent() {
@@ -98,6 +99,11 @@ cc.Class({
         if (cc.dd.user.getChaGuan().clublogo) {
             if (cc.dd.user.getChaGuan().clublogo.indexOf("/") != -1){
                 cc.dd.setPlayerHead(cc.dd.user.getChaGuan().clublogo,this.OwnerAvtar);
+            }
+        }
+        if(cc.dd.user.getChaGuan().applystatus || (cc.dd.user.getChaGuan().applystatus === 0)) {
+            if (this.currentApplystatus != cc.dd.user.getChaGuan().applystatus){
+                this.currentApplystatus = cc.dd.user.getChaGuan().applystatus;
             }
         }
         if (cc.dd.user.getChaGuan().owneruid) {
@@ -150,7 +156,7 @@ cc.Class({
                         cc.dd.user.getChaGuan().roomlist.forEach((item,index) => {
                             const desk = cc.instantiate(prefab);
                             this.CenterContainerNode.addChild(desk);
-                            desk.getComponent("TeaInnerDeskItem").setupInitContent(item,this.isOnwer);
+                            desk.getComponent("TeaInnerDeskItem").setupInitContent(item,this.isOnwer,this.currentApplystatus);
                             this.centerArr.push(item.roomid);
                                 // if (cc.dd.user.getChaGuan().roomlist.length === index+1) {
                                 //     this.CenterAddTableNode.active = true;
@@ -162,7 +168,7 @@ cc.Class({
                     cc.dd.Reload.loadPrefab("ChaGuan/Prefab/TeaInnerDeskItem", (prefab) => {
                         const desk = cc.instantiate(prefab);
                         this.CenterContainerNode.addChild(desk);
-                        desk.getComponent("TeaInnerDeskItem").setupInitContent(cc.dd.user.getChaGuan().roomadd,this.isOnwer);
+                        desk.getComponent("TeaInnerDeskItem").setupInitContent(cc.dd.user.getChaGuan().roomadd,this.isOnwer,this.currentApplystatus);
                         this.centerArr.push(cc.dd.user.getChaGuan().roomadd.roomid);
                     });
                 }
@@ -177,8 +183,8 @@ cc.Class({
                 }
             });
         }
-        if (cc.dd.user.getChaGuan().applystatus || (cc.dd.user.getChaGuan().applystatus === 0)){
-            switch (cc.dd.user.getChaGuan().applystatus) {
+        if (this.currentApplystatus || (this.currentApplystatus === 0)){
+            switch (this.currentApplystatus) {
                 case cc.dd.hall_config.APPLY_STATUS.NOT_A_MEMBER: {
                     stituation5.forEach((item) => {
                         this.BottomContainerNode.getChildByName(item).active = false;
@@ -320,6 +326,14 @@ cc.Class({
                     roomNotExitMes.getComponent("AlterViewScript").initInfoMes(data.errmsg);
                     this.node.addChild(roomNotExitMes);
                 });
+                break;
+            }
+            case cc.dd.gameCfg.EVENT.EVENT_CREATE_ROOM_REP: {
+                cc.dd.Reload.loadPrefab("Hall/Prefab/AlertView", (prefab) => {
+                    const roomNotExitMes = cc.instantiate(prefab);
+                    roomNotExitMes.getComponent("AlterViewScript").initInfoMes(data.errmsg);
+                    this.node.addChild(roomNotExitMes);
+            });
                 break;
             }
             // case cc.dd.gameCfg.EVENT.EVENT_CHAGUAN_VIEW_PERSONAL_REQ: { // 5019,成员列表
