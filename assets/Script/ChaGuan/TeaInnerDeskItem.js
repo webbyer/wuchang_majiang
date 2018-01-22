@@ -66,9 +66,7 @@ cc.Class({
         this.RoomID.string = "房号：" + data.roomid;
         this.RoundLabel.string = data.rounds + "圈/" + data.basicraise + "底";
         this.setDelegRoomGameRulesString(data.rules);
-        if (isOwner){
-            this.DeleteBtn.active = true;
-        }
+        this.DeleteBtn.active = isOwner;
         if (data.players){
             this.updateAvtars(data.players);
         }

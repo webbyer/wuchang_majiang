@@ -101,7 +101,11 @@ cc.Class({
             }
         }
         if (cc.dd.user.getChaGuan().owneruid) {
-            this.isOnwer = cc.dd.user.getChaGuan().owneruid == cc.dd.user.getUserInfo().UID
+            if (cc.dd.user.getChaGuan().owneruid == cc.dd.user.getUserInfo().UID){
+                this.isOnwer = true;
+            }else {
+                this.isOnwer = false;
+            }
             if (this.isOnwer) { // 馆主视图
                 this.ChangeChaguanNumNode.active = true;
                 this.ShareBtnNode.active = true;
