@@ -42,9 +42,9 @@ cc.Class({
         }else {
             this.yuyinSwitch.check();
         }
-        if (cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE) == cc.dd.roomDeskType.Desk_3D) {
-            this.deskLayout.getChildByName("toggle3D").getComponent(cc.Toggle).check();
-        }
+        // if (cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE) == cc.dd.roomDeskType.Desk_3D) {
+        //     this.deskLayout.getChildByName("toggle3D").getComponent(cc.Toggle).check();
+        // }
         if (cc.director.getScene().sceneId == cc.dd.sceneID.GAME_SCENE) {
             this.deskLayout.active = false;
         }
