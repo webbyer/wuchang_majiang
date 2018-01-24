@@ -19,7 +19,7 @@ cc.Class({
         },
         Avtar: {
             default: null,
-            type: cc.Node,
+            type: cc.Sprite,
             tooltip: "头像",
         },
         rightBtnSet: {

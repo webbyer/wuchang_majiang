@@ -73,7 +73,8 @@ cc.Class({
         cc.dd.appUtil.setScreenFit(this.node);
         this.setupContent();
         cc.dd.net.addObserver(this);
-        cc.dd.userEvent.addObserver(this);
+        cc.dd.tipMgr.init(this.node);
+        // cc.dd.userEvent.addObserver(this);
         this.centerArr = [];
         if (cc.dd.user.getUserInfo()) {
             cc.dd.user.getUserInfo().wereInGameSence = true;
@@ -82,7 +83,7 @@ cc.Class({
     onDestroy() {
         cc.dd.net.removeObserver(this);
         cc.dd.user.setChaGuan(null);
-        cc.dd.userEvent.removeObserver(this);
+        // cc.dd.userEvent.removeObserver(this);
     },
     // 渲染界面
     setupContent() {
@@ -214,8 +215,9 @@ cc.Class({
             }
         }
         if(cc.dd.user.getChaGuan().updatedroomid) { // 玩家入座，玩家离座
+
             this.CenterContainerNode.children.forEach((item,index) => {
-                if ((index !== 0) && (cc.dd.user.getChaGuan().updatedroomid == item.getComponent("TeaInnerDeskItem").itemRoomid)){
+                if ((index !== 0) && (cc.dd.user.getChaGuan().updatedroomid == item.getComponent("TeaInnerDeskItem")._itemRoomid)){
                     item.getComponent("TeaInnerDeskItem").updateAvtars(cc.dd.user.getChaGuan().updateplayers);
                 }
             });
@@ -293,9 +295,7 @@ cc.Class({
     onMessageEvent(event, data) {
         switch (event) {
             case cc.dd.gameCfg.EVENT.EVENT_ENTER_CHAGUAN_REQ: { // 5015
-                if (cc.dd.user.getChaGuan()) {
-                    this.setupContent();
-                }
+                this.setupContent();
                 break;
             }
             case cc.dd.gameCfg.EVENT.EVENT_CHAGUAN_VIEW_BILL_REQ: { // 查看账单
@@ -336,10 +336,6 @@ cc.Class({
             });
                 break;
             }
-            // case cc.dd.gameCfg.EVENT.EVENT_CHAGUAN_VIEW_PERSONAL_REQ: { // 5019,成员列表
-            //
-            //     break;
-            // }
             default: {
                 cc.log(`unkown event: ${event}`);
             }

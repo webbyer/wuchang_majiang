@@ -162,6 +162,7 @@ cc.Class({
         }else {
             roomConfig.autocreate = 0;
         }
+        cc.log(roomConfig);
         cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_CREATE_ROOM_REP, roomConfig);
     },
     // 代理人代开房间给其他用户玩的功能
