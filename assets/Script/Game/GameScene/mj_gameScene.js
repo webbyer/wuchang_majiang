@@ -171,6 +171,7 @@ cc.Class({
         cc.dd.net.setCallBack(this);
     },
     onDestroy() {
+        cc.dd.foriOSDestoryBatteryMonitor();
         cc.dd.room.roomserialnumber = null;
         this.unschedule(this.callback);
         cc.dd.soundMgr.stopAllSound();
