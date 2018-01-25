@@ -43,8 +43,8 @@ cc.Class({
     },
     timing() {
         if(this.showTimeLayout) {
-            this.showTimeLayout.removeAllChildren();
-            if(this.showTimeLayout.childrenCount == 0) {
+            this.showTimeLayout.removeAllChildren(true);
+            if(this.showTimeLayout.children.length === 0) {
                 cc.dd.Reload.loadAtlas("Game/Atlas/timer", (atlas) => {
                     cc.dd.Reload.loadPrefab("Game/Prefab/ShowTime", (prefab) => {
                     const timestr = cc.instantiate(prefab);
