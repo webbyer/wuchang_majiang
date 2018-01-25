@@ -83,10 +83,17 @@ cc.Class({
     onDestroy() {
         cc.dd.net.removeObserver(this);
         cc.dd.user.setChaGuan(null);
+        cc.dd.user._userCurrentApplystatus = null;
         // cc.dd.userEvent.removeObserver(this);
     },
     // 渲染界面
     setupContent() {
+        if(cc.dd.user.getChaGuan().applystatus || (cc.dd.user.getChaGuan().applystatus === 0)) {
+            if (this.currentApplystatus != cc.dd.user.getChaGuan().applystatus){
+                this.currentApplystatus = cc.dd.user.getChaGuan().applystatus;
+                cc.dd.user._userCurrentApplystatus = this.currentApplystatus;
+            }
+        }
         if (cc.dd.user.getChaGuan().activerooms || cc.dd.user.getChaGuan().activerooms === 0) {
             this.TopLeftLabel.string = "桌数：" + cc.dd.user.getChaGuan().activerooms + "/" + cc.dd.user.getChaGuan().allrooms;
         }
@@ -100,11 +107,6 @@ cc.Class({
         if (cc.dd.user.getChaGuan().clublogo) {
             if (cc.dd.user.getChaGuan().clublogo.indexOf("/") != -1){
                 cc.dd.setPlayerHead(cc.dd.user.getChaGuan().clublogo,this.OwnerAvtar);
-            }
-        }
-        if(cc.dd.user.getChaGuan().applystatus || (cc.dd.user.getChaGuan().applystatus === 0)) {
-            if (this.currentApplystatus != cc.dd.user.getChaGuan().applystatus){
-                this.currentApplystatus = cc.dd.user.getChaGuan().applystatus;
             }
         }
         if (cc.dd.user.getChaGuan().owneruid) {

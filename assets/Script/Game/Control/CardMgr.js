@@ -44,6 +44,12 @@ const CONFIG = {
         OUT_CARD_X: 0,
         OUT_CARD_Y: 0,
         OUT_CARD_INIT_Y: 0,
+        HAND_CARD_X: 0,
+        HAND_CARD_Y: -28,
+        HAND_CARD_INIT_Y: -50,
+        PENG_GANG_X: -30, // 30
+        PENG_GANG_Y: 90, // 85
+        PENG_GANE_INIT_Y: 40, // 40
     },
     // 出牌的每层里牌的张数
     OUT_CARD_NUM: {
@@ -111,6 +117,7 @@ const CardMgr = cc.Class({
                         const card2d = cc.instantiate(cc.dd.dirRes["HandCard_Left2D".toUpperCase()]);
                         const nodefor2d = h_node.parent.parent.parent.getChildByName("ParentContainer2D").getChildByName("HandCardLayer").getChildByName("HandCardLay");
                         nodefor2d.addChild(card2d);
+                        card2d.setPosition(cc.p(i * CONFIG.TYPE2D.HAND_CARD_X, CONFIG.TYPE2D.HAND_CARD_INIT_Y + i * CONFIG.TYPE2D.HAND_CARD_Y));
                     }else {
                         const card = cc.instantiate(cc.dd.dirRes[str.toUpperCase()]);
                         h_node.addChild(card);
@@ -135,6 +142,9 @@ const CardMgr = cc.Class({
                         const card2d = cc.instantiate(cc.dd.dirRes["HandCard_Left2D".toUpperCase()]);
                         const nodefor2d = h_node.parent.parent.parent.getChildByName("ParentContainer2D").getChildByName("HandCardLayer").getChildByName("HandCardLay");
                         nodefor2d.addChild(card2d);
+                        const pos_x = (CONFIG.TYPE2D.HAND_CARD_INIT_X + (i * CONFIG.TYPE2D.HAND_CARD_X)) * -1;
+                        const pos_y = (CONFIG.TYPE2D.HAND_CARD_INIT_Y + (i * CONFIG.TYPE2D.HAND_CARD_Y)) * -1;
+                        card2d.setPosition(cc.p(pos_x, pos_y));
                     }else {
                         const card = cc.instantiate(cc.dd.dirRes[str.toUpperCase()]);
                         h_node.addChild(card, data - i);
@@ -360,9 +370,9 @@ const CardMgr = cc.Class({
                     if(cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE)== cc.dd.roomDeskType.Desk_2D) {
                         preStr = "pengGang_Right2D";
                         pengGang = cc.instantiate(cc.dd.dirRes[preStr.toUpperCase()]);
-                        // const pos_x = p_node.childrenCount * CONFIG.TYPE2D.PENG_GANG_X;
-                        // const pos_y = CONFIG.TYPE2D.PENG_GANE_INIT_Y + (p_node.childrenCount * CONFIG.TYPE2D.PENG_GANG_Y);
-                        // pengGang.setPosition(cc.p(pos_x, pos_y));
+                        const pos_x = p_node.childrenCount * CONFIG.TYPE2D.PENG_GANG_X;
+                        const pos_y = CONFIG.TYPE2D.PENG_GANE_INIT_Y + (p_node.childrenCount * CONFIG.TYPE2D.PENG_GANG_Y);
+                        pengGang.setPosition(cc.p(pos_x, pos_y));
                         // pengGang.rotation = 90;
                     }else {
                         pengGang = cc.instantiate(cc.dd.dirRes[preStr.toUpperCase()]);
@@ -393,9 +403,9 @@ const CardMgr = cc.Class({
                         preStr = "pengGang_Left2D";
                         pengGang = cc.instantiate(cc.dd.dirRes[preStr.toUpperCase()]);
                         // pengGang.rotation = -90;
-                        // const pos_x = p_node.childrenCount * CONFIG.TYPE2D.PENG_GANG_X;
-                        // const pos_y = CONFIG.TYPE2D.PENG_GANE_INIT_Y + (p_node.childrenCount * CONFIG.TYPE2D.PENG_GANG_Y);
-                        // pengGang.setPosition(cc.p(pos_x, pos_y));
+                        const pos_x = p_node.childrenCount * CONFIG.TYPE2D.PENG_GANG_X * -1;
+                        const pos_y = CONFIG.TYPE2D.PENG_GANE_INIT_Y + (p_node.childrenCount * CONFIG.TYPE2D.PENG_GANG_Y) * -1;
+                        pengGang.setPosition(cc.p(pos_x, pos_y));
                     }else {
                         pengGang = cc.instantiate(cc.dd.dirRes[preStr.toUpperCase()]);
                         const pos_x = p_node.childrenCount * CONFIG.LEFT.PENG_GANG_X;
@@ -761,7 +771,7 @@ const CardMgr = cc.Class({
             const mocard = cc.instantiate(cc.dd.dirRes[preStr.toUpperCase()]);
             if(cc.sys.localStorage.getItem(cc.dd.userEvName.USER_DESK_TYPE_CHANGE)== cc.dd.roomDeskType.Desk_2D) {
                 if (localSeat === cc.dd.gameCfg.PLAYER_SEAT_LOCAL.RIGHT || localSeat === cc.dd.gameCfg.PLAYER_SEAT_LOCAL.LEFT) {
-                    m_node.parent.parent.parent.getChildByName("ParentContainer2D").getChildByName("HandCardLayer").getChildByName("HandCardLay").addChild(mocard);
+                    m_node.parent.parent.parent.getChildByName("ParentContainer2D").getChildByName("HandCardLayer").getChildByName("MoCardLayer").addChild(mocard);
                 }else {
                     m_node.addChild(mocard);
                 }

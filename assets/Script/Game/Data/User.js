@@ -40,6 +40,7 @@ const User = cc.Class({
         _did: null,
         _noticeboard: null,
         _chaGuan: null,  // 茶馆信息
+        _userCurrentApplystatus: null,
     },
     // 设置用户信息
     setUserInfo(user) {

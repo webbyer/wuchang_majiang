@@ -92,9 +92,7 @@ cc.Class({
     },
     // 玩家入座
     onSitInDeskClick(event,customdata) {
-        cc.log(customdata);
-        cc.log(this._userApplystatus);
-        if (this._userApplystatus !== 1) {
+        if (cc.dd.user._userCurrentApplystatus !== 1) {
             cc.dd.Reload.loadPrefab("Hall/Prefab/AlertView", (prefab) => {
                 const UIDNotExitMes = cc.instantiate(prefab);
                 UIDNotExitMes.getComponent("AlterViewScript").initInfoMes("请先申请进入茶馆\n馆主同意后才可进入游戏");
