@@ -105,6 +105,11 @@ cc.Class({
             type: cc.Node,
             tooltip: "电池充电图标",
         },
+        NetWorkSign: {
+            default: null,
+            type: cc.Node,
+            tooltip: "网络图标",
+        },
         TimeLabel: {
             default: null,
             type: cc.Label,
