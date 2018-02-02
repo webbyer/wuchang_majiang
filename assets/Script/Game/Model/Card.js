@@ -177,7 +177,6 @@ cc.Class({
             }
             case CARD_STATE.MOVE_CANCLE: {
                 cc.log(`滑动出牌取消`);
-                cc.dd.cardMgr.setIsCanOutCard(true);
                 this.cancelSelect();
                 break;
             }
@@ -188,15 +187,17 @@ cc.Class({
      * @private
      */
     _touchCancel() {
-        cc.log(`触摸取消`);
-        if (this.CardZheZhao) {
-            this.CardZheZhao.active = false;
+        if(this.node.y > 19) {
+            cc.dd.cardMgr.setReadyOutCard(this.node);
+            cc.dd.cardMgr.singleOutSeletedHandCardSimilarOutCard(this.id);
+            this.cardState = CARD_STATE.SELECT;
+        }else if(this.node.y < 0){
+            cc.dd.cardMgr.setReadyOutCard(this.node);
+            this.cardState = CARD_STATE.MOVE_CANCLE;
+        }else {
+            this.cardState = CARD_STATE.NORMAL;
         }
-        // this.cancelSelect();
-        if(this.moving) {
-            this.moving = false;
-            this._touchEnd();
-        }
+        this._touchEnd();
     },
     /**
      *  麻将滑动触摸
@@ -209,25 +210,23 @@ cc.Class({
         if (this.CardZheZhao) {
             this.CardZheZhao.active = true;
         }
+        const readyCard = cc.dd.cardMgr.getReadyOutCard();
+        if(readyCard && readyCard != this.node) {
+            readyCard.getComponent("Card").cancelSelect();
+            cc.dd.cardMgr.setReadyOutCard(this.node);
+        }
         // cc.log(`触摸${event.getDeltaY()}`);
         // cc.log(`触摸${event.getLocationY()}`);
-        this.moving = true;
-        let a = event.getDeltaX();
+        // let a = event.getDeltaX();
         let b = event.getDeltaY();
-        this.node.x += a;
         this.node.y += b;
-        cc.log(this.node.x);
         if(this.node.y > 19) {
-            cc.dd.cardMgr.setReadyOutCard(this.node);
             cc.dd.cardMgr.singleOutSeletedHandCardSimilarOutCard(this.id);
             this.cardState = CARD_STATE.SELECT;
         }else if(this.node.y < 0){
             this.cardState = CARD_STATE.MOVE_CANCLE;
         }else {
             this.cardState = CARD_STATE.NORMAL;
-        }
-        if(this.node.x < -920) {
-            this.cardState = CARD_STATE.MOVE_CANCLE;
         }
     },
     /**
@@ -246,6 +245,7 @@ cc.Class({
      */
     cancelSelect() {
         this.node.runAction(cc.moveTo(0.05, cc.p(this._pos_x, this._pos_y)));
+        cc.dd.cardMgr.setReadyOutCard(null);
         this.cardState = CARD_STATE.NORMAL;
         cc.dd.cardMgr.cancelSingleOutMask();
     },

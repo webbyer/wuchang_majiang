@@ -157,11 +157,7 @@ cc.Class({
         roomConfig.playrule = this.WanFa;
         roomConfig.createtype = "selfuse";// agent  selfuse
         roomConfig.roomtype = "cymj";
-        if (this.ReopenAllowedToggle.isChecked) {
-            roomConfig.autocreate = 1;
-        }else {
-            roomConfig.autocreate = 0;
-        }
+        roomConfig.autocreate = 0;
         cc.log(roomConfig);
         cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_CREATE_ROOM_REP, roomConfig);
     },

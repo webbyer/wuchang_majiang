@@ -62,12 +62,10 @@ cc.Class({
         if(customData.length <=3){
             msgbody.type = 2;
             msgbody.msgid = customData;
-            //emoji
         }else {
             // cc.log(customData);
             msgbody.type = 1;
             msgbody.msgid = customData;
-            // 无动画 播放语音 禁用语音和短语按钮
         }
         cc.dd.net.startEvent(cc.dd.gameCfg.EVENT.EVENT_USER_SENT_EMOJI_REP,msgbody);
     },

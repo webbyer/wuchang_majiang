@@ -34,10 +34,6 @@ cc.Class({
             default:null,
             type: cc.Node,
         },
-        roomMatchingBtn: {
-            default:null,
-            type: cc.Node,
-        },
     },
 
     // use this for initialization
@@ -83,12 +79,10 @@ cc.Class({
             return;
         }
         if(cc.dd.user.getCardState().unlimited === true) {
-            // cc.log("无限畅打");
             this.RoomCard.string = "无限畅打";
             this.CardTitle.string = cc.dd.user.getCardState().unlimitedshowdetail[0];
             this.CardContent.string = cc.dd.user.getCardState().unlimitedshowdetail[1]
         }else {
-            // cc.log("次卡");
             this.RoomCard.string = '次卡';
             this.CardTitle.string = '数量 :';
             this.CardContent.string = num + '';

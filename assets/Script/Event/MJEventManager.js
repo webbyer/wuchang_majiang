@@ -35,7 +35,7 @@ const MJEventManager = cc.Class({
                 body.did = deviceid;
             }
         }else{
-            body.did = "3226606a-190b-4928-90e3-bda04817bd69";// 网页 47194279-dfb8-4e35-9ba2-d13dd70028dc
+            body.did = "47194279-dfb8-4e35-9ba2-d13dd70028dc";// 网页 47194279-dfb8-4e35-9ba2-d13dd70028dc
         }//3226606a-190b-4928-90e3-bda04817bd69 //60eb20b0-8fd2-4b5c-805f-fecb298662db //7427107d-d571-494b-819b-7e001ebf7d3c
 
         switch (event) {
@@ -248,11 +248,11 @@ const MJEventManager = cc.Class({
                 break;
             }
             case cc.dd.gameCfg.EVENT.EVENT_CREATE_ROOM_REP: {  // 新建房间失败的返回，1003
-                if (cc.dd.user._matching){
-                    cc.dd.room.saveMsg(msgId, msgData);
-                }else {
+                // if (cc.dd.user._matching){
+                //     cc.dd.room.saveMsg(msgId, msgData);
+                // }else {
                     this.notifyEvent(msgId, msgData);
-                }
+                // }
                 break;
             }
             case cc.dd.gameCfg.EVENT.EVENT_ROOM_DATA: {  // 房间数据,4001
@@ -391,7 +391,7 @@ const MJEventManager = cc.Class({
                 this.notifyEvent(msgId, msgData);
                 break;
             }
-            case cc.dd.gameCfg.EVENT.EVENT_ENTER_CHAGUAN_REQ: { // 查询代开房间记录的返回，5015
+            case cc.dd.gameCfg.EVENT.EVENT_ENTER_CHAGUAN_REQ: { // 查询茶馆信息的返回，5015
                 cc.dd.user.setChaGuan(msgData);
                 this.notifyEvent(msgId, msgData);
                 break;

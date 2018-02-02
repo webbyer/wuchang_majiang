@@ -35,15 +35,12 @@ const Room = cc.Class({
         _subcommand: null, // 结算界面，为4时显示返回大厅
         _roomRules: null, // 游戏房间玩法规则
         _currentMessageSeatID: null,  // 当前播放的语音信息的是这个座位号的
-        _currentMessageID: null,  // 当前播放的语音消息的id
-        _hasMessageOnPlay: null,  // 当前有正在播放的语音消息
         _selfRecording: null,  // 录音发言中
         huing: null,    // 收到胡牌广播
         _playerNodeArr: [], // 四玩家的节点数组
         _isFourZeroOneTwo: null, // 4012状态下点过不需要发送2002
         _curentChuPaiSeat: null, // 当前要出牌的座位号
         roomserialnumber: null, // 当前房间唯一识别号
-        // _roomDeskType: null,  // 麻将桌类型
     },
     // 房间数据
     updataRoomData(data) {

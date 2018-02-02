@@ -128,5 +128,12 @@ module.exports = {
         GVOICE_MESSAGE_FINISH_PLAYING: "message_finish_playing", // 完成播放当前语音消息
 
     },
+    // 语音状态
+    YUYINSTATUS: {
+        RECORDING_MESSAGE: "message_recording", // 录音中
+        RECORDING_MESSAGE_IN_PLAY: "playing_recording", // 录音播放中
+        EMOJI_MESSAGE_IN_PLAY: "playing_emoji", // 短语表情播放中
+        FINISH_PLAYING: "finish_playing",  // 播放完成
+    },
 };
 cc.dd.gameCfg = module.exports;

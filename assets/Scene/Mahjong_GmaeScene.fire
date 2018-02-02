@@ -1767,7 +1767,7 @@
     "node": {
       "__id__": 41
     },
-    "_enabled": true,
+    "_enabled": false,
     "_layoutSize": {
       "__type__": "cc.Size",
       "width": 65,
@@ -3042,7 +3042,7 @@
     "node": {
       "__id__": 77
     },
-    "_enabled": true,
+    "_enabled": false,
     "_layoutSize": {
       "__type__": "cc.Size",
       "width": 65,
@@ -3742,7 +3742,7 @@
     "_N$paddingTop": 0,
     "_N$paddingBottom": 0,
     "_N$spacingX": 0,
-    "_N$spacingY": 40,
+    "_N$spacingY": 30,
     "_N$verticalDirection": 0,
     "_N$horizontalDirection": 0
   },
@@ -4571,7 +4571,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 170,
+      "x": 150,
       "y": -20
     },
     "_skewX": 0,
@@ -4588,7 +4588,7 @@
     "node": {
       "__id__": 113
     },
-    "_enabled": false,
+    "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
       "width": 300,
@@ -10362,7 +10362,7 @@
     "_N$paddingTop": 0,
     "_N$paddingBottom": 0,
     "_N$spacingX": 0,
-    "_N$spacingY": 40,
+    "_N$spacingY": 30,
     "_N$verticalDirection": 1,
     "_N$horizontalDirection": 0
   },
@@ -11191,7 +11191,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -137,
+      "x": -147,
       "y": 170
     },
     "_skewX": 0,
@@ -19846,6 +19846,15 @@
     "_didClickRecordBtn": null,
     "RecordBTN": {
       "__id__": 10
+    },
+    "disableRecordBTN": {
+      "__id__": 14
+    },
+    "DuanyuBTN": {
+      "__id__": 17
+    },
+    "disableDuanyuBTN": {
+      "__id__": 22
     }
   },
   {

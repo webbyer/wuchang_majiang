@@ -455,13 +455,6 @@ const CardMgr = cc.Class({
                 if (item.name !== "AnGang" && item.name !== "GangCard") {
                     if(index <= 2){
                         item.getComponent("CardSpr").initCard(data.straight[index]);
-                        // if (localSeat === cc.dd.gameCfg.PLAYER_SEAT_LOCAL.RIGHT) {// 翻转补丁
-                        //     if (data.straight[index] == 4 || data.straight[index] == 6 || data.straight[index] == 8 || data.straight[index] == 15) {
-                        //         item.getChildByName("Spr").setScaleX(-0.4);
-                        //         item.getChildByName("Spr").setScaleY(0.3);
-                        //         item.getChildByName("Spr").rotation = 90;
-                        //     }
-                        // }
                     }
                     index ++;
                 }
@@ -684,15 +677,6 @@ const CardMgr = cc.Class({
             } else {
                 addNode.addChild(outCard);
             }
-            // cc.log(outCard.scaleX);
-            // if (localSeat === cc.dd.gameCfg.PLAYER_SEAT_LOCAL.RIGHT) {// 翻转补丁
-                // outCard.setScaleX(0.8);
-            //     const cardid = outCard.getComponent("CardSpr").id;
-            //     if(cardid == 4||cardid == 6 || cardid == 8 || cardid == 15){
-            //         outCard.getChildByName("Spr").setScaleX(-0.5);
-            //         outCard.getChildByName("Spr").rotation = 93;
-            //     }
-            // }
             outCard.getChildByName("Sign").active = true;
             this.setCurOutCard(outCard);
         }
