@@ -201,7 +201,7 @@ cc.Class({
                 break;
             }
             case cc.dd.gameCfg.EVENT.EVENT_USER_SENT_EMOJI_REQ: { // 2016,用户发送的短语表情失败
-                this.node.getComponent("mj_gameScene").showUserEmojiOrPhrase(data);
+                this.node.getComponent("mj_gameScene").showErrorTips(data);
                 break;
             }
             case cc.dd.gameCfg.EVENT.EVENT_ENTER_CHAGUAN_REQ: {

@@ -379,6 +379,10 @@ const MJEventManager = cc.Class({
                 cc.dd.room.saveMsg(msgId,msgData);
                 break;
             }
+            case cc.dd.gameCfg.EVENT.EVENT_USER_SENT_EMOJI_REP: { // 用户发送的表情包失败广播
+                cc.dd.room.saveMsg(msgId,msgData);
+                break;
+            }
             case cc.dd.gameCfg.EVENT.EVENT_CHAGUAN_VIEW_PERSONAL_REQ: { // 收到权限管理的用户列表
                 this.notifyEvent(msgId, msgData);
                 break;
